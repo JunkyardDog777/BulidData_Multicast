@@ -1,0 +1,72 @@
+[main]
+input: ..\..\..\..\..\..\..\..\..\Program Files (x86)\StarCraft\Maps\Vermeer_AmpedUp.scx
+output: ..\..\..\..\..\..\..\..\..\Program Files (x86)\StarCraft\Maps\Vermeer AmpedUpx.scx
+[DataEditor.py]
+[ExtraDataEditor.py]
+[eudTurbo]
+[dataDumper]
+..\temp\custom_txt.tbl : 0x6D5A30, copy
+
+[TriggerEditor\Ep_3.eps]
+
+[MSQC]
+NotTyping ; KeyDown(F) : VKeyDown_F, 1
+NotTyping ; KeyDown(ENTER) : VKeyDown_ENTER, 1
+NotTyping ; KeyDown(0) : VKeyDown_0, 1
+NotTyping ; KeyDown(1) : VKeyDown_1, 1
+NotTyping ; KeyDown(2) : VKeyDown_2, 1
+NotTyping ; KeyDown(3) : VKeyDown_3, 1
+NotTyping ; KeyDown(4) : VKeyDown_4, 1
+NotTyping ; KeyDown(5) : VKeyDown_5, 1
+NotTyping ; KeyDown(6) : VKeyDown_6, 1
+NotTyping ; KeyDown(7) : VKeyDown_7, 1
+NotTyping ; KeyDown(8) : VKeyDown_8, 1
+NotTyping ; KeyDown(9) : VKeyDown_9, 1
+NotTyping ; KeyDown(-) : VKeyDown_SP21, 1
+NotTyping ; KeyDown(M) : VKeyDown_SP3, 1
+NotTyping ; KeyDown(W) : VKeyDown_W, 1
+NotTyping ; KeyDown(Z) : VKeyDown_Z, 1
+NotTyping ; KeyDown(X) : VKeyDown_X, 1
+NotTyping ; KeyPress(LSHIFT) : VKeyPress_LSHIFT, 1
+MouseDown(L) : VMouseDown_L, 1
+NotTyping ; KeyPress(ENTER) : VKeyPress_ENTER, 1
+NotTyping ; KeyPress(F) : VKeyPress_F, 1
+NotTyping ; KeyPress(G) : VKeyPress_G, 1
+NotTyping ; KeyPress(N) : VKeyPress_SP1, 1
+NotTyping ; KeyPress(E) : VKeyPress_E, 1
+NotTyping ; KeyPress(A) : VKeyPress_SP5, 1
+NotTyping ; KeyPress(B) : VKeyPress_B, 1
+NotTyping ; KeyPress(C) : VKeyPress_C, 1
+NotTyping ; KeyPress(D) : VKeyPress_SP6, 1
+NotTyping ; KeyPress(H) : VKeyPress_H, 1
+NotTyping ; KeyPress(I) : VKeyPress_I, 1
+NotTyping ; KeyPress(J) : VKeyPress_J, 1
+NotTyping ; KeyPress(K) : VKeyPress_K, 1
+NotTyping ; KeyPress(L) : VKeyPress_L, 1
+NotTyping ; KeyPress(M) : VKeyPress_SP3, 1
+NotTyping ; KeyPress(O) : VKeyPress_O, 1
+NotTyping ; KeyPress(P) : VKeyPress_SP4, 1
+NotTyping ; KeyPress(Q) : VKeyPress_Q, 1
+NotTyping ; KeyPress(R) : VKeyPress_R, 1
+NotTyping ; KeyPress(S) : VKeyPress_S, 1
+NotTyping ; KeyPress(T) : VKeyPress_T, 1
+NotTyping ; KeyPress(U) : VKeyPress_SP2, 1
+NotTyping ; KeyPress(V) : VKeyPress_V, 1
+NotTyping ; KeyPress(W) : VKeyPress_W, 1
+NotTyping ; KeyPress(X) : VKeyPress_X, 1
+NotTyping ; KeyPress(Y) : VKeyPress_Y, 1
+NotTyping ; KeyPress(Z) : VKeyPress_Z, 1
+0x58D900, Exactly, 2 : VChatIndex, 1
+0x58D908, Exactly, 3 : VChatIndex, 2
+mouse : Location 248
+
+[chatEvent]
+__addr__ : 0x58D900
+__ptrAddr__ : 0x58D904
+__patternAddr__ : 0x58D908
+__lenAddr__ : 0x58D90C
+7 : 2
+^6.*6.*6$ : 3
+
+
+

@@ -1,0 +1,2256 @@
+import PluginVariables as msqcvar;
+import TriggerEditor.TETools as tt;
+const displaytext = StringBuffer();
+
+/*NOTE PAD
+
+p1 left (0x0058efac,  
+p2 left (0x0058efc0, 
+p3 left (0x0058EFD4,  
+p4 left (0x0058EFE8, 
+p5 left (0x0058EFFC,  
+p6 left (0x0058F010, 
+p7 left (0x0058F010,  
+p8 left (0x0058F038, 
+
+
+
+Tx = wread(0x0058efac);
+ left 1 (0x0058dc60, (0x0058dc60, 58DC88,58DCB0, 58DCD8 58DD00 58DD28, 58DD50
+
+
+6284E8
+
+
+-------------------
+*/
+
+/*================Start Import================*/
+
+
+
+
+//Generic Variables{}
+var sg1;
+var sg2;
+var sg3;
+var sg4;
+var sg5;
+var sg6;
+var sg7;
+var sg8;
+var sg9;
+var sg10;
+
+
+var P1gswitch;
+var P1gtimer;
+var pressG;
+var Gbuffer;
+var pressShift;
+var Shiftbuffer;
+
+var pplayer;
+var n;
+var x;
+var Tx;
+var Ty;
+var Tx2;
+var Ty2;
+var P1Smoke1;
+const Medic = [0,0,0,0,0,0,0,0,0,0,0];
+var PressF;
+var EPDswitch;
+var P1Flame1W;
+var P1selector;
+var P1switch;
+var xx; 
+var g;
+var race;
+var g1;
+var g2;
+var timer205;
+ var s;
+  var s1;
+  
+  var gj;
+  
+  var ampmenu;
+
+//Marine Rocket Launcher EPDarray{}
+
+var P1Rocketlauncher;
+var P1RocketlauncherTarget;
+var P1Rocketlauncher_1;
+var P1RocketlauncherTarget_1;
+var P1Rocketlauncher_2;
+var P1RocketlauncherTarget_2;
+var P1Rocketlauncher_3;
+var P1RocketlauncherTarget_3;
+var P1Rocketlauncher_4;
+var P1RocketlauncherTarget_4;
+var P1Rocketlauncher_5;
+var P1RocketlauncherTarget_5;
+var P1Rocketlauncher_6;
+var P1RocketlauncherTarget_6;
+var P1Rocketlauncher_7;
+var P1RocketlauncherTarget_7;
+var P1Rocketlauncher_8;
+var P1RocketlauncherTarget_8;
+var P1Rocketlauncher_9;
+var P1RocketlauncherTarget_9;
+var P1Rocketlauncher_10;
+var P1RocketlauncherTarget_10;
+var P1Rocketlauncher_11;
+var P1RocketlauncherTarget_11;
+
+
+
+
+
+var keyenter;
+
+var t1x;
+var t2x;
+var t3x;
+var t4x;
+var RT;
+var tradecycle;
+var teamtrade;
+var teamread;
+var MCckeyPress;
+const MCcKey = [Db("A"),Db("B"),Db("C"),Db("D"),Db("E"),Db("F"),Db("G"),Db("H"),Db("I"),Db("J"),Db("K"),Db("L"),Db("M"),Db("N"),Db("O"),Db("P"),Db("Q"),Db("R"),Db("S"),Db("T"),Db("U"),Db("V"),Db("W"),Db("X"),Db("Y"),Db("Z") ];
+var MCkey;
+var SR;
+var SRv;
+//const SendR = [ Db("A") , Db("B") ];
+
+
+//Generic EPDarray{}
+const uGcursorP1 = [0,0,0,0,0,0,0,0,0,0,0,0,0];
+const mloc = [255,254];
+const P1trailarray = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+
+const P1Mselect =[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+
+const P1flame1 =[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+const P1flame2 =[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+
+const smoke = [0,0,0,0];
+
+
+//Var to duplicate for P2
+ var P1TargetUnit;
+var P1killed;
+
+
+
+var key0;
+var key1;
+var key2;
+var key3;
+var key4;
+var key5;
+var key6;
+var key7;
+var key8;
+var key9;
+   
+  
+  /*================End Var================*/
+
+  function ClassicTriggerExec(){
+
+}
+
+function beforeTriggerExec(){
+
+//debug section------------
+
+
+
+
+if(msqcvar.VKeyPress_SP5[0]){MCkey =1; MCckeyPress=0; } 
+else if(msqcvar.VKeyPress_B[0]){MCkey =1; MCckeyPress=1;} 
+else if(msqcvar.VKeyPress_C[0]){MCkey =1; MCckeyPress=2;} 
+else if(msqcvar.VKeyPress_SP6[0]){MCkey =1; MCckeyPress=3;} 
+else if(msqcvar.VKeyPress_E[0]){MCkey =1; MCckeyPress=4;} 
+else if(msqcvar.VKeyPress_F[0]){MCkey =1; MCckeyPress=5;} 
+else if(msqcvar.VKeyPress_G[0]){MCkey =1; MCckeyPress=6;}  
+else if(msqcvar.VKeyPress_H[0]){MCkey =1; MCckeyPress=7;} 
+else if(msqcvar.VKeyPress_I[0]){MCkey =1; MCckeyPress=8;} 
+else if(msqcvar.VKeyPress_J[0]){MCkey =1; MCckeyPress=9;} 
+else if(msqcvar.VKeyPress_K[0]){MCkey =1; MCckeyPress=10;} 
+else if(msqcvar.VKeyPress_L[0]){MCkey =1;  MCckeyPress=11;} 
+else if(msqcvar.VKeyPress_SP3[0]){MCkey =1; MCckeyPress=12;} 
+else if(msqcvar.VKeyPress_SP1[0]){MCkey =1; MCckeyPress=13;} 
+else if(msqcvar.VKeyPress_O[0]){MCkey =1; MCckeyPress=14;} 
+else if(msqcvar.VKeyPress_SP4[0]){MCkey =1; MCckeyPress=15;} 
+else if(msqcvar.VKeyPress_Q[0]){MCkey =1;  MCckeyPress=16;} 
+else if(msqcvar.VKeyPress_R[0]){MCkey =1; MCckeyPress=17;} 
+else if(msqcvar.VKeyPress_S[0]){MCkey =1; MCckeyPress=18;} 
+else if(msqcvar.VKeyPress_T[0]){MCkey =1; MCckeyPress=19;} 
+else if(msqcvar.VKeyPress_SP2[0]){MCkey =1; MCckeyPress=20;}
+else if(msqcvar.VKeyPress_V[0]){MCkey =1; MCckeyPress=21;}
+else if(msqcvar.VKeyPress_W[0]){MCkey =1;MCckeyPress=22;}
+else if(msqcvar.VKeyPress_X[0]){MCkey =1; MCckeyPress=23;}
+else if(msqcvar.VKeyPress_Y[0]){MCkey =1; MCckeyPress=24;}
+else if(msqcvar.VKeyPress_Z[0]){MCkey =1; MCckeyPress=25;} 
+else{MCkey =0;}
+   
+
+            
+             if( Shiftbuffer>=12){ Shiftbuffer=10;  }
+if( Shiftbuffer>=1){ Shiftbuffer-=1; pressShift=1; }  
+             
+             
+             
+             
+                  if(   msqcvar.VKeyDown_0[0]){key0=1;   }
+         else if(key0==1){key0=0;}
+             if(   msqcvar.VKeyDown_1[0]){key1=1;   }
+         else if(key1==1){key1=0;}
+            if(    msqcvar.VKeyDown_2[0]){key2=1;   }
+         else if(key2==1){key2=0;}
+            if(    msqcvar.VKeyDown_3[0]){key3=1;   }
+         else if(key3==1){key3=0;}
+           if(     msqcvar.VKeyDown_4[0]){key4=1;   }
+         else if(key4==1){key4=0;}
+            if(    msqcvar.VKeyDown_5[0]){key5=1;   }
+         else if(key5==1){key5=0;}
+            if(    msqcvar.VKeyDown_6[0]){key6=1;   }
+         else if(key6==1){key6=0;}
+           if(     msqcvar.VKeyDown_7[0]){key7=1;   }
+         else if(key7==1){key7=0;}
+             if(   msqcvar.VKeyDown_8[0]){key8=1;    }
+         else if(key8==1){key8=0;}
+         if(   msqcvar.VKeyDown_9[0]){ key9=1;   }
+         else if(key9==1){key9=0;}   
+         
+           
+
+          
+          
+          
+    
+
+             
+
+ settblf(1171, 0, "/x Share Ressources  \n\n  SetTo:{:c}{:n}  ", teamread, teamread);
+ settblf(1172, 0, "/x Currently:{:s} \n      Assign  \n Multi-Cast Move Command \n  \x1f   A\x04mped\x01 Extra Key   ",MCcKey[MCckeyPress] );
+
+
+
+    if(msqcvar.VKeyDown_Z[0]){
+    
+    n+=10;
+    
+    
+       } 
+     if(!msqcvar.VKeyPress_LSHIFT[0]
+  && msqcvar.VKeyDown_X[0]){
+     CreateUnit(1, 37, 248, P2);}
+       if(msqcvar.VKeyPress_LSHIFT[0]
+     &&msqcvar.VKeyDown_X[0]){
+     CreateUnit(1, 83, 248, P1);}
+//--
+       
+
+
+if(msqcvar.VKeyPress_F[0]){PressF=1;}
+if(!msqcvar.VKeyPress_F[0] && PressF==1){PressF=0;}
+
+//core
+
+Tx = wread(0x0058efac);
+Ty = wread(0x0058efb0);
+
+Tx2 = wread(0x0058efc0);
+Ty2 = wread(0x0058efc4);
+
+
+const P1cursor1Epd = CUnit.from_read(uGcursorP1[0])  ;
+const P1cursor2Epd = CUnit.from_read(uGcursorP1[1])  ;
+const P1cursor3Epd = CUnit.from_read(uGcursorP1[2])  ;
+const P1cursor4Epd = CUnit.from_read(uGcursorP1[3])  ;
+const P1cursor5Epd = CUnit.from_read(uGcursorP1[4])  ;
+const P1cursor6Epd = CUnit.from_read(uGcursorP1[5])  ;
+const P1cursor7Epd = CUnit.from_read(uGcursorP1[6])  ;
+const P1cursor8Epd = CUnit.from_read(uGcursorP1[7])  ;
+const P1cursor9Epd = CUnit.from_read(uGcursorP1[8])  ;
+const P1cursor10Epd = CUnit.from_read(uGcursorP1[9])  ;
+const P1cursor11Epd = CUnit.from_read(uGcursorP1[10])  ;
+const P1cursor12Epd = CUnit.from_read(uGcursorP1[11])  ;
+const P1cursor13Epd = CUnit.from_read(uGcursorP1[12])  ;
+
+
+             const selectEpd = EPD(0x6284E8);
+             const P1selectEpd = CUnit.from_read(selectEpd)  ;
+             const select1Epd = EPD(0x6284E8+4);
+             const P1select1Epd = CUnit.from_read(select1Epd)  ;
+             const select2Epd = EPD(0x6284E8+8);
+             const P1select2Epd = CUnit.from_read(select2Epd)  ;
+             const select3Epd = EPD(0x6284E8+12);
+             const P1select3Epd = CUnit.from_read(select3Epd)  ;  
+             const select4Epd = EPD(0x6284E8+16);
+             const P1select4Epd = CUnit.from_read(select4Epd)  ;
+             const select5Epd = EPD(0x6284E8+20);
+             const P1select5Epd = CUnit.from_read(select5Epd)  ;
+             const select6Epd = EPD(0x6284E8+24);
+             const P1select6Epd = CUnit.from_read(select6Epd)  ;  
+             const select7Epd = EPD(0x6284E8+28);
+             const P1select7Epd = CUnit.from_read(select7Epd)  ;
+             const select8Epd = EPD(0x6284E8+32);
+             const P1select8Epd = CUnit.from_read(select8Epd)  ;
+             const select9Epd = EPD(0x6284E8+36);
+             const P1select9Epd = CUnit.from_read(select9Epd)  ;  
+             const select10Epd = EPD(0x6284E8+40);
+             const P1select10Epd = CUnit.from_read(select10Epd)  ;  
+             const select11Epd = EPD(0x6284E8+44);
+             const P1select11Epd = CUnit.from_read(select11Epd)  ;  
+             const select12Epd = EPD(0x6284E8+48);
+             const P1select12Epd = CUnit.from_read(select12Epd)  ;  
+
+sg1 = MCkey  ;
+sg2 = tradecycle;
+sg3 = P1selectEpd.statusFlags.UNKNOWN6       ;
+sg4 = P1selectEpd.statusFlags.UNKNOWN7   ;
+sg5 = P1selectEpd.secondaryOrderTimer  ;
+sg6 = P1selectEpd.secondaryOrder ;
+sg7 = P1selectEpd.orderID       ;
+sg8 = P1selectEpd.buildQueue1  ;
+sg9 = P1selectEpd.buildQueue12     ;
+sg10 = P1selectEpd.buildQueue34   ;
+
+displaytext.printfAt(3, "{} , {} , {}, {} , {}",sg1,sg2,0,0,0);
+//displaytext.printfAt(2, "{} , {} , {}, {} , {}",sg6,sg7,sg8,sg9,sg10);
+//displaytext.printfAt(3, "{}", sg3);
+//displaytext.printfAt(4, "{}", sg4);
+/*
+if(P1gswitch==0){
+setloc(1,P1cursor13Epd.posX,P1cursor13Epd.posY);
+MoveUnit(All,219,P1,1,69);
+}
+*/
+if(P1gtimer!=0){P1gtimer-=1;}
+if(pressG==0 && P1gswitch!=0 && pressShift==0){
+addloc(69,0,-32);
+setloc(1,P1cursor2Epd.posX,P1cursor2Epd.posY);
+MoveUnit(All,219,P1,1,69); 
+addloc(69,3,0);
+setloc(1,P1cursor3Epd.posX,P1cursor3Epd.posY);
+MoveUnit(All,219,P1,1,69); 
+addloc(69,3,0);
+setloc(1,P1cursor4Epd.posX,P1cursor4Epd.posY);
+MoveUnit(All,219,P1,1,69); 
+addloc(69,3,0);
+setloc(1,P1cursor5Epd.posX,P1cursor5Epd.posY);
+MoveUnit(All,219,P1,1,69); 
+addloc(69,3,0);
+setloc(1,P1cursor6Epd.posX,P1cursor6Epd.posY);
+MoveUnit(All,219,P1,1,69); 
+addloc(69,3,0);
+setloc(1,P1cursor7Epd.posX,P1cursor7Epd.posY);
+MoveUnit(All,219,P1,1,69); 
+addloc(69,3,0);
+setloc(1,P1cursor8Epd.posX,P1cursor8Epd.posY);
+MoveUnit(All,219,P1,1,69); 
+addloc(69,3,0);
+setloc(1,P1cursor9Epd.posX,P1cursor9Epd.posY);
+MoveUnit(All,219,P1,1,69); 
+addloc(69,3,0);
+setloc(1,P1cursor10Epd.posX,P1cursor10Epd.posY);
+MoveUnit(All,219,P1,1,69); 
+addloc(69,3,0);
+setloc(1,P1cursor11Epd.posX,P1cursor11Epd.posY);
+MoveUnit(All,219,P1,1,69); 
+addloc(69,0,3);
+setloc(1,P1cursor12Epd.posX,P1cursor12Epd.posY);
+MoveUnit(All,219,P1,1,69); 
+addloc(69,0,3);
+setloc(1,P1cursor13Epd.posX,P1cursor13Epd.posY);
+MoveUnit(All,219,P1,1,69); 
+
+addloc(69,-27,26);
+ P1gswitch=0;
+
+}
+
+
+
+
+
+
+       if ( tt.BuildCheckEPD(P1selectEpd,76)     ) {tt.BuildResetEPD(P1selectEpd); 
+        if (ampmenu==0) {
+       ampmenu =10;  
+        } } 
+      
+      if (ampmenu==10) {
+      
+
+
+if(MCkey ==1){ampmenu=9;}
+      displaytext.printfAt(5, "\x13 Press ANY key to ");
+      displaytext.printfAt(6, "\x13 Set your Multi-Group move command");
+
+      
+      }
+        if (ampmenu ==9  ){      displaytext.printfAt(5, " "); displaytext.printfAt(6, " ");}   
+      
+       if ( tt.BuildCheckEPD(P1selectEpd,75)  && tradecycle==0 ) { tradecycle =47;  tt.BuildResetEPD(P1selectEpd);  
+       
+    
+       } 
+       
+/*
+
+         if ( P1selectEpd.secondaryOrder==2 ) {P1selectEpd.secondaryOrder=38;}
+          if ( P1selectEpd.secondaryOrder==38 ) {
+          setloc(1,P1selectEpd.posX,P1selectEpd.posY );
+          setloc(2,P1selectEpd.posX,P1selectEpd.posY );
+          MoveUnit(All,106,0,1,2);
+          P1selectEpd.secondaryOrder=23;}
+
+*/
+ if(tradecycle ==45){tradecycle =1; }
+ if(tradecycle ==33){tradecycle =0;  ampmenu=0;eprintf("  ");}
+ if(tradecycle >=30){tradecycle -=1; }
+       //       if(msqcvar.VKeyPress_ENTER[0]) {SetResources(0,Add,1,Ore);}
+      if (P1selectEpd.unitType==106){
+         if(tradecycle !=0 &&tradecycle <=7 ){ 
+         setloc(1,P1selectEpd.posX,P1selectEpd.posY);
+         CenterView(1);
+         
+         var cc;
+         if(tradecycle==1){eprintf("Send\x07   v  ^  \x01:    {:s}  to: |{:c}{:n}\x01|                                ",GetTBLAddr(RT),0,0);}
+         if(tradecycle==2){eprintf("Send\x07   v  ^  \x01:   {} {:s}  to: |{:c}{:n}\x01|                                     ",t1x,GetTBLAddr(RT), 0,0);}
+         if(tradecycle==3){eprintf("Send\x07   v  ^  \x01:   {}{} {:s}  to: |{:c}{:n}\x01|                                        ",t2x,t1x,GetTBLAddr(RT), 0,0);}
+         if(tradecycle==4){eprintf("Send\x07   v  ^  \x01:   {}{}{} {:s}  to: |{:c}{:n}\x01|                                       ",t3x,t2x,t1x,GetTBLAddr(RT), 0,0);}
+         if(tradecycle==5){eprintf("Send\x07   v  ^  \x01:   {}{}{}{} {:s}  to: |{:c}{:n}\x01|                                  ", t4x,t3x,t2x,t1x,GetTBLAddr(RT), 0,0);} 
+           ampmenu=1;
+             if(msqcvar.VKeyPress_G[0]) {SR = 1; RT = 797;tt.BuildResetEPD(P1selectEpd);}
+             if(msqcvar.VKeyDown_SP3[0]) {SR = 0; RT = 796;tt.BuildResetEPD(P1selectEpd);}
+             if(
+             msqcvar.VMouseDown_L[0] 
+             &&wread(0x0058efb0)-   wread(0x0058dc64)>= 100
+             &&wread(0x0058efb0)-   wread(0x0058dc64)<= 118 
+             &&wread(0x0058efac)-  wread(0x0058dc60)>= 41 
+             &&wread(0x0058efac)-  wread(0x0058dc60)<= 100 
+             ){
+             var lrt;
+             
+             if(SR==1 && lrt ==0) {RT = 1062; lrt++; SR =2;}
+             if(SR==0 && lrt ==0) {RT = 797; lrt++; SR =1;}
+             if(SR==2 && lrt ==0) {RT = 796; lrt++; SR =0;}
+             if(lrt!=0) { lrt=0;}
+             }
+
+             if(msqcvar.VMouseDown_L[0] 
+             &&wread(0x0058efac)-  wread(0x0058dc60)>= 31 
+             &&wread(0x0058efac)-  wread(0x0058dc60)<= 39 ){         
+             t2x+=1;
+             tradecycle=3;
+             }
+          
+           
+         if(tradecycle ==1 ){
+         if(key0 ==1 ){ t1x =0; cc=1;key0 =0;}
+         if(key1 ==1 ){ t1x = 1;cc=1;key1 =0;}
+         if(key2 ==1 ){ t1x = 2;cc=1;key2 =0;}
+         if(key3 ==1 ){ t1x = 3;cc=1;key3 =0;}
+         if(key4 ==1 ){ t1x = 4;cc=1;key4 =0;}
+         if(key5 ==1 ){ t1x = 5;cc=1;key5 =0;}
+         if(key6 ==1 ){ t1x = 6;cc=1;key6 =0;}
+         if(key7 ==1 ){ t1x = 7;cc=1;key7 =0;}
+         if(key8 ==1 ){ t1x = 8;cc=1;key8 =0;}
+         if(key9 ==1 ){ t1x = 9;cc=1;key9 =0;}
+        if(cc==1){; tradecycle=2;}
+     
+         }
+         if(tradecycle ==2 ){
+          if(cc==1){cc=0;}
+           if(cc==0){
+         if(key0 ==1 ){ t2x=t1x;t1x = 0;cc=2;key0 =0;}
+         if(key1 ==1 ){ t2x=t1x;t1x = 1;cc=2;key1 =0;}
+         if(key2 ==1 ){ t2x=t1x;t1x = 2;cc=2;key2 =0;}
+         if(key3 ==1 ){ t2x=t1x;t1x = 3;cc=2;key3 =0;}
+         if(key4 ==1 ){ t2x=t1x;t1x = 4;cc=2;key4 =0;}
+         if(key5 ==1 ) {t2x=t1x;t1x = 5;cc=2;key5 =0;}
+         if(key6 ==1 ){ t2x=t1x;t1x = 6;cc=2;key6 =0;}
+         if(key7 ==1 ){ t2x=t1x;t1x = 7;cc=2;key7 =0;}
+         if(key8 ==1 ){ t2x=t1x;t1x = 7;cc=2;key8 =0;}
+         if(key9 ==1 ){ t2x=t1x;t1x = 7;cc=2;key9 =0;}
+           }
+         if(cc==2){ tradecycle=3;}
+     
+         }     
+         if(tradecycle ==3 ){
+          if(cc==2){cc=0;}
+           if(cc==0){
+         if(key0 ==1 ){ t3x=t2x;t2x=t1x;t1x = 0;cc=3;key0 =0;}
+         if(key1 ==1 ){ t3x=t2x;t2x=t1x;t1x = 1;cc=3;key1 =0;}
+         if(key2 ==1 ){ t3x=t2x;t2x=t1x;t1x = 2;cc=3;key2 =0;}
+         if(key3 ==1 ){ t3x=t2x;t2x=t1x;t1x = 3;cc=3;key3 =0;}
+         if(key4 ==1 ){ t3x=t2x;t2x=t1x;t1x = 4;cc=3;key4 =0;}
+         if(key5 ==1 ) {t3x=t2x;t2x=t1x;t1x = 5;cc=3;key5 =0;}
+         if(key6 ==1 ){ t3x=t2x;t2x=t1x;t1x = 6;cc=3;key6 =0;}
+         if(key7 ==1 ){ t3x=t2x;t2x=t1x;t1x = 7;cc=3;key7 =0;}
+         if(key8 ==1 ){ t3x=t2x;t2x=t1x;t1x = 8;cc=3;key8 =0;}
+         if(key9 ==1 ){ t3x=t2x;t2x=t1x;t1x = 9;cc=3;key9 =0;}
+         }
+          if(cc==3){ tradecycle=4;}
+     
+         }    
+         if(tradecycle ==4 ){
+          if(cc==3){cc=0;}
+           if(cc==0){
+         if(key0 ==1 ){ t4x=t3x;t3x=t2x;t2x=t1x;t1x = 0;cc=4;key0 =0;}
+         if(key1 ==1 ){ t4x=t3x;t3x=t2x;t2x=t1x;t1x = 1;cc=4;key1 =0;}
+         if(key2 ==1 ){ t4x=t3x;t3x=t2x;t2x=t1x;t1x = 2;cc=4;key2 =0;}
+         if(key3 ==1 ){ t4x=t3x;t3x=t2x;t2x=t1x;t1x = 3;cc=4;key3 =0;}
+         if(key4 ==1 ){ t4x=t3x;t3x=t2x;t2x=t1x;t1x = 4;cc=4;key4 =0;}
+         if(key5 ==1 ) {t4x=t3x;t3x=t2x;t2x=t1x;t1x = 5;cc=4;key5 =0;}
+         if(key6 ==1 ){t4x=t3x; t3x=t2x;t2x=t1x;t1x = 6;cc=4;key6 =0;}
+         if(key7 ==1 ){ t4x=t3x;t3x=t2x;t2x=t1x;t1x = 7;cc=4;key7 =0;}
+         if(key8 ==1 ){ t4x=t3x;t3x=t2x;t2x=t1x;t1x = 8;cc=4;key8 =0;}
+         if(key9 ==1 ){ t4x=t3x;t3x=t2x;t2x=t1x;t1x = 9;cc=4;key9 =0;}
+         }
+          if(cc==4){ tradecycle=5;}
+     
+         }    
+         if(tradecycle ==5 ){
+          if(cc==4){cc=0;}
+          if(cc==0){
+         if(key0 ==1 ){ t4x=t3x;t3x=t2x;t2x=t1x;t1x = 0;cc=5;key0 =0;}
+         if(key1 ==1 ){ t4x=t3x;t3x=t2x;t2x=t1x;t1x = 0;cc=5;key1 =0;}
+         if(key2 ==1 ){ t4x=t3x;t3x=t2x;t2x=t1x;t1x = 0;cc=5;key2 =0;}
+         if(key3 ==1 ){ t4x=t3x;t3x=t2x;t2x=t1x;t1x = 0;cc=5;key3 =0;}
+         if(key4 ==1 ){ t4x=t3x;t3x=t2x;t2x=t1x;t1x = 0;cc=5;key4 =0;}
+         if(key5 ==1 ) {t4x=t3x;t3x=t2x;t2x=t1x;t1x = 0;cc=5;key5 =0;}
+         if(key6 ==1 ){t4x=t3x; t3x=t2x;t2x=t1x;t1x = 0;cc=5;key6 =0;}
+         if(key7 ==1 ){ t4x=t3x;t3x=t2x;t2x=t1x;t1x = 0;cc=5;key7 =0;}
+         if(key8 ==1 ){ t4x=t3x;t3x=t2x;t2x=t1x;t1x = 0;cc=5;key8 =0;}
+         if(key9 ==1 ){ t4x=t3x;t3x=t2x;t2x=t1x;t1x = 0;cc=5;key9 =0;}
+         }
+          if(cc==5){cc=0; tradecycle=1;
+          t2x = 0;
+          t3x = 0;
+          t4x = 0;}
+     
+         }     
+ 
+          
+         
+          if(   msqcvar.VKeyPress_ENTER[0]){ keyenter=1; }
+         
+          if(!msqcvar.VKeyPress_ENTER[0] &&keyenter==1 
+          ||tt.BuildCheckEPD(P1selectEpd,75)  && tradecycle!=0
+          ){
+         
+          SetResources(0,SetTo, t1x +(t2x*10) + (t3x*100)  + (t4x*1000) , SR  );
+          keyenter=0;
+          t1x = 0;
+          t2x = 0;
+          t3x = 0;
+          t4x = 0;
+          tradecycle=37;
+           tt.BuildResetEPD(P1selectEpd);
+          }  
+          }
+     if (tradecycle ==0 && ampmenu ==1 ){ eprintf("  "); ampmenu=0;}
+     }
+     if (P1selectEpd.unitType!=106 &&ampmenu!=0){ 
+     keyenter=0;
+          t1x = 0;
+          t2x = 0;
+          t3x = 0;
+          t4x = 0;
+          tradecycle=0;
+     eprintf("  ");
+     }
+
+
+
+
+
+
+
+
+
+
+
+
+var y;
+
+      if(!msqcvar.VKeyPress_LSHIFT[0]
+      && Shiftbuffer==0){pressShift =0;}
+      if(msqcvar.VKeyPress_LSHIFT[0]){
+      Shiftbuffer +=3;
+      pressShift =1;
+      }
+if( Shiftbuffer>=12){ Shiftbuffer=10;  }
+if( Shiftbuffer>=1){ Shiftbuffer-=1; pressShift=1; }  
+      if(pressShift==1){
+      
+      if(MCkey ==1
+      && y ==0
+      && Bring(0,Exactly,0,219,248)
+     ){ y=1;P1gswitch+=1;}
+  if(MCkey ==0
+      && y ==1
+     ){ 
+    
+     y=0;}
+     
+     }
+
+
+
+if(
+MCkey ==0
+&&!msqcvar.VKeyPress_LSHIFT[0]
+&&P1gtimer==0 
+&&  pressG==1 
+&& Gbuffer<=5
+){ 
+pressG=0; 
+}
+if( Gbuffer>=1){ Gbuffer-=1;  
+//if(P1selectEpd.orderState ==0){ PlayWAV("sound/terran/scv/TSCYES01.WAV"); }
+}
+if( Gbuffer>=7){ Gbuffer=6;  }
+if(Gbuffer>=6){   pressG=1;   }     
+  if(MCkey ==1){
+      pressG=1;
+      Gbuffer+=2; 
+      }        
+    
+    
+    
+if(pressG==1){
+var o;
+var l;
+var t;
+var r;
+var b;
+if(P1selectEpd !=0 && P1gswitch<=1){
+var ii;
+
+ii++;
+if(ii==1||ii==2){
+P1selectEpd.orderState=0; 
+P1selectEpd.orderID=6; 
+P1selectEpd.orderTargetX=wread(0x0058efac);
+P1selectEpd.orderTargetY=wread(0x0058efb0);
+ii=0;
+}
+
+o= P1selectEpd.unitType;
+        l=        wread(0x6617C8 + o * 8);
+        t=         wread(0x6617CA + o * 8);
+        r=       wread(0x6617CC + o * 8);
+        b=      wread(0x6617CE + o * 8);
+
+
+P1gtimer=3;
+if(msqcvar.VKeyPress_LSHIFT[0]){P1gswitch+=2;}
+else{P1gswitch=4;}
+setloc(2,P1cursor2Epd.posX ,P1cursor2Epd.posY,P1cursor2Epd.posX,P1cursor2Epd.posY);
+MoveUnit(All,219,P1,2,248);
+setloc(1,wread(0x0058efac) ,wread(0x0058efb0),wread(0x0058efb4),wread(0x0058efb8));
+addloc(1,-(l*2)-2,-(t*2)-2,(r*2)+2,(b*2)+2);
+
+}
+
+if(
+
+
+wread(0x0058efac) <=  wread(0x0058dc60) ||
+wread(0x0058efb0) <= wread(0x0058dc64) ||
+wread(0x0058efac) >= wread(0x0058dc68)  ||
+wread(0x0058efb0) >= wread(0x0058dc6C)
+){
+
+
+
+
+
+if(P1select1Epd !=0 && 
+P1gtimer==0 && P1gswitch ==4 ){
+var ii;
+
+ii++;
+if(ii==1||ii==2){
+P1select1Epd.orderState=0; 
+P1select1Epd.orderID=6; 
+P1select1Epd.orderTargetX=wread(0x0058efac);
+P1select1Epd.orderTargetY=wread(0x0058efb0);
+ii=0;
+}
+
+setloc(2,P1cursor3Epd.posX ,P1cursor3Epd.posY,P1cursor3Epd.posX,P1cursor3Epd.posY);
+MoveUnit(All,219,P1,2,248);
+setloc(1,wread(0x0058efac) ,wread(0x0058efb0),wread(0x0058efb4),wread(0x0058efb8));
+addloc(1,-(l*2)-2,-(t*2)-2,(r*2)+2,(b*2)+2);
+P1gtimer=3;
+if(msqcvar.VKeyPress_LSHIFT[0]){P1gswitch+=2;}
+else{P1gswitch=7;}
+}
+
+
+
+
+if(P1select2Epd !=0 && P1gtimer==0  && P1gswitch ==7 ){
+var ii;
+
+ii++;
+if(ii==1||ii==2){
+P1select2Epd.orderState=0; 
+P1select2Epd.orderID=6; 
+P1select2Epd.orderTargetX=wread(0x0058efac);
+P1select2Epd.orderTargetY=wread(0x0058efb0);
+ii=0;
+}
+P1gtimer=3;
+if(msqcvar.VKeyPress_LSHIFT[0]){P1gswitch+=2;}
+else{P1gswitch=10;}
+setloc(2,P1cursor4Epd.posX ,P1cursor4Epd.posY,P1cursor4Epd.posX,P1cursor4Epd.posY);
+MoveUnit(All,219,P1,2,248);
+setloc(1,wread(0x0058efac) ,wread(0x0058efb0),wread(0x0058efb4),wread(0x0058efb8));
+addloc(1,-(l*2)-2,-(t*2)-2,(r*2)+2,(b*2)+2);
+}
+
+
+
+
+if(P1select3Epd !=0 && P1gtimer==0  && P1gswitch ==10 ){
+var ii;
+
+ii++;
+if(ii==1||ii==2){
+P1select3Epd.orderState=0; 
+P1select3Epd.orderID=6; 
+P1select3Epd.orderTargetX=wread(0x0058efac);
+P1select3Epd.orderTargetY=wread(0x0058efb0);
+ii=0;
+}
+P1gtimer=3;
+if(msqcvar.VKeyPress_LSHIFT[0]){P1gswitch+=2;}
+else{P1gswitch=13;}
+setloc(2,P1cursor5Epd.posX ,P1cursor5Epd.posY,P1cursor5Epd.posX,P1cursor5Epd.posY);
+MoveUnit(All,219,P1,2,248);
+setloc(1,wread(0x0058efac) ,wread(0x0058efb0),wread(0x0058efb4),wread(0x0058efb8));
+addloc(1,-(l*2)-2,-(t*2)-2,(r*2)+2,(b*2)+2);
+}
+
+
+
+if(P1select4Epd !=0 && P1gtimer==0  && P1gswitch ==13 ){
+var ii;
+
+ii++;
+if(ii==1||ii==2){
+P1select4Epd.orderState=0; 
+P1select4Epd.orderID=6; 
+P1select4Epd.orderTargetX=wread(0x0058efac);
+P1select4Epd.orderTargetY=wread(0x0058efb0);
+ii=0;
+}
+P1gtimer=3;
+if(msqcvar.VKeyPress_LSHIFT[0]){P1gswitch+=2;}
+else{P1gswitch=16;}
+setloc(2,P1cursor6Epd.posX ,P1cursor6Epd.posY,P1cursor6Epd.posX,P1cursor6Epd.posY);
+MoveUnit(All,219,P1,2,248);
+setloc(1,wread(0x0058efac) ,wread(0x0058efb0),wread(0x0058efb4),wread(0x0058efb8));
+addloc(1,-(l*2)-2,-(t*2)-2,(r*2)+2,(b*2)+2);
+}
+
+
+
+
+if(P1select5Epd !=0 && P1gtimer==0  && P1gswitch ==16 ){
+var ii;
+
+ii++;
+if(ii==1||ii==2){
+P1select5Epd.orderState=0; 
+P1select5Epd.orderID=6; 
+P1select5Epd.orderTargetX=wread(0x0058efac);
+P1select5Epd.orderTargetY=wread(0x0058efb0);
+ii=0;
+}
+P1gtimer=3;
+if(msqcvar.VKeyPress_LSHIFT[0]){P1gswitch+=2;}
+else{P1gswitch=19;}
+setloc(2,P1cursor7Epd.posX ,P1cursor7Epd.posY,P1cursor7Epd.posX,P1cursor7Epd.posY);
+MoveUnit(All,219,P1,2,248);
+setloc(1,wread(0x0058efac) ,wread(0x0058efb0),wread(0x0058efb4),wread(0x0058efb8));
+addloc(1,-(l*2)-2,-(t*2)-2,(r*2)+2,(b*2)+2);
+}
+
+
+
+if(P1select6Epd !=0 && P1gtimer==0  && P1gswitch ==19 ){
+var ii;
+
+ii++;
+if(ii==1||ii==2){
+P1select6Epd.orderState=0; 
+P1select6Epd.orderID=6; 
+P1select6Epd.orderTargetX=wread(0x0058efac);
+P1select6Epd.orderTargetY=wread(0x0058efb0);
+ii=0;
+}
+P1gtimer=3;
+if(msqcvar.VKeyPress_LSHIFT[0]){P1gswitch+=2;}
+else{P1gswitch=22;}
+setloc(2,P1cursor8Epd.posX ,P1cursor8Epd.posY,P1cursor8Epd.posX,P1cursor8Epd.posY);
+MoveUnit(All,219,P1,2,248);
+setloc(1,wread(0x0058efac) ,wread(0x0058efb0),wread(0x0058efb4),wread(0x0058efb8));
+addloc(1,-(l*2)-2,-(t*2)-2,(r*2)+2,(b*2)+2);
+}
+
+
+
+if(P1select7Epd !=0 && P1gtimer==0  && P1gswitch ==22 ){
+var ii;
+
+ii++;
+if(ii==1||ii==2){
+P1select7Epd.orderState=0; 
+P1select7Epd.orderID=6; 
+P1select7Epd.orderTargetX=wread(0x0058efac);
+P1select7Epd.orderTargetY=wread(0x0058efb0);
+ii=0;
+}
+P1gtimer=3;
+if(msqcvar.VKeyPress_LSHIFT[0]){P1gswitch+=2;}
+else{P1gswitch=25;}
+setloc(2,P1cursor9Epd.posX ,P1cursor9Epd.posY,P1cursor9Epd.posX,P1cursor9Epd.posY);
+MoveUnit(All,219,P1,2,248);
+setloc(1,wread(0x0058efac) ,wread(0x0058efb0),wread(0x0058efb4),wread(0x0058efb8));
+addloc(1,-(l*2)-2,-(t*2)-2,(r*2)+2,(b*2)+2);
+}
+
+
+
+
+
+if(P1select8Epd !=0 && P1gtimer==0  && P1gswitch ==25 ){
+var ii;
+
+ii++;
+if(ii==1||ii==2){
+P1select8Epd.orderState=0; 
+P1select8Epd.orderID=6; 
+P1select8Epd.orderTargetX=wread(0x0058efac);
+P1select8Epd.orderTargetY=wread(0x0058efb0);
+ii=0;
+}
+P1gtimer=3;
+if(msqcvar.VKeyPress_LSHIFT[0]){P1gswitch+=2;}
+else{P1gswitch=28;}
+setloc(2,P1cursor10Epd.posX ,P1cursor10Epd.posY,P1cursor10Epd.posX,P1cursor10Epd.posY);
+MoveUnit(All,219,P1,2,248);
+setloc(1,wread(0x0058efac) ,wread(0x0058efb0),wread(0x0058efb4),wread(0x0058efb8));
+addloc(1,-(l*2)-2,-(t*2)-2,(r*2)+2,(b*2)+2);
+}
+
+
+
+
+if(P1select9Epd !=0 && P1gtimer==0  && P1gswitch ==28 ){
+var ii;
+
+ii++;
+if(ii==1||ii==2){
+P1select9Epd.orderState=0; 
+P1select9Epd.orderID=6; 
+P1select9Epd.orderTargetX=wread(0x0058efac);
+P1select9Epd.orderTargetY=wread(0x0058efb0);
+ii=0;
+}
+P1gtimer=3;
+if(msqcvar.VKeyPress_LSHIFT[0]){P1gswitch+=2;}
+else{P1gswitch=31;}
+setloc(2,P1cursor11Epd.posX ,P1cursor11Epd.posY,P1cursor11Epd.posX,P1cursor11Epd.posY);
+MoveUnit(All,219,P1,2,248);
+setloc(1,wread(0x0058efac) ,wread(0x0058efb0),wread(0x0058efb4),wread(0x0058efb8));
+addloc(1,-(l*2)-2,-(t*2)-2,(r*2)+2,(b*2)+2);
+}
+
+
+
+
+
+if(P1select10Epd !=0 && P1gtimer==0  && P1gswitch ==31 ){
+var ii;
+
+ii++;
+if(ii==1||ii==2){
+P1select10Epd.orderState=0; 
+P1select10Epd.orderID=6; 
+P1select10Epd.orderTargetX=wread(0x0058efac);
+P1select10Epd.orderTargetY=wread(0x0058efb0);
+ii=0;
+}
+P1gtimer=3;
+if(msqcvar.VKeyPress_LSHIFT[0]){P1gswitch+=2;}
+else{P1gswitch=34;}
+setloc(2,P1cursor12Epd.posX ,P1cursor12Epd.posY,P1cursor12Epd.posX,P1cursor12Epd.posY);
+MoveUnit(All,219,P1,2,248);
+setloc(1,wread(0x0058efac) ,wread(0x0058efb0),wread(0x0058efb4),wread(0x0058efb8));
+addloc(1,-(l*2)-2,-(t*2)-2,(r*2)+2,(b*2)+2);
+}
+
+
+
+
+if(P1select11Epd !=0 && P1gtimer==0  && P1gswitch ==34 ){
+var ii;
+
+ii++;
+if(ii==1||ii==2){
+P1select11Epd.orderState=0; 
+P1select11Epd.orderID=6; 
+P1select11Epd.orderTargetX=wread(0x0058efac);
+P1select11Epd.orderTargetY=wread(0x0058efb0);
+ii=0;
+}
+P1gtimer=3;
+if(msqcvar.VKeyPress_LSHIFT[0]){P1gswitch+=2;}
+else{P1gswitch=37;}
+setloc(2,P1cursor13Epd.posX ,P1cursor13Epd.posY,P1cursor13Epd.posX,P1cursor13Epd.posY);
+MoveUnit(All,219,P1,2,248);
+
+}
+
+
+
+
+
+
+}
+}
+
+
+if(P1selectEpd.unitType == 111 ){  P1selectEpd.statusFlags.IsABuilding               = true;
+P1selectEpd.statusFlags.Completed  = true;         
+}
+
+
+
+
+
+
+             const selectEpd2 = EPD(0x628518);
+             const P2selectEpd = CUnit.from_read(selectEpd2)  ;
+
+
+ race = bread(0x0057F1C0);
+
+
+
+              const P1TargetEpd =  CUnit(P1TargetUnit)  ;
+              
+             
+
+
+    // g = wread(0x0058dd14);// P1selectEpd.unknown0x26 ;    
+     
+     
+     once{ 
+
+    
+    //    SetMemory(0x518CE4, SetTo, 3141);
+     //   SetMemory(0x518CE0, SetTo, 11);
+
+    n=5600;
+     RT = 796;
+            CreateUnit(1,222,1,P1);
+       CreateUnit(1,119,69,P1);
+       CreateUnit(1,129,69,P1);
+       CreateUnit(13,219,69,P1);
+               foreach ( epd: EUDLoopCUnit ()){ 
+                if (epd.unitType==119){ P1Flame1W = epd;}
+                  if (epd.unitType==129){ P1TargetUnit = epd;}
+                    if (epd.unitType==219 && epd.unknown0x8C == 0 ){ 
+                    var i;
+                    epd.remove_collision();
+                    uGcursorP1[i]= epd;
+                    i++;
+        
+                    epd.unknown0x8C += i;
+                    
+                    }
+         
+
+      }
+      }
+
+
+
+         
+
+
+     
+// ============ P1 Game logic =========
+   
+   
+   
+   
+   
+   
+
+// MEDIC
+
+     const MedicEPD1 = CUnit(Medic[0] ) ;
+        if( P1selectEpd.unitType ==34 && Medic[0] == 0 ){
+                  Medic[0] = P1selectEpd; }
+
+               if( Medic[0]!= 0){
+               
+              gj = MedicEPD1;
+              
+        if(MedicEPD1.orderID == 132){
+         if(MedicEPD1.energy <=  20*256 ){  
+         setcurpl(0);
+         PlayWAV("sound/Misc/Buzz.wav");
+                 eprintf("Not enough energy. ");
+                 MedicEPD1.orderID = 1;
+                 }
+        if(MedicEPD1.energy >=  20*256 )
+        
+        {
+        
+
+          setloc(99,MedicEPD1.orderTargetX-64,MedicEPD1.orderTargetY-64,MedicEPD1.orderTargetX+64,MedicEPD1.orderTargetY+64);    
+        MoveUnit(1,129,P1, 69, 99);
+         MedicEPD1.orderID= 185; MedicEPD1.orderTargetUnit = P1TargetEpd;
+
+
+      
+ 
+
+
+}       
+}  
+
+  if(P1TargetEpd.blindFlags == 1){
+              smoke[0]=0;
+              smoke[1]=0;
+              smoke[2]=0;
+        MedicEPD1.unknown0x8C = 255;
+        P1Smoke1 =221;
+        P1TargetEpd.blindFlags =0;}
+}    
+
+                   if(MedicEPD1.unknown0x8C >=1){MedicEPD1.unknown0x8C -=1;}
+                      if(P1Smoke1 >=1){P1Smoke1 -=1;
+
+
+          if(P1Smoke1 ==220){wwrite(0x663150 + 206 * 1, 13); wwrite(0x669E28 + 337 * 1, 17); CreateUnit(1,206,99,P1);  
+        
+                          foreach ( epdm: EUDLoopCUnit ()){ 
+                if (epdm.unitType==206 && epdm.unknown0x8C == 0){
+                epdm.unknown0x8C = 1 ; }
+              
+                if (epdm.unknown0x8C == 1){smoke[0] = epdm;   } 
+                }
+           }
+          if(P1Smoke1 ==218){wwrite(0x669E28 + 337 * 1, 17); CreateUnit(1,206,99,P1); 
+        
+                          foreach ( epdm1: EUDLoopCUnit ()){ 
+                if (epdm1.unitType==206 && epdm1.unknown0x8C == 0){
+                epdm1.unknown0x8C = 2 ; }
+              
+                if (epdm1.unknown0x8C == 2){smoke[1] = epdm1;   } 
+                }
+           }
+          if(P1Smoke1==215){wwrite(0x663150 + 206 * 1, 15); wwrite(0x669E28 + 337 * 1, 10); CreateUnit(1,206,99,P1); 
+        
+                          foreach ( epdm2: EUDLoopCUnit ()){ 
+                if (epdm2.unitType==206 && epdm2.unknown0x8C == 0){
+                epdm2.unknown0x8C = 3 ; }
+              
+                if (epdm2.unknown0x8C == 3){smoke[2] = epdm2;  } 
+                }
+              wwrite(0x669E28 + 337 * 1, 9);
+           }
+
+         const SmokeEPD1 = CUnit(smoke[0] ) ;
+         const SmokeEPD2 = CUnit(smoke[1] ) ;
+         const SmokeEPD3 = CUnit(smoke[2] ) ;
+           if(P1Smoke1 >=8){  SmokeEPD1.currentDirection1+=5;SmokeEPD2.currentDirection1+=5;SmokeEPD3.currentDirection1+=5;}
+            if(P1Smoke1<=8){  SmokeEPD1.currentDirection1-=5; SmokeEPD2.currentDirection1-=5;SmokeEPD3.currentDirection1-=5;}
+            
+    
+          if( SmokeEPD1.currentDirection1 ==70){ SmokeEPD1.currentDirection1=40;}
+          if( SmokeEPD2.currentDirection1 ==70){ SmokeEPD2.currentDirection1=40;}
+          if( SmokeEPD3.currentDirection1 ==70){ SmokeEPD3.currentDirection1=40;}
+              if(P1Smoke1 ==1){RemoveUnitAt(All,206,99,P1);
+
+               MoveUnit(1,129,P1, 99, 69);
+              smoke[0]=0;
+              smoke[1]=0;
+              smoke[2]=0;
+                Medic[0]=0;
+
+                    
+              }
+     
+         if (MedicEPD1.hp  == 0  ) { 
+              Medic[0]=0;
+     }
+
+   }
+  //       if (MedicEPD1.hp  != 0  && MedicEPD1 !=P1selectEpd  ) {  Medic[0]=0;     }
+     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+   const EPDswitchC = CUnit(EPDswitch)  ;
+      const P1Rocketlauncher1 = CUnit(P1Rocketlauncher_1)  ;
+      const P1RocketlauncherT1 = CUnit(P1RocketlauncherTarget_1)  ;
+      const P1Rocketlauncher0 = CUnit(P1Rocketlauncher)  ;
+      const P1RocketlauncherT0 = CUnit(P1RocketlauncherTarget)  ;
+      const P1Flame1EPD = CUnit(P1Flame1W)  ;
+   
+ if( P1killed>=1){ 
+ 
+ // assign var to Unit ID
+  foreach ( epd: EUDLoopCUnit ()){
+ 
+ // Cunit Allocation logic ---
+
+     if(P1Mselect[0]==0){xx=0;}
+ else if (P1Mselect[1] == 0) { xx = 1; }
+else if (P1Mselect[2] == 0) { xx = 2; }
+else if (P1Mselect[3] == 0) { xx = 3; }
+else if (P1Mselect[4] == 0) { xx = 4; }
+else if (P1Mselect[5] == 0) { xx = 5; }
+else if (P1Mselect[6] == 0) { xx = 6; }
+else if (P1Mselect[7] == 0) { xx = 7; }
+else if (P1Mselect[8] == 0) { xx = 8; }
+else if (P1Mselect[9] == 0) { xx = 9; }
+else if (P1Mselect[10] == 0) { xx = 10; }
+else if (P1Mselect[11] == 0) { xx = 11; }
+else if (P1Mselect[12] == 0) { xx = 12; }
+else if (P1Mselect[13] == 0) { xx = 13; }
+else if (P1Mselect[14] == 0) { xx = 14; }
+else if (P1Mselect[15] == 0) { xx = 15; }
+else if (P1Mselect[16] == 0) { xx = 16; }
+else if (P1Mselect[17] == 0) { xx = 17; }
+else if (P1Mselect[18] == 0) { xx = 18; }
+else if (P1Mselect[19] == 0) { xx = 19; }
+else if (P1Mselect[20] == 0) { xx = 20; }
+else if (P1Mselect[21] == 0) { xx = 21; }
+else if (P1Mselect[22] == 0) { xx = 22; }
+else if (P1Mselect[23] == 0) { xx = 23; }
+
+
+ //-
+
+// First Level up logic
+
+     // SCV
+     if  (epd.killCount==3 
+     && epd.unknown0x8C==0
+     && epd.unitType==7
+     && epd.owner ==0) { P1Mselect[xx]  = epd; epd.unknown0x8C=1;
+     }
+     
+     // Marine/Firebat/Ghost
+     if  (epd.killCount==5 
+     && epd.unknown0x8C==0
+     && epd.owner ==0) { 
+      if  (epd.unitType==32 || epd.unitType==0 || epd.unitType==1){
+     P1Mselect[xx]  = epd; epd.unknown0x8C=1;
+        }
+     }   
+     
+     // Tank
+     if  (epd.killCount==3 
+     && epd.unknown0x8C==0
+     && epd.unitType==5
+     && epd.owner ==0) { P1Mselect[xx]  = epd; epd.unknown0x8C=1;
+     }
+     
+   
+//- 
+
+       }
+       
+dwwrite(0x00581E8c, 0);
+    }
+        if  (  dwread_epd(229 * 12 + 0) != 0)
+               { SetDeaths(P1, SetTo, 0, 229);}
+
+ 
+ 
+//FirebatEPD1flame
+
+             const P1flame1Epd1 = CUnit(P1flame1[0])  ;
+             const P1flame1Epd2 = CUnit(P1flame1[1])  ;
+             const P1flame1Epd3 = CUnit(P1flame1[2])  ;
+             const P1flame1Epd4 = CUnit(P1flame1[3])  ;
+             const P1flame1Epd5 = CUnit(P1flame1[4])  ;
+             const P1flame1Epd6 = CUnit(P1flame1[5])  ;
+             const P1flame1Epd7 = CUnit(P1flame1[6])  ;
+             const P1flame1Epd8 = CUnit(P1flame1[7])  ;
+             const P1flame1Epd9 = CUnit(P1flame1[8])  ;
+             const P1flame1Epd10 = CUnit(P1flame1[10])  ;
+             const P1flame1Epd11 = CUnit(P1flame1[11])  ;
+             const P1flame1Epd12 = CUnit(P1flame1[12])  ;
+             const P1flame1Epd13 = CUnit(P1flame1[13])  ;
+             const P1flame1Epd14 = CUnit(P1flame1[14])  ;
+             const P1flame1Epd15 = CUnit(P1flame1[15])  ;
+             const P1flame1Epd16 = CUnit(P1flame1[16])  ;
+             const P1flame1Epd17 = CUnit(P1flame1[17])  ;
+             const P1flame1Epd18 = CUnit(P1flame1[18])  ;
+             const P1flame1Epd19 = CUnit(P1flame1[19])  ;
+             const P1flame1Epd20 = CUnit(P1flame1[20])  ;
+             
+             if(P1flame1Epd1.unknown0x26 == 1) {setloc(9,P1flame1Epd1.posX,P1flame1Epd1.posY);
+             addloc(110,2,0);
+                 MoveUnit(All,98,P1,9,110);}
+                   if(P1flame1Epd2.unknown0x26 == 1) {setloc(9,P1flame1Epd2.posX,P1flame1Epd2.posY);
+                   addloc(110,2,0);
+                 MoveUnit(All,98,P1,9,110);}
+                   if(P1flame1Epd3.unknown0x26 == 1) {setloc(9,P1flame1Epd3.posX,P1flame1Epd3.posY);
+                   addloc(110,2,0);
+                 MoveUnit(All,98,P1,9,110);}
+                   if(P1flame1Epd4.unknown0x26 == 1) {setloc(9,P1flame1Epd4.posX,P1flame1Epd4.posY);
+                   addloc(110,2,0);
+                 MoveUnit(All,98,P1,9,110);}
+                   if(P1flame1Epd5.unknown0x26 == 1) {setloc(9,P1flame1Epd5.posX,P1flame1Epd5.posY);
+                   addloc(110,2,0);
+                 MoveUnit(All,98,P1,9,110);}
+                   if(P1flame1Epd6.unknown0x26 == 1) {setloc(9,P1flame1Epd6.posX,P1flame1Epd6.posY);
+                   addloc(110,2,0);
+                 MoveUnit(All,98,P1,9,110);}
+                   if(P1flame1Epd7.unknown0x26 == 1) {setloc(9,P1flame1Epd7.posX,P1flame1Epd7.posY);
+                   addloc(110,2,0);
+                 MoveUnit(All,98,P1,9,110);}
+                   if(P1flame1Epd8.unknown0x26 == 1) {setloc(9,P1flame1Epd8.posX,P1flame1Epd8.posY);
+                   addloc(110,2,0);
+                 MoveUnit(All,98,P1,9,110);}
+                  if(P1flame1Epd9.unknown0x26 == 1) {setloc(9,P1flame1Epd9.posX,P1flame1Epd9.posY);
+                  addloc(110,2,0);
+                 MoveUnit(All,98,P1,9,110);}
+                  if(P1flame1Epd10.unknown0x26 == 1) {setloc(9,P1flame1Epd10.posX,P1flame1Epd10.posY);
+                  addloc(110,2,0);
+                 MoveUnit(All,98,P1,9,110);}
+                  if(P1flame1Epd11.unknown0x26 == 1) {setloc(9,P1flame1Epd11.posX,P1flame1Epd11.posY);
+                  addloc(110,2,0);
+                 MoveUnit(All,98,P1,9,110);}
+                 if(P1flame1Epd12.unknown0x26 == 1) {setloc(9,P1flame1Epd12.posX,P1flame1Epd12.posY);
+                 addloc(110,2,0);
+                 MoveUnit(All,98,P1,9,110);}
+                 if(P1flame1Epd13.unknown0x26 == 1) {setloc(9,P1flame1Epd13.posX,P1flame1Epd13.posY);
+                 addloc(110,2,0);
+                 MoveUnit(All,98,P1,9,110);}
+                 if(P1flame1Epd14.unknown0x26 == 1) {setloc(9,P1flame1Epd14.posX,P1flame1Epd14.posY);
+                 addloc(110,2,0);
+                 MoveUnit(All,98,P1,9,110);}
+                 if(P1flame1Epd15.unknown0x26 == 1) {setloc(9,P1flame1Epd15.posX,P1flame1Epd15.posY);
+                 addloc(110,2,0);
+                 MoveUnit(All,98,P1,9,110);}
+                 if(P1flame1Epd16.unknown0x26 == 1) {setloc(9,P1flame1Epd16.posX,P1flame1Epd16.posY);
+                 addloc(110,2,0);
+                 MoveUnit(All,98,P1,9,110);}
+                 if(P1flame1Epd17.unknown0x26 == 1) {setloc(9,P1flame1Epd17.posX,P1flame1Epd17.posY);
+                 addloc(110,2,0);
+                 MoveUnit(All,98,P1,9,110);}
+                 if(P1flame1Epd18.unknown0x26 == 1) {setloc(9,P1flame1Epd18.posX,P1flame1Epd18.posY);
+                 addloc(110,2,0);
+                 MoveUnit(All,98,P1,9,110);}
+                 if(P1flame1Epd19.unknown0x26 == 1) {setloc(9,P1flame1Epd19.posX,P1flame1Epd19.posY);
+                 addloc(110,2,0);
+                 MoveUnit(All,98,P1,9,110);}
+                 if(P1flame1Epd20.unknown0x26 == 1) {setloc(9,P1flame1Epd20.posX,P1flame1Epd20.posY);
+                 addloc(110,2,0);
+                 MoveUnit(All,98,P1,9,110);}
+
+                 
+             if(P1flame1Epd1.unknown0x26 >= 1) {P1flame1Epd1.unknown0x26 -=1;}
+                   if(P1flame1Epd2.unknown0x26 >= 1){P1flame1Epd2.unknown0x26 -=1;}
+                   if(P1flame1Epd3.unknown0x26 >= 1) {P1flame1Epd3.unknown0x26 -=1;}
+                   if(P1flame1Epd4.unknown0x26 >= 1) {P1flame1Epd4.unknown0x26 -=1;}
+                   if(P1flame1Epd5.unknown0x26 >= 1) {P1flame1Epd5.unknown0x26 -=1;}
+                   if(P1flame1Epd6.unknown0x26 >= 1){P1flame1Epd6.unknown0x26 -=1;}
+                   if(P1flame1Epd7.unknown0x26 >= 1){P1flame1Epd7.unknown0x26 -=1;}
+                   if(P1flame1Epd8.unknown0x26 >= 1) {P1flame1Epd8.unknown0x26 -=1;}
+                  if(P1flame1Epd9.unknown0x26 >= 1) {P1flame1Epd9.unknown0x26 -=1;}
+                  if(P1flame1Epd10.unknown0x26 >= 1){P1flame1Epd10.unknown0x26 -=1;}
+                  if(P1flame1Epd11.unknown0x26 >= 1){P1flame1Epd11.unknown0x26 -=1;}
+                  if(P1flame1Epd12.unknown0x26 >= 1){P1flame1Epd12.unknown0x26 -=1;}
+                  if(P1flame1Epd13.unknown0x26 >= 1){P1flame1Epd13.unknown0x26 -=1;}
+                  if(P1flame1Epd14.unknown0x26 >= 1){P1flame1Epd14.unknown0x26 -=1;}
+                  if(P1flame1Epd15.unknown0x26 >= 1){P1flame1Epd15.unknown0x26 -=1;}
+                  if(P1flame1Epd16.unknown0x26 >= 1){P1flame1Epd16.unknown0x26 -=1;}
+                  if(P1flame1Epd17.unknown0x26 >= 1){P1flame1Epd17.unknown0x26 -=1;}
+                  if(P1flame1Epd18.unknown0x26 >= 1){P1flame1Epd18.unknown0x26 -=1;}
+                  if(P1flame1Epd19.unknown0x26 >= 1){P1flame1Epd19.unknown0x26 -=1;}
+                  if(P1flame1Epd20.unknown0x26 >= 1){P1flame1Epd20.unknown0x26 -=1;}
+
+ 
+     if  (P1Mselect[0] != 0  ){   
+
+     const P1epd0 = CUnit(P1Mselect[0])  ;
+          g1 =   P1epd0.unknown0x8C;
+           g =   P1epd0.unknown0x26;
+          //unknown0x86 unknown0x8C unknown0x26
+     
+     if (P1epd0.unknown0x26 >= 1 && P1epd0.unknown0x26 <= 200){P1epd0.unknown0x26 -= 1;}
+     if (P1epd0.unknown0x26 == 50){P1epd0.unknown0x26 = 0;}
+     if(EPDswitch !=0){ 
+     EPDswitchC.killCount = P1epd0.killCount;
+     EPDswitchC.hp = P1epd0.hp;
+     EPDswitchC.unknown0x8C= P1epd0.unknown0x8C;
+     EPDswitchC.currentButtonSet = P1epd0.currentButtonSet;
+
+     EPDswitch = P1Mselect[0]; }
+
+// LVL7 LEVEL UP
+     if  (
+     P1epd0.killCount==5 && P1epd0.unitType ==7
+  || P1epd0.killCount==70 && P1epd0.unitType ==0  
+      
+     ){
+       if  (P1epd0.unknown0x8C==7 ||P1epd0.unknown0x8C==8 ||P1epd0.unknown0x8C==24 ){ P1epd0.currentButtonSet=249;     
+           setloc(11,P1epd0.posX-13,P1epd0.posY-13,P1epd0.posX+13,P1epd0.posY+13); 
+       if(race ==0){PlayWAV("sound/misc/prescue.wav");}
+       if(race ==1){PlayWAV("sound/Misc/TRescue.wav");}
+       if(race ==2){PlayWAV("sound/misc/zrescue.wav");}
+     P1epd0.unknown0x8C+=1;
+      MinimapPing(10);  
+      CreateUnit(1,93,10,P1);
+      P1epd0.unknown0x26=30;
+      }
+     
+     }       
+
+
+// LVL6 LEVEL UP
+     if  (
+     P1epd0.killCount==5 && P1epd0.unitType ==7
+  || P1epd0.killCount==35 && P1epd0.unitType ==0  
+      
+     ){
+       if  (P1epd0.unknown0x8C==7 ||P1epd0.unknown0x8C==8 ||P1epd0.unknown0x8C==24 ){ P1epd0.currentButtonSet=249;     
+           setloc(11,P1epd0.posX-13,P1epd0.posY-13,P1epd0.posX+13,P1epd0.posY+13); 
+       if(race ==0){PlayWAV("sound/misc/prescue.wav");}
+       if(race ==1){PlayWAV("sound/Misc/TRescue.wav");}
+       if(race ==2){PlayWAV("sound/misc/zrescue.wav");}
+     P1epd0.unknown0x8C+=1;
+      MinimapPing(10);  
+      CreateUnit(1,93,10,P1);
+      P1epd0.unknown0x26=30;
+      }
+     
+     }  
+
+
+
+
+
+// LVL5 LEVEL UP
+     if  (
+     P1epd0.killCount==5 && P1epd0.unitType ==7
+  || P1epd0.killCount==21 && P1epd0.unitType ==0  
+      
+     ){
+       if  (P1epd0.unknown0x8C==7 ||P1epd0.unknown0x8C==8 ||P1epd0.unknown0x8C==24 ){ P1epd0.currentButtonSet=249;     
+           setloc(11,P1epd0.posX-13,P1epd0.posY-13,P1epd0.posX+13,P1epd0.posY+13); 
+       if(race ==0){PlayWAV("sound/misc/prescue.wav");}
+       if(race ==1){PlayWAV("sound/Misc/TRescue.wav");}
+       if(race ==2){PlayWAV("sound/misc/zrescue.wav");}
+     P1epd0.unknown0x8C+=1;
+      MinimapPing(10);  
+      CreateUnit(1,93,10,P1);
+      P1epd0.unknown0x26=30;
+      }
+     
+     }  
+
+
+
+
+     
+// LVL4 LEVEL UP
+     if  (
+     P1epd0.killCount==5 && P1epd0.unitType ==7
+  || P1epd0.killCount==13 && P1epd0.unitType ==0  
+      
+     ){
+       if  (P1epd0.unknown0x8C==10 ||P1epd0.unknown0x8C==11 ||P1epd0.unknown0x8C==27 ){ P1epd0.currentButtonSet=249;     
+           setloc(11,P1epd0.posX-13,P1epd0.posY-13,P1epd0.posX+13,P1epd0.posY+13); 
+       if(race ==0){PlayWAV("sound/misc/prescue.wav");}
+       if(race ==1){PlayWAV("sound/Misc/TRescue.wav");}
+       if(race ==2){PlayWAV("sound/misc/zrescue.wav");}
+     P1epd0.unknown0x8C+=110;
+      MinimapPing(10);  
+      CreateUnit(1,93,10,P1);
+      P1epd0.unknown0x26=30;
+      }
+     
+     }     
+     
+     
+     
+     
+// LVL3 LEVEL UP
+     if  (P1epd0.unknown0x8C!=4 &&P1epd0.unknown0x8C<=8){
+    if  ( 
+     P1epd0.killCount==5 && P1epd0.unitType ==7
+  || P1epd0.killCount>=8 && P1epd0.unitType ==0 
+  ||P1epd0.killCount>=8 && P1epd0.unitType ==20
+      
+     ){
+       if  (P1epd0.unknown0x8C==7 ||P1epd0.unknown0x8C==24 ){ P1epd0.currentButtonSet=226;     
+           setloc(11,P1epd0.posX-13,P1epd0.posY-13,P1epd0.posX+13,P1epd0.posY+13); 
+       if(race ==0){PlayWAV("sound/misc/prescue.wav");}
+       if(race ==1){PlayWAV("sound/Misc/TRescue.wav");}
+       if(race ==2){PlayWAV("sound/misc/zrescue.wav");}
+     P1epd0.unknown0x8C+=101;
+      MinimapPing(10);  
+      CreateUnit(1,93,10,P1);
+      P1epd0.unknown0x26=30;
+      }
+     }
+    }
+       if  (P1epd0.unknown0x8C==108){
+                if( P1selectEpd == P1epd0){
+                if( Bring(P1,Exactly, 0, 16, 89) ){CreateUnit(1,16,89,P1);}
+                 if( Bring(P1,Exactly, 0, 96, 89) ){CreateUnit(1,96,89,P1);}
+                  if( Bring(P1,Exactly, 0, 126, 89) ){CreateUnit(1,126,89,P1);}
+                    if( Bring(P1,Exactly, 0, 94, 89) ){CreateUnit(1,94,89,P1);}
+                }
+                if( P1selectEpd != P1epd0 ){
+                       RemoveUnitAt(1,16,89,P1);
+                       RemoveUnitAt(1,96,64,P1);
+                       RemoveUnitAt(1,126,64,P1);
+                       RemoveUnitAt(1,94,64,P1);
+                }
+}
+
+
+
+
+// LVL2 LEVEL UP
+          if  (P1epd0.unknown0x8C==1&& P1epd0.unitType ==7 ){ P1epd0.currentButtonSet=249;           P1epd0.unknown0x8C=2;}
+          if  (P1epd0.unknown0x8C==1&& P1epd0.unitType ==1 ){ P1epd0.currentButtonSet=227;    P1epd0.unknown0x8C=2;}
+          if  (P1epd0.unknown0x8C==1&& P1epd0.unitType ==0 ){ P1epd0.currentButtonSet=248;    P1epd0.unknown0x8C=2;}
+          if  (P1epd0.unknown0x8C==1&& P1epd0.unitType ==32 ){ P1epd0.currentButtonSet=6;    P1epd0.unknown0x8C=2;}
+          if  (P1epd0.unknown0x8C==1&& P1epd0.unitType ==5 ){ P1epd0.currentButtonSet=4;           P1epd0.unknown0x8C=2;}
+          
+      if  (P1epd0.unknown0x8C==2){ setloc(10,P1epd0.posX,P1epd0.posY); 
+      setloc(11,P1epd0.posX-13,P1epd0.posY-13,P1epd0.posX+13,P1epd0.posY+13); 
+      
+       if(race ==0){PlayWAV("sound/misc/prescue.wav");}
+       if(race ==1){PlayWAV("sound/Misc/TRescue.wav");}
+       if(race ==2){PlayWAV("sound/misc/zrescue.wav");}
+
+       
+      
+      MinimapPing(10);  
+      CreateUnit(1,93,10,P1);
+      P1epd0.unknown0x8C = 104;
+      P1epd0.unknown0x26=30;}
+         if  (P1epd0.unknown0x26>=1){
+            if(  P1epd0.unknown0x8C == 104 || P1epd0.unknown0x8C == 108){
+            
+                if( P1selectEpd == P1epd0){
+                if( Bring(P1,Exactly, 0, 168, 89) ){CreateUnit(1,168,89,P1);}
+                 if( Bring(P1,Exactly, 0, 96, 89) ){CreateUnit(1,96,89,P1);}
+                  if( Bring(P1,Exactly, 0, 126, 89) ){CreateUnit(1,126,89,P1);}
+                    if( Bring(P1,Exactly, 0, 94, 89) ){CreateUnit(1,94,89,P1);}
+                }
+                if( P1selectEpd != P1epd0 ){
+                       RemoveUnitAt(1,168,64,P1);
+                       RemoveUnitAt(1,96,64,P1);
+                       RemoveUnitAt(1,126,64,P1);
+                       RemoveUnitAt(1,94,64,P1);
+                       RemoveUnitAt(1,16,89,P1);
+                }
+        
+           if (P1epd0.unknown0x26 == 2&& P1epd0.unknown0x8C >= 100 ){P1epd0.unknown0x26 = 30;}
+            if (P1epd0.unknown0x26 == 14){setloc(10,P1epd0.posX-13,P1epd0.posY-13,P1epd0.posX+13,P1epd0.posY+13);MoveUnit(1,93,P1,11,10); }
+            if (P1epd0.unknown0x26 == 26){setloc(11,P1epd0.posX,P1epd0.posY);MoveUnit(1,93,P1,10,11); }
+        } 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+       if (P1epd0.buildQueue1 == 90) { 
+            P1epd0.unknown0x8C -= 100;
+           if (P1epd0.unitType == 0 || P1epd0.unitType == 20){
+           
+            if (P1epd0.unknown0x8C == 4){ 
+           
+            P1epd0.unknown0x8C += 3;
+            
+         P1epd0.rankIncrease+=1; 
+         P1epd0.hp = (P1epd0.hp * 25) / 10;
+        P1epd0.unitType = 20;
+        P1epd0.currentButtonSet=0;
+        P1epd0.flingyMovementType   = 0; 
+        P1epd0.turnRadius = 42;
+        P1epd0.topSpeed = 800; 
+        P1epd0.acceleration = 666;
+        tt.BuildResetEPD(P1epd0);
+         RemoveUnitAt(All,93,10,P1);
+         RemoveUnitAt(All,93,11,P1);
+         RemoveUnitAt(1,168,64,P1);
+         RemoveUnitAt(1,96,64,P1);
+         RemoveUnitAt(1,126,64,P1);
+         RemoveUnitAt(1,94,64,P1);
+         RemoveUnitAt(1,16,89,P1);
+           }
+           
+            if (P1epd0.unknown0x8C == 8 || P1epd0.unknown0x8C == 11  ){
+     
+             P1epd0.unknown0x8C += 3;
+             P1epd0.unknown0x26=0;
+              P1epd0.rankIncrease+=1; 
+               //Marine  
+                 P1epd0.currentButtonSet= 18 ;P1epd0.unknown0x26 =199;  //Marine
+                
+                CreateUnit(1,121,110,P1);
+                CreateUnit(1,92,110,P1);
+             foreach ( epd: EUDLoopCUnit ()){ 
+                if (epd.unitType==121 && epd.unknown0x8C == 0){ P1Rocketlauncher = epd; epd.unknown0x8C = 1 ; }
+                if (epd.unitType==92 && epd.unknown0x8C == 0){  epd.remove_collision(); P1RocketlauncherTarget = epd; epd.unknown0x8C = 1 ; }
+                }
+       
+        
+        
+         RemoveUnitAt(All,93,10,P1);
+         RemoveUnitAt(All,93,11,P1);
+         RemoveUnitAt(1,168,64,P1);
+         RemoveUnitAt(1,96,64,P1);
+         RemoveUnitAt(1,126,64,P1);
+         RemoveUnitAt(1,94,64,P1);
+         RemoveUnitAt(1,16,89,P1);
+                tt.BuildResetEPD(P1epd0);
+           }
+         }
+         
+         
+        if (P1epd0.unitType == 5){
+        P1epd0.unknown0x8C += 3;
+         P1epd0.rankIncrease+=1; 
+         P1epd0.hp = (P1epd0.hp * 25) / 10;
+        P1epd0.unitType = 23;
+        P1epd0.currentButtonSet=5;
+        P1epd0.flingyMovementType   = 0; 
+        P1epd0.turnRadius = 21;
+        P1epd0.topSpeed = 420; 
+        P1epd0.acceleration = 666;
+        tt.BuildResetEPD(P1epd0);
+         RemoveUnitAt(All,93,10,P1);
+         RemoveUnitAt(All,93,11,P1);
+         RemoveUnitAt(1,168,64,P1);
+         RemoveUnitAt(1,96,64,P1);
+         RemoveUnitAt(1,126,64,P1);
+         RemoveUnitAt(1,94,64,P1);
+
+
+        
+        }
+
+}
+
+
+
+
+       if (P1epd0.buildQueue1 == 87) { 
+          P1epd0.unknown0x8C -= 100;
+          if (P1epd0.unknown0x8C != 8) {   
+         P1epd0.currentButtonSet= P1epd0.unitType;
+         P1epd0.unknown0x8C +=2;
+         P1epd0.unknown0x26=0;
+         P1epd0.rankIncrease+=1; 
+         if (P1epd0.unitType == 0  || P1epd0.unitType == 32 ){P1epd0.flingyMovementType   = 0; P1epd0.topSpeed = 2800; P1epd0.acceleration = 500;}
+         
+                 if( P1epd0.unitType ==5){  P1epd0.currentButtonSet= P1epd0.unitType;  
+                 SetMemory(0x66EC48 + 244 * 4, 7, 250);
+                CreateUnit(1,127,110,P1);
+                SetMemory(0x66EC48 + 244 * 4, 7, 275);
+
+             foreach ( epd: EUDLoopCUnit ()){ 
+                if (epd.unitType==127 && epd.unknown0x8C == 0){ P1Rocketlauncher = epd; epd.unknown0x8C = 1 ; }
+                }
+            }
+
+
+
+         tt.BuildResetEPD(P1epd0);
+         RemoveUnitAt(All,93,10,P1);
+         RemoveUnitAt(All,93,11,P1);
+         RemoveUnitAt(1,168,89,P1);
+         RemoveUnitAt(1,96,89,P1);
+         RemoveUnitAt(1,126,89,P1);
+          RemoveUnitAt(1,94,89,P1);
+         }   
+           if( P1epd0.unknown0x8C ==8){
+           PlayWAV("sound/misc/perror.wav");
+           tt.BuildResetEPD(P1epd0);
+           }
+      }
+  
+
+
+       if (P1epd0.buildQueue1 == 86) { 
+       P1epd0.unknown0x8C -= 100;
+                  if (P1epd0.unitType == 0 || P1epd0.unitType == 20){
+       
+         P1epd0.unknown0x8C += 2;
+         P1epd0.unknown0x26=0;
+         P1epd0.rankIncrease+=1; 
+         
+                 P1epd0.currentButtonSet= P1epd0.unitType;  
+                 SetMemory(0x66EC48 + 244 * 4, 7, 250);
+                CreateUnit(1,127,110,P1);
+                SetMemory(0x66EC48 + 244 * 4, 7, 275);
+
+             foreach ( epd: EUDLoopCUnit ()){ 
+                if (epd.unitType==127 && epd.unknown0x8C == 0){ P1Rocketlauncher = epd; epd.unknown0x8C = 1 ; }
+                }
+       
+            }
+       
+       
+         tt.BuildResetEPD(P1epd0);
+         RemoveUnitAt(All,93,10,P1);
+         RemoveUnitAt(All,93,11,P1);
+         RemoveUnitAt(1,168,89,P1);
+         RemoveUnitAt(1,96,89,P1);
+         RemoveUnitAt(1,126,89,P1);
+          RemoveUnitAt(1,94,89,P1);
+       
+       }
+
+  
+       if (P1epd0.unknown0x8C == 7 || P1epd0.unknown0x8C == 6) {   
+       
+       //SCV Logic
+        if (P1epd0.unitType == 7 || P1epd0.unitType == 0){
+         if (P1epd0.orderID == 10 && P1epd0.unknown0x26 == 0 || P1epd0.orderID == 14 && P1epd0.unknown0x26 == 0) { 
+         P1epd0.unknown0x26= 140;
+         setloc(10,P1epd0.posX-4,P1epd0.posY-4,P1epd0.posX+4,P1epd0.posY+4);
+         setloc(11,P1epd0.orderTargetX-12,P1epd0.orderTargetY-12,P1epd0.orderTargetX+12,P1epd0.orderTargetY+12);
+         wwrite(0x6636B8 + 29 * 1, 4);
+        CreateUnit(1,29,10,P1); Order(29,P1,10,Attack,11);
+        }   
+        if (P1epd0.unknown0x26 == 131){RemoveUnitAt(All,29,10,P1);}
+      }
+         //Marine Logic
+          if (P1epd0.unitType == 0 || P1epd0.unitType == 32 ){
+          if(P1epd0.groundWeaponCooldown >= 8){P1epd0.groundWeaponCooldown =7;}
+          }  
+          
+          
+          
+          
+         //Tank Logic
+     if( P1epd0.unitType ==5){
+       if ( P1epd0.unknown0x26 == 0 ) { 
+         P1epd0.unknown0x26= 49;}
+            if ( P1epd0.unknown0x26 == 47 ) { 
+         setloc(10,P1epd0.posX-220,P1epd0.posY-220,P1epd0.posX+220,P1epd0.posY+220);
+
+         MoveUnit(All,127,P1,110,10); Order(127,P1,10,Attack,10);
+
+        }   
+        if( P1Rocketlauncher0.orderID != 3) {
+                 setloc(11,P1Rocketlauncher0.posX-4,P1Rocketlauncher0.posY-4,P1Rocketlauncher0.posX+4,P1Rocketlauncher0.posY+4);
+          if( Bring(P1,Exactly, 0, 5, 11) ){         setloc(10,P1epd0.posX-4,P1epd0.posY-4,P1epd0.posX+4,P1epd0.posY+4);
+            MoveUnit(All,127,P1,11,10); }
+            }
+        if (P1epd0.unknown0x26 == 36 && P1Rocketlauncher0.orderID ==3){MoveUnit(All,127,P1,10,110);MoveUnit(All,127,P1,11,110);}
+      }   
+     }
+      
+      
+      
+      
+      
+      
+
+      
+      
+      
+      
+      
+      
+       if (P1epd0.buildQueue1 == 86) {  
+             if( P1epd0.unknown0x8C !=9){
+       P1epd0.unknown0x8C += 1;
+       P1epd0.rankIncrease+=1; 
+       P1epd0.unknown0x26=0;             
+             
+           //SCV / 
+              if( P1epd0.unitType ==7){  P1epd0.currentButtonSet= P1epd0.unitType;} 
+              
+             //Tank / 
+              if( P1epd0.unitType ==5){  P1epd0.currentButtonSet = P1epd0.unitType;
+              P1epd0.flingyMovementType   = 0; P1epd0.topSpeed = 3550; P1epd0.acceleration = 125; P1epd0.turnRadius = 32; }
+              
+                //Firebat
+                 if( P1epd0.unitType ==32){ 
+                 P1epd0.currentButtonSet= 10 ;
+                 P1epd0.unknown0x86 =50; 
+                 CreateUnit(20,98,110,P1); 
+                
+
+                  foreach ( epd: EUDLoopCUnit ()){ if (epd.unitType==98&&epd.unknown0x8C==0){
+                  epd.unknown0x8C=1 + s;
+                 epd.remove_collision();
+                  s++;
+                 P1flame1[s] =  epd;}}
+                 } 
+                 
+
+       tt.BuildResetEPD(P1epd0);
+       RemoveUnitAt(All,93,10,P1);
+       RemoveUnitAt(All,93,11,P1);
+         RemoveUnitAt(1,168,89,P1);
+         RemoveUnitAt(1,96,89,P1);
+         RemoveUnitAt(1,126,89,P1);
+         RemoveUnitAt(1,94,89,P1);
+       }
+       if( P1epd0.unknown0x8C ==9){
+       PlayWAV("sound/misc/perror.wav");
+       tt.BuildResetEPD(P1epd0);
+       }
+  }
+  
+
+       if (P1epd0.unknown0x8C == 8 || P1epd0.unknown0x8C == 11) {   
+       
+       
+       
+        //Tank logic
+        if( P1epd0.unitType ==5){
+        
+        
+                  if(P1epd0.subUnit.groundWeaponCooldown >=19){P1epd0.subUnit.groundWeaponCooldown =18;}
+        
+        
+        
+        
+        
+        }
+        
+        
+        
+      
+       //FIREBAT logic
+       //prelogic   
+        if ( P1Flame1EPD.killCount == 1){P1epd0.killCount +=1;  P1Flame1EPD.killCount =0; }
+         if ( P1Flame1EPD.killCount == 2){P1epd0.killCount +=2;  P1Flame1EPD.killCount =0; }
+          if ( P1Flame1EPD.killCount == 3){P1epd0.killCount +=3;  P1Flame1EPD.killCount =0; }
+           if ( P1Flame1EPD.killCount == 4){P1epd0.killCount +=4;  P1Flame1EPD.killCount =0; }
+       
+       
+       
+       if( P1epd0.unitType ==32){
+
+
+  
+  
+  
+  
+        if( P1selectEpd == P1epd0 && PressF==1){
+
+    
+
+       P1epd0.currentDirection1 =  atan2_256( Ty-P1epd0.posY,  Tx-P1epd0.posX);    
+            P1epd0.orderID= 1;
+          P1epd0.moveTargetX =Tx;
+          P1epd0.moveTargetY = Ty;
+           P1epd0.orderID= 1;
+           
+        setloc(10,P1epd0.posX+3,P1epd0.posY+3,P1epd0.posX+3,P1epd0.posY+3); 
+        displaytext.printfAt(9,"fuel: {}", P1epd0.unknown0x86);
+         if(P1epd0.unknown0x86 >= 1
+        && Tx >=P1epd0.posX - 100 
+        && Ty >=P1epd0.posY - 100
+        && Tx <=P1epd0.posX + 100 
+        && Ty <=P1epd0.posY + 100){
+        
+        if(P1epd0.unknown0x26 == 0){
+              P1epd0.orderID= 1;
+        PlayWAV("staredit/wav/FireBlast.ogg");
+       
+        
+                 if(P1flame1Epd1.unknown0x26 == 0) {setloc(9,
+                 
+                 P1flame1Epd1.posX
+                 ,
+                 P1flame1Epd1.posY
+                 )
+                 ;
+
+                 P1flame1Epd1.unknown0x26 = 255;MoveUnit(All,98,P1,9,10);}
+                  else if(P1flame1Epd2.unknown0x26 == 0) {setloc(9,P1flame1Epd2.posX,P1flame1Epd2.posY);
+                 P1flame1Epd2.unknown0x26 = 255;MoveUnit(All,98,P1,9,10);}
+                  else if(P1flame1Epd3.unknown0x26 == 0) {setloc(9,P1flame1Epd3.posX,P1flame1Epd3.posY);
+                 P1flame1Epd3.unknown0x26 = 255;MoveUnit(All,98,P1,9,10);}
+                  else if(P1flame1Epd4.unknown0x26 == 0) {setloc(9,P1flame1Epd4.posX,P1flame1Epd4.posY);
+                 P1flame1Epd4.unknown0x26 = 255;MoveUnit(All,98,P1,9,10);}
+                  else if(P1flame1Epd5.unknown0x26 == 0) {setloc(9,P1flame1Epd5.posX,P1flame1Epd5.posY);
+                 P1flame1Epd5.unknown0x26 = 255;MoveUnit(All,98,P1,9,10);}
+                  else if(P1flame1Epd6.unknown0x26 == 0) {setloc(9,P1flame1Epd6.posX,P1flame1Epd6.posY);
+                 P1flame1Epd6.unknown0x26 = 255;MoveUnit(All,98,P1,9,10);}
+                  else if(P1flame1Epd7.unknown0x26 == 0) {setloc(9,P1flame1Epd7.posX,P1flame1Epd7.posY);
+                 P1flame1Epd7.unknown0x26 = 255;MoveUnit(All,98,P1,9,10);}
+                  else if(P1flame1Epd8.unknown0x26 == 0) {setloc(9,P1flame1Epd8.posX,P1flame1Epd8.posY);
+                 P1flame1Epd8.unknown0x26 = 255;MoveUnit(All,98,P1,9,10);}
+                 else if(P1flame1Epd9.unknown0x26 == 0) {setloc(9,P1flame1Epd9.posX,P1flame1Epd9.posY);
+                 P1flame1Epd9.unknown0x26 = 255;MoveUnit(All,98,P1,9,10);}
+                 else if(P1flame1Epd10.unknown0x26 == 0) {setloc(9,P1flame1Epd10.posX,P1flame1Epd10.posY);
+                 P1flame1Epd10.unknown0x26 = 255;MoveUnit(All,98,P1,9,10);}
+                  else if(P1flame1Epd11.unknown0x26 == 0) {setloc(9,P1flame1Epd11.posX,P1flame1Epd11.posY);
+                 P1flame1Epd11.unknown0x26 = 255;MoveUnit(All,98,P1,9,10);}
+                 else if(P1flame1Epd12.unknown0x26 == 0) {setloc(9,P1flame1Epd12.posX,P1flame1Epd12.posY);
+                 P1flame1Epd12.unknown0x26 = 255;MoveUnit(All,98,P1,9,10);}
+                 else if(P1flame1Epd13.unknown0x26 == 0) {setloc(9,P1flame1Epd13.posX,P1flame1Epd13.posY);
+                 P1flame1Epd13.unknown0x26 = 255;MoveUnit(All,98,P1,9,10);}
+                 else if(P1flame1Epd14.unknown0x26 == 0) {setloc(9,P1flame1Epd14.posX,P1flame1Epd14.posY);
+                 P1flame1Epd14.unknown0x26 = 255;MoveUnit(All,98,P1,9,10);}
+                 else if(P1flame1Epd15.unknown0x26 == 0) {setloc(9,P1flame1Epd15.posX,P1flame1Epd15.posY);
+                 P1flame1Epd15.unknown0x26 = 255;MoveUnit(All,98,P1,9,10);}
+                 else if(P1flame1Epd16.unknown0x26 == 0) {setloc(9,P1flame1Epd16.posX,P1flame1Epd16.posY);
+                 P1flame1Epd16.unknown0x26 = 255;MoveUnit(All,98,P1,9,10);}
+                 else if(P1flame1Epd17.unknown0x26 == 0) {setloc(9,P1flame1Epd17.posX,P1flame1Epd17.posY);
+                 P1flame1Epd17.unknown0x26 = 255;MoveUnit(All,98,P1,9,10);}
+                 else if(P1flame1Epd18.unknown0x26 == 0) {setloc(9,P1flame1Epd18.posX,P1flame1Epd18.posY);
+                 P1flame1Epd18.unknown0x26 = 255;MoveUnit(All,98,P1,9,10);}
+                 else if(P1flame1Epd19.unknown0x26 == 0) {setloc(9,P1flame1Epd19.posX,P1flame1Epd19.posY);
+                 P1flame1Epd19.unknown0x26 = 255;MoveUnit(All,98,P1,9,10);}
+                 else if(P1flame1Epd20.unknown0x26 == 0) {setloc(9,P1flame1Epd20.posX,P1flame1Epd20.posY);
+                 P1flame1Epd20.unknown0x26 = 255;MoveUnit(All,98,P1,9,10);}
+
+
+        setloc(11,Tx,Ty);
+        Order(98,P1,10,Move,11);   
+        P1epd0.unknown0x26 = 4;}
+        P1epd0.unknown0x86-=1; }
+          }  
+         if(P1flame1Epd1.unknown0x26 == 230){   P1Flame1EPD.orderID= 10; P1Flame1EPD.orderTargetUnit = P1flame1Epd1;}
+          if( P1flame1Epd2.unknown0x26 == 230){   P1Flame1EPD.orderID= 10; P1Flame1EPD.orderTargetUnit = P1flame1Epd2;}
+           if(P1flame1Epd3.unknown0x26 == 230){    P1Flame1EPD.orderID= 10; P1Flame1EPD.orderTargetUnit = P1flame1Epd3;}
+            if(P1flame1Epd4.unknown0x26 == 230){    P1Flame1EPD.orderID= 10; P1Flame1EPD.orderTargetUnit = P1flame1Epd4;}
+             if( P1flame1Epd5.unknown0x26 == 230){   P1Flame1EPD.orderID= 10; P1Flame1EPD.orderTargetUnit = P1flame1Epd5;}
+              if( P1flame1Epd6.unknown0x26 == 230){   P1Flame1EPD.orderID= 10; P1Flame1EPD.orderTargetUnit = P1flame1Epd6;}
+               if( P1flame1Epd7.unknown0x26 == 230){   P1Flame1EPD.orderID= 10; P1Flame1EPD.orderTargetUnit = P1flame1Epd7;}
+                if( P1flame1Epd8.unknown0x26 == 230){   P1Flame1EPD.orderID= 10; P1Flame1EPD.orderTargetUnit = P1flame1Epd8;}
+                 if( P1flame1Epd9.unknown0x26 == 230){   P1Flame1EPD.orderID= 10; P1Flame1EPD.orderTargetUnit = P1flame1Epd9;}
+                  if( P1flame1Epd10.unknown0x26 == 230){   P1Flame1EPD.orderID= 10; P1Flame1EPD.orderTargetUnit = P1flame1Epd10;}
+                   if( P1flame1Epd11.unknown0x26 == 230){   P1Flame1EPD.orderID= 10; P1Flame1EPD.orderTargetUnit = P1flame1Epd11;}
+                    if( P1flame1Epd12.unknown0x26 == 230){   P1Flame1EPD.orderID= 10; P1Flame1EPD.orderTargetUnit = P1flame1Epd12;}
+                     if(P1flame1Epd13.unknown0x26 == 230){    P1Flame1EPD.orderID= 10; P1Flame1EPD.orderTargetUnit = P1flame1Epd13;}
+                      if(P1flame1Epd14.unknown0x26 == 230){    P1Flame1EPD.orderID= 10; P1Flame1EPD.orderTargetUnit = P1flame1Epd14;}
+                       if( P1flame1Epd15.unknown0x26 == 230){   P1Flame1EPD.orderID= 10; P1Flame1EPD.orderTargetUnit = P1flame1Epd15;}
+                        if( P1flame1Epd16.unknown0x26 == 230){   P1Flame1EPD.orderID= 10; P1Flame1EPD.orderTargetUnit = P1flame1Epd16;}
+                         if( P1flame1Epd17.unknown0x26 == 230){   P1Flame1EPD.orderID= 10; P1Flame1EPD.orderTargetUnit = P1flame1Epd17;}
+                          if( P1flame1Epd18.unknown0x26 == 230){   P1Flame1EPD.orderID= 10; P1Flame1EPD.orderTargetUnit = P1flame1Epd18;}
+                           if( P1flame1Epd19.unknown0x26 == 230){   P1Flame1EPD.orderID= 10; P1Flame1EPD.orderTargetUnit = P1flame1Epd19;}
+                            if( P1flame1Epd20.unknown0x26 == 230){   P1Flame1EPD.orderID= 10; P1Flame1EPD.orderTargetUnit = P1flame1Epd20;}
+                    
+         if(P1flame1Epd1.unknown0x26 == 228){   P1Flame1EPD.orderID= 1;}           if(P1flame1Epd11.unknown0x26 == 228){   P1Flame1EPD.orderID= 1;}
+          if( P1flame1Epd2.unknown0x26 == 228){   P1Flame1EPD.orderID= 1;}          if(P1flame1Epd12.unknown0x26 == 228){   P1Flame1EPD.orderID= 1;}
+           if(P1flame1Epd3.unknown0x26 == 228){    P1Flame1EPD.orderID= 1;}          if(P1flame1Epd13.unknown0x26 == 228){   P1Flame1EPD.orderID= 1;}
+            if(P1flame1Epd4.unknown0x26 == 228){    P1Flame1EPD.orderID= 1;}          if(P1flame1Epd14.unknown0x26 == 228){   P1Flame1EPD.orderID= 1;}
+             if( P1flame1Epd5.unknown0x26 == 228){   P1Flame1EPD.orderID= 1;}          if(P1flame1Epd15.unknown0x26 == 228){   P1Flame1EPD.orderID= 1;}
+              if( P1flame1Epd6.unknown0x26 == 228){   P1Flame1EPD.orderID= 1;}          if(P1flame1Epd16.unknown0x26 == 228){   P1Flame1EPD.orderID= 1;}
+               if( P1flame1Epd7.unknown0x26 == 228){   P1Flame1EPD.orderID= 1;}          if(P1flame1Epd17.unknown0x26 == 228){   P1Flame1EPD.orderID= 1;}
+                if( P1flame1Epd8.unknown0x26 == 228){   P1Flame1EPD.orderID= 1;}          if(P1flame1Epd18.unknown0x26 == 228){   P1Flame1EPD.orderID= 1;}
+                 if( P1flame1Epd9.unknown0x26 == 228){   P1Flame1EPD.orderID= 1;}          if(P1flame1Epd19.unknown0x26 == 228){   P1Flame1EPD.orderID= 1;}
+                  if( P1flame1Epd10.unknown0x26 == 228){  P1Flame1EPD.orderID= 1;}          if(P1flame1Epd20.unknown0x26 == 228){  P1Flame1EPD.orderID= 1;}
+                   
+       }
+      
+      
+      
+       //MARINE logic
+       //pre logic
+        if ( P1Rocketlauncher0.killCount == 1){P1epd0.killCount +=1;  P1Rocketlauncher0.killCount =0; }
+         if ( P1Rocketlauncher0.killCount == 2){P1epd0.killCount +=2;  P1Rocketlauncher0.killCount =0; }
+          if ( P1Rocketlauncher0.killCount == 3){P1epd0.killCount +=3;  P1Rocketlauncher0.killCount =0; }
+           if ( P1Rocketlauncher0.killCount == 4){P1epd0.killCount +=4;  P1Rocketlauncher0.killCount =0; }
+            
+        if(  P1epd0.unitType == 20 ){
+          if(P1epd0.unknown0x86 >= 1 ){P1epd0.unknown0x86-=1; }
+          if(P1epd0.orderID == 132 ){
+             P1epd0.orderID = 1;
+       
+        if( P1epd0.unknown0x86 == 0&&
+        Tx >=P1epd0.posX - 200 && Ty >=P1epd0.posY - 200 && Tx <=P1epd0.posX + 200 && Ty <=P1epd0.posY + 200) {
+        PlayWAV("staredit/wav/rocket_h3_2.wav");
+         setloc(10,P1epd0.posX-4,P1epd0.posY-4,P1epd0.posX+4,P1epd0.posY+4);
+         setloc(11,P1epd0.orderTargetX-20,P1epd0.orderTargetY+20,P1epd0.orderTargetX+20,P1epd0.orderTargetY+20);
+        SetMemory(0x66EC48 + 529 * 4, 7, 207);
+        CreateUnit(1,95,10,P1); Order(95,P1,10,Move,11);   
+        SetMemory(0x66EC48 + 529 * 4, 7, 240);
+        P1epd0.unknown0x86 =88;
+        P1epd0.unknown0x26 +=1; }
+        
+        else{eprintf("Target out of reach!");
+           }
+         }
+      if(Bring(P1,Exactly,1,95,11)){ 
+      RemoveUnitAt(All,95,11,P1);
+        MoveUnit(All,92,P1,110,11);
+
+        P1Rocketlauncher0.orderTargetUnit = P1RocketlauncherT0;
+                P1Rocketlauncher0.orderID= 10;
+        }  
+
+        if( P1Rocketlauncher0.groundWeaponCooldown !=0){MoveUnit(All,92,P1,11,110); }
+            if(Bring(P1,Exactly,1,92,110) && P1Rocketlauncher0.orderID==10){
+            P1Rocketlauncher0.orderID=1;}
+   
+          if( P1epd0.unknown0x26  ==202 ) {P1epd0.currentButtonSet= 24 ;}
+           if( P1epd0.unknown0x26  ==203 ) {P1epd0.currentButtonSet= 26 ;}
+        if( P1epd0.unknown0x26  ==204 ) {P1epd0.currentButtonSet= 18 ;P1epd0.unknown0x26 =199;}
+        if( P1epd0.unknown0x26 ==51){setloc(10,P1epd0.posX-12,P1epd0.posY-12,P1epd0.posX+12,P1epd0.posY+12);P1epd0.unknown0x26 =199; }
+        if( P1epd0.unknown0x26 <=200 && Bring(P1,Exactly,1,"Terran Barracks",10)){ 
+                 RemoveUnitAt(1,168,64,P1);
+         RemoveUnitAt(1,96,64,P1);
+         RemoveUnitAt(1,126,64,P1);
+         RemoveUnitAt(1,94,64,P1);
+         RemoveUnitAt(1,16,89,P1);
+        P1epd0.currentButtonSet= 17 ;P1epd0.unknown0x26 =201;}
+        }
+        
+        
+        
+        
+        //SCV logic
+     if( P1epd0.unitType ==7){
+       if (P1epd0.orderID == 10 && P1epd0.unknown0x26 == 0 ) { 
+         P1epd0.unknown0x26= 66;
+         setloc(10,P1epd0.posX-4,P1epd0.posY-4,P1epd0.posX+4,P1epd0.posY+4);
+         setloc(11,P1epd0.orderTargetX-12,P1epd0.orderTargetY-12,P1epd0.orderTargetX+12,P1epd0.orderTargetY+12);
+         wwrite(0x6636B8 + 29 * 1, 117);
+
+        CreateUnit(1,29,10,P1); Order(29,P1,10,Attack,11);
+        }   
+        if (P1epd0.unknown0x26 == 53){RemoveUnitAt(All,29,10,P1);}
+        if (P1epd0.orderID == 87 && P1epd0.orderTimer >= 33) {  P1epd0.orderTimer = 32;  }
+      }
+      
+     }
+
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+       if (P1epd0.buildQueue1 == 89 && P1epd0.unknown0x8C <=20 ) {
+       
+              //Tank
+    if( P1epd0.unitType ==5){  
+    
+        setloc(10,P1epd0.posX-4,P1epd0.posY-4,P1epd0.posX+4,P1epd0.posY+4);
+        var hp;
+        var kill;
+        if(hp ==0){
+       hp = P1epd0.hp ;
+       kill = P1epd0.killCount ;
+       g = hp;}
+           
+              
+
+                 wwrite(0x6607C0 + 5 * 2, 31);
+                wwrite(0x66EC48 + 254 * 4, 91);
+                CreateUnit(1, 5, 110, P1);
+
+       foreach ( epd: EUDLoopCUnit ()){ if (epd.unitType==5 && epd.subUnit.unitType == 31){
+         SetResources(P1,Add,1,Ore);
+       EPDswitch =  epd;}
+       
+       }
+        wwrite(0x6607C0 + 5 * 2, 6);
+        wwrite(0x66EC48 + 254 * 4, 93);
+   P1epd0.currentButtonSet= 3;
+            RemoveUnitAt(1,5,10,P1);  
+                 MoveUnit(1,5,P1,110,10);       
+                
+               
+       RemoveUnitAt(All,93,10,P1);
+       RemoveUnitAt(All,93,11,P1);
+       tt.BuildResetEPD(P1epd0);
+       RemoveUnitAt(All,93,11,P1);
+        RemoveUnitAt(All,93,10,P1);
+        RemoveUnitAt(1,168,89,P1);
+        RemoveUnitAt(1,96,89,P1);
+        RemoveUnitAt(1,126,89,P1);
+        RemoveUnitAt(1,94,89,P1);
+    
+    
+       }
+       
+       //SCV
+    if( P1epd0.unitType ==7){
+        SetMemory(0x66EC48 + 249 * 4, 7, 224);
+       RemoveUnitAt(All,93,10,P1);
+       RemoveUnitAt(All,93,11,P1);
+       CreateUnit(1,91,10,P1);
+       SetMemory(0x66EC48 + 249 * 4, 7, 291);
+       foreach ( epd: EUDLoopCUnit ()){ if (epd.unitType==91&&epd.unknown0x8C==0){
+       epd.unknown0x8C=1;
+       P1trailarray[0] =  epd;}}
+      
+
+       P1epd0.topSpeed = 2000;  
+       P1epd0.acceleration = 120;
+       P1epd0.currentButtonSet= P1epd0.unitType;
+       P1epd0.rankIncrease+=1; 
+       P1epd0.unknown0x8C +=20;
+       P1epd0.unknown0x26=0;
+        P1epd0.currentBuildUnit = 228;
+       tt.BuildResetEPD(P1epd0);
+       RemoveUnitAt(All,93,11,P1);
+        RemoveUnitAt(All,93,10,P1);
+         RemoveUnitAt(1,168,89,P1);
+         RemoveUnitAt(1,96,89,P1);
+         RemoveUnitAt(1,126,89,P1);
+         RemoveUnitAt(1,94,89,P1);
+}
+       }
+       
+       
+       if(P1epd0.buildQueue1 == 89 && P1epd0.unknown0x8C >=20 ){
+       PlayWAV("sound/misc/perror.wav");
+       tt.BuildResetEPD(P1epd0);
+       }
+       
+       
+       
+       if  (P1epd0.unknown0x8C>=20 && P1epd0.unknown0x8C<=30){
+       
+       
+           if(P1epd0.unitType  == 5){
+                EPDswitch.hp = 512;
+                EPDswitch.killCount = P1epd0.killCount;
+                EPDswitch.unknown0x8C =21;
+                }
+         const P1trailarray0 = CUnit(P1trailarray[0])  ;
+       if(P1epd0.orderID !=1 ){
+       setloc(11,P1trailarray0.posX,P1trailarray0.posY,P1trailarray0.posX,P1trailarray0.posY);
+        setloc(10,P1epd0.posX-4,P1epd0.posY-4,P1epd0.posX+4,P1epd0.posY+4);
+        if(Bring(P1,Exactly,1,91,11)){
+       Order(91,P1,11,Move,10);}
+       if(Bring(P1,Exactly,2,91,11)){MoveUnit(1,91,P1,11,10);}
+         } 
+       }
+     
+     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+     
+       if (P1epd0.hp  == 0 || P1epd0.killCount <=2 ) { 
+       
+       P1Mselect[0]=0;}
+
+    }
+       if (P1Mselect[0]== 0 ){
+        RemoveUnitAt(All,121,110,P1);
+        RemoveUnitAt(All,92,110,P1);
+        RemoveUnitAt(All,127,110,P1);
+        RemoveUnitAt(All,127,11,P1);
+        RemoveUnitAt(All,127,10,P1);
+        RemoveUnitAt(All,93,11,P1);
+        RemoveUnitAt(All,93,10,P1);
+        if( Bring(P1,Exactly,0,98,110)){
+       P1flame1[0] = 300;
+       P1flame1[1] = 300;
+       P1flame1[2] = 300;
+       P1flame1[3] = 300;
+       P1flame1[4] = 300;
+       P1flame1[5] = 300;
+       P1flame1[6] = 300;
+       P1flame1[7] = 300;
+       P1flame1[8] = 300;
+       P1flame1[9] = 300;
+       P1flame1[10] = 300;
+       P1flame1[11] = 300;
+       P1flame1[12] = 300;
+       P1flame1[13] = 300;
+       P1flame1[14] = 300;
+       P1flame1[15] = 300;
+       P1flame1[16] = 300;
+       P1flame1[17] = 300;
+       P1flame1[18] = 300;
+       P1flame1[19] = 300;
+       P1flame1[20] = 300;
+       }
+       if( Bring(P1,Exactly,1,91,10) ) {   P1trailarray[0] = 0;RemoveUnitAt(All,91,10,P1);}
+        if( Bring(P1,Exactly,20,98,110) ){ RemoveUnitAt(All,98,110,P1);
+        s =0;}
+       
+       }
+    
+    
+    
+    
+    
+    
+    
+         
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    
+
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+         
+     
+     
+     
+     
+     
+     
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+
+     P1killed= dwread(0x00581E78);
+
+
+ //eprintf(" P1gtimer:{} P1gswitch{} mouseloc{} Loc1||:{} ", P1selectEpd.orderID , P1selectEpd.order  ,P1selectEpd.orderState ,  P1selectEpd.orderSignal );
+
+
+	ClassicTriggerExec();	
+}
+
+function afterTriggerExec(){
+
+}
+
+
+
+
+
