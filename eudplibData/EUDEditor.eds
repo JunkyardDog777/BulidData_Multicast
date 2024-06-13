@@ -56,8 +56,6 @@ NotTyping ; KeyPress(W) : VKeyPress_W, 1
 NotTyping ; KeyPress(X) : VKeyPress_X, 1
 NotTyping ; KeyPress(Y) : VKeyPress_Y, 1
 NotTyping ; KeyPress(Z) : VKeyPress_Z, 1
-0x58D900, Exactly, 2 : VChatIndex, 1
-0x58D908, Exactly, 3 : VChatIndex, 2
 mouse : Location 248
 
 [chatEvent]
@@ -65,8 +63,6 @@ __addr__ : 0x58D900
 __ptrAddr__ : 0x58D904
 __patternAddr__ : 0x58D908
 __lenAddr__ : 0x58D90C
-7 : 2
-^6.*6.*6$ : 3
 
 
 

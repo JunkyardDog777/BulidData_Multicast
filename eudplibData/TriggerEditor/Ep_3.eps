@@ -32,7 +32,7 @@ if(Buffer1[player]>= 2){Buffer1[player]-= 1;}
 if(glhf>=1){glhf-=1;}
      once{
        
-     glhf=10; MCC.Gsync[0]=26;MCC.Gsync[1]=26;MCC.Gsync[2]=26;MCC.Gsync[3]=26; 
+     glhf=10; 
      
      }   
 if(glhf==9){
@@ -40,6 +40,7 @@ if(glhf==9){
       
           Pexist[0]=1;
             if(Pexist[0]==1){
+            MCC.Gsync[0]=26;
             wwrite(0x66EC48 + 583 * 4, 309);
   CreateUnit(13,219,Pspawner[0],0);
                wwrite(0x66EC48 + 583 * 4, 332);
@@ -60,7 +61,7 @@ if(glhf==9){
         
            Pexist[1]=1;
             if(Pexist[1]==1){
-
+            MCC.Gsync[1]=26;
             wwrite(0x66EC48 + 583 * 4, 309);
   CreateUnit(13,219,Pspawner[1],1);
         
@@ -83,7 +84,7 @@ if(glhf==9){
     
                 Pexist[2]=1;  
             if(Pexist[2]==1){
-            
+            MCC.Gsync[2]=26;
             wwrite(0x66EC48 + 583 * 4, 309);
   CreateUnit(13,219,Pspawner[2],2);
               
@@ -107,7 +108,7 @@ if(glhf==9){
         
           Pexist[3]=1 ; 
                       if(Pexist[3]==1){
-
+MCC.Gsync[3]=26;
             wwrite(0x66EC48 + 583 * 4, 309);
   CreateUnit(13,219,Pspawner[3],3);
                
@@ -129,7 +130,7 @@ if(glhf==9){
           if(playerexist(P5)){
             Pexist[4]=1 ; 
           if(Pexist[4]==1){
-
+MCC.Gsync[4]=26;
             wwrite(0x66EC48 + 583 * 4, 309);
   CreateUnit(13,219,Pspawner[4],4);
   
@@ -151,7 +152,7 @@ if(glhf==9){
           if(playerexist(P6)){
             Pexist[5]=1 ; 
           if(Pexist[5]==1){
-          
+          MCC.Gsync[5]=26;
             wwrite(0x66EC48 + 583 * 4, 309);
   CreateUnit(13,219,Pspawner[5],5);
                foreach ( epd5: EUDLoopCUnit ()){ 
@@ -171,6 +172,7 @@ if(glhf==9){
           if(playerexist(P7)){
             Pexist[6]=1 ; 
           if(Pexist[6]==1){  
+          MCC.Gsync[6]=26;
             wwrite(0x66EC48 + 583 * 4, 309);
   CreateUnit(13,219,Pspawner[6],6);
                foreach ( epd6: EUDLoopCUnit ()){ 
@@ -191,6 +193,7 @@ if(glhf==9){
           if(playerexist(P8)){
             Pexist[7]=1 ; 
           if(Pexist[7]==1){  
+    MCC.Gsync[7]=26;
             wwrite(0x66EC48 + 583 * 4, 309);
   CreateUnit(13,219,Pspawner[7],7);
                foreach ( epd7: EUDLoopCUnit ()){ 

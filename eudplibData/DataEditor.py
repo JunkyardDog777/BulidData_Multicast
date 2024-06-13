@@ -463,6 +463,7 @@ def onPluginStart():
         SetMemory(0x662B00, Add, -127),# units:StarEdit Placement Box Width  index:168    from 128 To 1
         SetMemory(0x662B20, Add, -56),# units:StarEdit Placement Box Width  index:176    from 64 To 8
         SetMemory(0x662B80, Add, -118),# units:StarEdit Placement Box Width  index:200    from 128 To 10
+        SetMemory(0x662B8C, Add, -64),# units:StarEdit Placement Box Width  index:203    from 64 To 0
         SetMemory(0x662B90, Add, -246),# units:StarEdit Placement Box Width  index:204    from 256 To 10
         SetMemory(0x662B94, Add, -135),# units:StarEdit Placement Box Width  index:205    from 136 To 1
         SetMemory(0x662B98, Add, -126),# units:StarEdit Placement Box Width  index:206    from 136 To 10
@@ -487,6 +488,7 @@ def onPluginStart():
         SetMemory(0x662B00, Add, -6225920),# units:StarEdit Placement Box Height  index:168    from 96 To 1
         SetMemory(0x662B20, Add, -1572864),# units:StarEdit Placement Box Height  index:176    from 32 To 8
         SetMemory(0x662B80, Add, -5636096),# units:StarEdit Placement Box Height  index:200    from 96 To 10
+        SetMemory(0x662B8C, Add, -4194304),# units:StarEdit Placement Box Height  index:203    from 64 To 0
         SetMemory(0x662B90, Add, -7733248),# units:StarEdit Placement Box Height  index:204    from 128 To 10
         SetMemory(0x662B94, Add, -8847360),# units:StarEdit Placement Box Height  index:205    from 136 To 1
         SetMemory(0x662B98, Add, -8257536),# units:StarEdit Placement Box Height  index:206    from 136 To 10
@@ -510,6 +512,7 @@ def onPluginStart():
         SetMemory(0x661D08, Add, -63),# units:Unit Size Left  index:168    from 64 To 1
         SetMemory(0x661D48, Add, -28),# units:Unit Size Left  index:176    from 32 To 4
         SetMemory(0x661E08, Add, -46),# units:Unit Size Left  index:200    from 56 To 10
+        SetMemory(0x661E20, Add, -32),# units:Unit Size Left  index:203    from 32 To 0
         SetMemory(0x661E28, Add, -118),# units:Unit Size Left  index:204    from 128 To 10
         SetMemory(0x661E30, Add, -24),# units:Unit Size Left  index:205    from 25 To 1
         SetMemory(0x661E38, Add, -34),# units:Unit Size Left  index:206    from 44 To 10
@@ -533,6 +536,7 @@ def onPluginStart():
         SetMemory(0x661D08, Add, -3080192),# units:Unit Size Up  index:168    from 48 To 1
         SetMemory(0x661D48, Add, -786432),# units:Unit Size Up  index:176    from 16 To 4
         SetMemory(0x661E08, Add, -1179648),# units:Unit Size Up  index:200    from 28 To 10
+        SetMemory(0x661E20, Add, -2097152),# units:Unit Size Up  index:203    from 32 To 0
         SetMemory(0x661E28, Add, -3538944),# units:Unit Size Up  index:204    from 64 To 10
         SetMemory(0x661E30, Add, -1048576),# units:Unit Size Up  index:205    from 17 To 1
         SetMemory(0x661E38, Add, -458752),# units:Unit Size Up  index:206    from 17 To 10
@@ -555,6 +559,7 @@ def onPluginStart():
         SetMemory(0x661D0C, Add, -62),# units:Unit Size Right  index:168    from 63 To 1
         SetMemory(0x661D4C, Add, -27),# units:Unit Size Right  index:176    from 31 To 4
         SetMemory(0x661E0C, Add, -53),# units:Unit Size Right  index:200    from 63 To 10
+        SetMemory(0x661E24, Add, -31),# units:Unit Size Right  index:203    from 31 To 0
         SetMemory(0x661E2C, Add, -117),# units:Unit Size Right  index:204    from 127 To 10
         SetMemory(0x661E34, Add, -43),# units:Unit Size Right  index:205    from 44 To 1
         SetMemory(0x661E3C, Add, -15),# units:Unit Size Right  index:206    from 25 To 10
@@ -578,6 +583,7 @@ def onPluginStart():
         SetMemory(0x661D0C, Add, -3014656),# units:Unit Size Down  index:168    from 47 To 1
         SetMemory(0x661D4C, Add, -720896),# units:Unit Size Down  index:176    from 15 To 4
         SetMemory(0x661E0C, Add, -2162688),# units:Unit Size Down  index:200    from 43 To 10
+        SetMemory(0x661E24, Add, -2031616),# units:Unit Size Down  index:203    from 31 To 0
         SetMemory(0x661E2C, Add, -3473408),# units:Unit Size Down  index:204    from 63 To 10
         SetMemory(0x661E34, Add, -1245184),# units:Unit Size Down  index:205    from 20 To 1
         SetMemory(0x661E3C, Add, -655360),# units:Unit Size Down  index:206    from 20 To 10
@@ -920,7 +926,6 @@ def onPluginStart():
         SetMemory(0x66F48C, Add, -23),# images:Iscript ID  index:529    from 240 To 217
         SetMemory(0x66FA60, Add, -101),# images:Iscript ID  index:902    from 337 To 236
         SetMemory(0x66FA64, Add, -189),# images:Iscript ID  index:903    from 275 To 86
-        SetMemory(0x66FB64, Add, -172),# images:Iscript ID  index:967    from 389 To 217
         SetMemory(0x6557A0, Add, -9764864),# upgrades:Mineral Cost Base  index:49    from 150 To 1
         SetMemory(0x6558A0, Add, -9830400),# upgrades:Vespene Cost Base  index:49    from 150 To 0
         SetMemory(0x655BE0, Add, -163184640),# upgrades:Research Time Base  index:49    from 2500 To 10

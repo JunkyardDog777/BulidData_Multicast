@@ -51,11 +51,13 @@ const displaytext = StringBuffer();
                 
 const mineralChunk = [0,0,0,0,0,0,0];         
 const DirReset = [0,0,0,0,0,0,0];
-
-
+const race = [0,0,0,0,0,0,0];
+const worker = [0,0,0,0,0,0,0];
+const workerC = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 
 var Testvarx;
        var tg;
+       var tg2;
 var Dres;                          
 function MulticastMoveCommand(){
 
@@ -171,19 +173,39 @@ const c11Master = [uGcursorplayer[10],uGcursorplayer2[10],uGcursorplayer3[10],uG
       const t3epd = EPD(0x628438)  ; 
       const t2epd = CUnit.from_read(t3epd)  ; 
 
+
+if(t2epd.unitType== worker[player] && t2epd.spiderMineCount  == 0 ){
+for (var i = 0 ; i <= 90; i-- ) {
+     if(workerC[i]==0){workerC[i]=t2epd._epd;}
+t2epd.spiderMineCount  = 1;
+ }
+ 
+}
+if(race[player] == 0){race[player]  =bread(0x0057F1C0 + player) +1;}
+if(worker[player] == 0){
+if(race[player] == 1){worker[player] =41;}
+if(race[player] == 2){worker[player] =  7;}
+if(race[player] == 3){worker[player] =64;}
+}
+if(t2epd.unitType == worker[player] && t2epd.owner == player ){
+
+
+
+}
+
 if(playerselectEpd !=0){
       
      if( playerselectEpd.unitType ==157&& playerselectEpd.repulseUnknown ==1 ){playerselectEpd.unitType  =226; }
 
      
-displaytext.printfAt(1, "{}     {} ",playerselectEpd.repulseUnknown   ,  playerselectEpd.orderTimer   ) ;
-displaytext.printfAt(2, "{}     {} ", playerselectEpd.resourceType  ,  playerselectEpd.secondaryOrderState   ) ;
-displaytext.printfAt(3, "{}     {} ",playerselectEpd.order  ,  playerselectEpd.secondaryOrderTimer    )  ;
-displaytext.printfAt(4, "{}     {} ",playerselectEpd.resourceCarryAmount  ,  playerselectEpd.resourceAmount ) ;
-displaytext.printfAt(5, "{}     {} ",playerselectEpd.orderState   ,   playerselectEpd.orderID   ) ;     
-displaytext.printfAt(6, "{}     {} ",0,  Gbuffer[player]  ) ;     } 
+displaytext.printfAt(1, "{}     {}    {} ",playerselectEpd.repulseUnknown   ,  playerselectEpd.orderTimer          , workerC[0]  ) ;
+displaytext.printfAt(2, "{}     {}     {}", playerselectEpd.resourceType  ,  playerselectEpd.secondaryOrderState , workerC[1]  ) ;
+displaytext.printfAt(3, "{}     {}     {}",playerselectEpd.order  ,  playerselectEpd.secondaryOrderTimer           , workerC[2]   )  ;
+displaytext.printfAt(4, "{}     {}     {}",playerselectEpd.resourceCarryAmount  ,  playerselectEpd.spiderMineCount ,workerC[3] ) ;
+displaytext.printfAt(5, "{}     {}    {} ",playerselectEpd.orderState   ,   playerselectEpd.orderID                      , workerC[4]  ) ;     
+displaytext.printfAt(6, "{}     {} ",race[player],  Gbuffer[player]  ) ;                                       } 
       
-if(playerselectEpd.unitType ==7){
+if(playerselectEpd.unitType ==worker[player]){
       if( playerselectEpd.orderTargetUnit.unitType ==226&& playerselectEpd.orderTargetUnit.repulseUnknown ==1 && playerselectEpd.orderID != 10  ){ playerselectEpd.orderTargetUnit .unitType  =157;    }
   displaytext.printfAt(1, "{}     {} ",playerselectEpd.repulseUnknown   ,  playerselectEpd.targetResourceUnit.hp    ) ;
        if ( tt.BuildCheckEPD(playerselectEpd,76) && playerselectEpd.resourceCarryAmount  !=  0   ) {
@@ -231,12 +253,12 @@ CreateUnitWithProperties(1,157,PLoc1[player],player,UnitProperty(resource=150));
 t2epd.hp =1*256;
 t2epd.repulseUnknown=1;
 t2epd.resourceAmount = playerselectEpd.resourceCarryAmount+16  ;
-t2epd._epd = Dres;
+Dres = t2epd._epd ;
 //t2epd.statusFlags
 setloc(PLoc1[player],playerselectEpd.posX,playerselectEpd.posY);
 
 DirReset[player]= playerselectEpd.currentDirection1;
-RemoveUnitAt(All,7,PLoc1[player],player);
+RemoveUnitAt(All,worker[player],PLoc1[player],player);
 
 Gbuffer[player] = 301;
          
@@ -250,7 +272,7 @@ Gbuffer[player] = 301;
 
 
 if(Gbuffer[player] == 301){
-CreateUnit(1,7,PLoc1[player],player);
+CreateUnit(1,worker[player],PLoc1[player],player);
 MoveLocation( PLoc2[player],7,player,PLoc1[player]);
 t2epd.currentDirection1=DirReset[player];
 
@@ -259,14 +281,21 @@ Gbuffer[player] = 0;
 }
 
      if( playerselectEpd.orderID ==86 ){playerselectEpd.repulseUnknown  =0; }
-     
+          if( playerselectEpd.orderID ==81 && playerselectEpd.orderState  == 0 ){
+          playerselectEpd.targetResourceUnit.hp =10*256;
+          playerselectEpd.targetResourceUnit.unitType = 110;
+          }
      if( playerselectEpd.orderID ==83 ){
+
      playerselectEpd.repulseUnknown  =1; 
-     if(playerselectEpd.targetResourceUnit.hp ==1*256){     playerselectEpd.orderTimer =0; playerselectEpd.targetResourceUnit.hp =10*256;  playerselectEpd.targetResourceUnit.unitType = 110;  }  }
+     if(playerselectEpd.targetResourceUnit.repulseUnknown ==1){     playerselectEpd.orderTimer =0; playerselectEpd.targetResourceUnit.hp =10*256;  playerselectEpd.targetResourceUnit.unitType = 110;  }  }
+     
      if( playerselectEpd.orderID ==84 &&playerselectEpd.targetResourceUnit.repulseUnknown  ==1){
-     playerselectEpd.repulseUnknown  =1; 
+     playerselectEpd.repulseUnknown  =1;  playerselectEpd.orderTimer =1; 
      setloc(PLoc1[player],playerselectEpd.targetResourceUnit.posX,playerselectEpd.targetResourceUnit.posY);
-     RemoveUnitAt(All,110,PLoc1[player],player);
+
+     RemoveUnitAt(All,229,PLoc1[player],player);
+     
      }   
   if(playerselectEpd.targetResourceUnit.unitType ==176 && playerselectEpd.orderTimer >=5 ){playerselectEpd.orderTimer =4; 
       wwrite((0x66EC48 + 332 * 4),  250);

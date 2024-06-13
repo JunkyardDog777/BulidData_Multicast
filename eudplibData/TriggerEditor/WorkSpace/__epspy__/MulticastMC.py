@@ -82,1153 +82,1214 @@ displaytext = _CGFW(lambda: [StringBuffer()], 1)[0]
 mineralChunk = _CGFW(lambda: [_ARR(FlattenList([0, 0, 0, 0, 0, 0, 0]))], 1)[0]
 # (Line 53) const DirReset = [0,0,0,0,0,0,0];
 DirReset = _CGFW(lambda: [_ARR(FlattenList([0, 0, 0, 0, 0, 0, 0]))], 1)[0]
-# (Line 57) var Testvarx;
+# (Line 54) const race = [0,0,0,0,0,0,0];
+race = _CGFW(lambda: [_ARR(FlattenList([0, 0, 0, 0, 0, 0, 0]))], 1)[0]
+# (Line 55) const worker = [0,0,0,0,0,0,0];
+worker = _CGFW(lambda: [_ARR(FlattenList([0, 0, 0, 0, 0, 0, 0]))], 1)[0]
+# (Line 56) const workerC = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+workerC = _CGFW(lambda: [_ARR(FlattenList([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]))], 1)[0]
+# (Line 58) var Testvarx;
 Testvarx = EUDVariable()
-# (Line 58) var tg;
+# (Line 59) var tg;
 tg = EUDVariable()
-# (Line 59) var Dres;
+# (Line 60) var tg2;
+tg2 = EUDVariable()
+# (Line 61) var Dres;
 Dres = EUDVariable()
-# (Line 60) function MulticastMoveCommand(){
+# (Line 62) function MulticastMoveCommand(){
 @EUDFunc
 def MulticastMoveCommand():
-    # (Line 62) foreach(player : EUDLoopPlayer()){
+    # (Line 64) foreach(player : EUDLoopPlayer()){
     for player in EUDLoopPlayer():
-        # (Line 63) if(msqcvar.VKeyPress_SP5[player]){MCkey[player]    =1; MCckeyPress[player]=0; }
+        # (Line 65) if(msqcvar.VKeyPress_SP5[player]){MCkey[player]    =1; MCckeyPress[player]=0; }
         if EUDIf()(msqcvar.VKeyPress_SP5[player]):
             _ARRW(MCkey, player) << (1)
             _ARRW(MCckeyPress, player) << (0)
-            # (Line 64) else if(msqcvar.VKeyPress_B[player]){MCkey[player]     =1; MCckeyPress[player]=1;}
+            # (Line 66) else if(msqcvar.VKeyPress_B[player]){MCkey[player]     =1; MCckeyPress[player]=1;}
         if EUDElseIf()(msqcvar.VKeyPress_B[player]):
             _ARRW(MCkey, player) << (1)
             _ARRW(MCckeyPress, player) << (1)
-            # (Line 65) else if(msqcvar.VKeyPress_C[player]){MCkey[player]     =1; MCckeyPress[player]=2;}
+            # (Line 67) else if(msqcvar.VKeyPress_C[player]){MCkey[player]     =1; MCckeyPress[player]=2;}
         if EUDElseIf()(msqcvar.VKeyPress_C[player]):
             _ARRW(MCkey, player) << (1)
             _ARRW(MCckeyPress, player) << (2)
-            # (Line 66) else if(msqcvar.VKeyPress_SP6[player]){MCkey[player] =1; MCckeyPress[player]=3;}
+            # (Line 68) else if(msqcvar.VKeyPress_SP6[player]){MCkey[player] =1; MCckeyPress[player]=3;}
         if EUDElseIf()(msqcvar.VKeyPress_SP6[player]):
             _ARRW(MCkey, player) << (1)
             _ARRW(MCckeyPress, player) << (3)
-            # (Line 67) else if(msqcvar.VKeyPress_E[player]){MCkey[player]     =1; MCckeyPress[player]=4;}
+            # (Line 69) else if(msqcvar.VKeyPress_E[player]){MCkey[player]     =1; MCckeyPress[player]=4;}
         if EUDElseIf()(msqcvar.VKeyPress_E[player]):
             _ARRW(MCkey, player) << (1)
             _ARRW(MCckeyPress, player) << (4)
-            # (Line 68) else if(msqcvar.VKeyPress_F[player]){MCkey[player]     =1; MCckeyPress[player]=5;}
+            # (Line 70) else if(msqcvar.VKeyPress_F[player]){MCkey[player]     =1; MCckeyPress[player]=5;}
         if EUDElseIf()(msqcvar.VKeyPress_F[player]):
             _ARRW(MCkey, player) << (1)
             _ARRW(MCckeyPress, player) << (5)
-            # (Line 69) else if(msqcvar.VKeyPress_G[player]){MCkey[player]    =1; MCckeyPress[player]=6;}
+            # (Line 71) else if(msqcvar.VKeyPress_G[player]){MCkey[player]    =1; MCckeyPress[player]=6;}
         if EUDElseIf()(msqcvar.VKeyPress_G[player]):
             _ARRW(MCkey, player) << (1)
             _ARRW(MCckeyPress, player) << (6)
-            # (Line 70) else if(msqcvar.VKeyPress_H[player]){MCkey[player]    =1; MCckeyPress[player]=7;}
+            # (Line 72) else if(msqcvar.VKeyPress_H[player]){MCkey[player]    =1; MCckeyPress[player]=7;}
         if EUDElseIf()(msqcvar.VKeyPress_H[player]):
             _ARRW(MCkey, player) << (1)
             _ARRW(MCckeyPress, player) << (7)
-            # (Line 71) else if(msqcvar.VKeyPress_I[player]){MCkey[player]     =1; MCckeyPress[player]=8;}
+            # (Line 73) else if(msqcvar.VKeyPress_I[player]){MCkey[player]     =1; MCckeyPress[player]=8;}
         if EUDElseIf()(msqcvar.VKeyPress_I[player]):
             _ARRW(MCkey, player) << (1)
             _ARRW(MCckeyPress, player) << (8)
-            # (Line 72) else if(msqcvar.VKeyPress_J[player]){MCkey[player]     =1; MCckeyPress[player]=9;}
+            # (Line 74) else if(msqcvar.VKeyPress_J[player]){MCkey[player]     =1; MCckeyPress[player]=9;}
         if EUDElseIf()(msqcvar.VKeyPress_J[player]):
             _ARRW(MCkey, player) << (1)
             _ARRW(MCckeyPress, player) << (9)
-            # (Line 73) else if(msqcvar.VKeyPress_K[player]){MCkey[player]    =1; MCckeyPress[player]=10;}
+            # (Line 75) else if(msqcvar.VKeyPress_K[player]){MCkey[player]    =1; MCckeyPress[player]=10;}
         if EUDElseIf()(msqcvar.VKeyPress_K[player]):
             _ARRW(MCkey, player) << (1)
             _ARRW(MCckeyPress, player) << (10)
-            # (Line 74) else if(msqcvar.VKeyPress_L[player]){MCkey[player]    =1;  MCckeyPress[player]=11;}
+            # (Line 76) else if(msqcvar.VKeyPress_L[player]){MCkey[player]    =1;  MCckeyPress[player]=11;}
         if EUDElseIf()(msqcvar.VKeyPress_L[player]):
             _ARRW(MCkey, player) << (1)
             _ARRW(MCckeyPress, player) << (11)
-            # (Line 75) else if(msqcvar.VKeyPress_SP3[player]){MCkey[player] =1; MCckeyPress[player]=12;}
+            # (Line 77) else if(msqcvar.VKeyPress_SP3[player]){MCkey[player] =1; MCckeyPress[player]=12;}
         if EUDElseIf()(msqcvar.VKeyPress_SP3[player]):
             _ARRW(MCkey, player) << (1)
             _ARRW(MCckeyPress, player) << (12)
-            # (Line 76) else if(msqcvar.VKeyPress_SP1[player]){MCkey[player] =1; MCckeyPress[player]=13;}
+            # (Line 78) else if(msqcvar.VKeyPress_SP1[player]){MCkey[player] =1; MCckeyPress[player]=13;}
         if EUDElseIf()(msqcvar.VKeyPress_SP1[player]):
             _ARRW(MCkey, player) << (1)
             _ARRW(MCckeyPress, player) << (13)
-            # (Line 77) else if(msqcvar.VKeyPress_O[player]){MCkey[player]  =1; MCckeyPress[player]=14;}
+            # (Line 79) else if(msqcvar.VKeyPress_O[player]){MCkey[player]  =1; MCckeyPress[player]=14;}
         if EUDElseIf()(msqcvar.VKeyPress_O[player]):
             _ARRW(MCkey, player) << (1)
             _ARRW(MCckeyPress, player) << (14)
-            # (Line 78) else if(msqcvar.VKeyPress_SP4[player]){MCkey[player] =1; MCckeyPress[player]=15;}
+            # (Line 80) else if(msqcvar.VKeyPress_SP4[player]){MCkey[player] =1; MCckeyPress[player]=15;}
         if EUDElseIf()(msqcvar.VKeyPress_SP4[player]):
             _ARRW(MCkey, player) << (1)
             _ARRW(MCckeyPress, player) << (15)
-            # (Line 79) else if(msqcvar.VKeyPress_Q[player]){MCkey[player]  =1;  MCckeyPress[player]=16;}
+            # (Line 81) else if(msqcvar.VKeyPress_Q[player]){MCkey[player]  =1;  MCckeyPress[player]=16;}
         if EUDElseIf()(msqcvar.VKeyPress_Q[player]):
             _ARRW(MCkey, player) << (1)
             _ARRW(MCckeyPress, player) << (16)
-            # (Line 80) else if(msqcvar.VKeyPress_R[player]){MCkey[player] =1; MCckeyPress[player]=17;}
+            # (Line 82) else if(msqcvar.VKeyPress_R[player]){MCkey[player] =1; MCckeyPress[player]=17;}
         if EUDElseIf()(msqcvar.VKeyPress_R[player]):
             _ARRW(MCkey, player) << (1)
             _ARRW(MCckeyPress, player) << (17)
-            # (Line 81) else if(msqcvar.VKeyPress_S[player]){MCkey[player] =1; MCckeyPress[player]=18;}
+            # (Line 83) else if(msqcvar.VKeyPress_S[player]){MCkey[player] =1; MCckeyPress[player]=18;}
         if EUDElseIf()(msqcvar.VKeyPress_S[player]):
             _ARRW(MCkey, player) << (1)
             _ARRW(MCckeyPress, player) << (18)
-            # (Line 82) else if(msqcvar.VKeyPress_T[player]){MCkey[player] =1; MCckeyPress[player]=19;}
+            # (Line 84) else if(msqcvar.VKeyPress_T[player]){MCkey[player] =1; MCckeyPress[player]=19;}
         if EUDElseIf()(msqcvar.VKeyPress_T[player]):
             _ARRW(MCkey, player) << (1)
             _ARRW(MCckeyPress, player) << (19)
-            # (Line 83) else if(msqcvar.VKeyPress_SP2[player]){MCkey[player] =1;MCckeyPress[player]=20;}
+            # (Line 85) else if(msqcvar.VKeyPress_SP2[player]){MCkey[player] =1;MCckeyPress[player]=20;}
         if EUDElseIf()(msqcvar.VKeyPress_SP2[player]):
             _ARRW(MCkey, player) << (1)
             _ARRW(MCckeyPress, player) << (20)
-            # (Line 84) else if(msqcvar.VKeyPress_V[player]){MCkey[player] =1; MCckeyPress[player]=21;}
+            # (Line 86) else if(msqcvar.VKeyPress_V[player]){MCkey[player] =1; MCckeyPress[player]=21;}
         if EUDElseIf()(msqcvar.VKeyPress_V[player]):
             _ARRW(MCkey, player) << (1)
             _ARRW(MCckeyPress, player) << (21)
-            # (Line 85) else if(msqcvar.VKeyPress_W[player]){MCkey[player] =1;MCckeyPress[player]=22;}
+            # (Line 87) else if(msqcvar.VKeyPress_W[player]){MCkey[player] =1;MCckeyPress[player]=22;}
         if EUDElseIf()(msqcvar.VKeyPress_W[player]):
             _ARRW(MCkey, player) << (1)
             _ARRW(MCckeyPress, player) << (22)
-            # (Line 86) else if(msqcvar.VKeyPress_X[player]){MCkey[player] =1; MCckeyPress[player]=23;}
+            # (Line 88) else if(msqcvar.VKeyPress_X[player]){MCkey[player] =1; MCckeyPress[player]=23;}
         if EUDElseIf()(msqcvar.VKeyPress_X[player]):
             _ARRW(MCkey, player) << (1)
             _ARRW(MCckeyPress, player) << (23)
-            # (Line 87) else if(msqcvar.VKeyPress_Y[player]){MCkey[player] =1; MCckeyPress[player]=24;}
+            # (Line 89) else if(msqcvar.VKeyPress_Y[player]){MCkey[player] =1; MCckeyPress[player]=24;}
         if EUDElseIf()(msqcvar.VKeyPress_Y[player]):
             _ARRW(MCkey, player) << (1)
             _ARRW(MCckeyPress, player) << (24)
-            # (Line 88) else if(msqcvar.VKeyPress_Z[player]){MCkey[player] =1; MCckeyPress[player]=25;}
+            # (Line 90) else if(msqcvar.VKeyPress_Z[player]){MCkey[player] =1; MCckeyPress[player]=25;}
         if EUDElseIf()(msqcvar.VKeyPress_Z[player]):
             _ARRW(MCkey, player) << (1)
             _ARRW(MCckeyPress, player) << (25)
-            # (Line 89) else{MCkey[player] =0;}
+            # (Line 91) else{MCkey[player] =0;}
         if EUDElse()():
             _ARRW(MCkey, player) << (0)
-            # (Line 91) setcurpl(player);
+            # (Line 93) setcurpl(player);
         EUDEndIf()
         f_setcurpl(player)
-        # (Line 95) if( Shiftbuffer[player]>=12){ Shiftbuffer[player]=10;  }
+        # (Line 97) if( Shiftbuffer[player]>=12){ Shiftbuffer[player]=10;  }
         if EUDIf()(_ARRC(Shiftbuffer, player) >= 12):
             _ARRW(Shiftbuffer, player) << (10)
-            # (Line 96) if( Shiftbuffer[player]>=1){ Shiftbuffer[player]-=1; pressShift[player]=1; }
+            # (Line 98) if( Shiftbuffer[player]>=1){ Shiftbuffer[player]-=1; pressShift[player]=1; }
         EUDEndIf()
         if EUDIf()(_ARRC(Shiftbuffer, player) >= 1):
             _ARRW(Shiftbuffer, player).__isub__(1)
             _ARRW(pressShift, player) << (1)
-            # (Line 100) const c2Master = [uGcursorplayer[1],uGcursorplayer2[1],uGcursorplayer3[1],uGcursorplayer4[1],uGcursorplayer5[1],uGcursorplayer6[1],uGcursorplayer7[1],uGcursorplayer8[1]];
+            # (Line 102) const c2Master = [uGcursorplayer[1],uGcursorplayer2[1],uGcursorplayer3[1],uGcursorplayer4[1],uGcursorplayer5[1],uGcursorplayer6[1],uGcursorplayer7[1],uGcursorplayer8[1]];
         EUDEndIf()
         c2Master = _ARR(FlattenList([uGcursorplayer[1], uGcursorplayer2[1], uGcursorplayer3[1], uGcursorplayer4[1], uGcursorplayer5[1], uGcursorplayer6[1], uGcursorplayer7[1], uGcursorplayer8[1]]))
-        # (Line 101) const c3Master = [uGcursorplayer[2],uGcursorplayer2[2],uGcursorplayer3[2],uGcursorplayer4[2],uGcursorplayer5[2],uGcursorplayer6[2],uGcursorplayer7[2],uGcursorplayer8[2]];
+        # (Line 103) const c3Master = [uGcursorplayer[2],uGcursorplayer2[2],uGcursorplayer3[2],uGcursorplayer4[2],uGcursorplayer5[2],uGcursorplayer6[2],uGcursorplayer7[2],uGcursorplayer8[2]];
         c3Master = _ARR(FlattenList([uGcursorplayer[2], uGcursorplayer2[2], uGcursorplayer3[2], uGcursorplayer4[2], uGcursorplayer5[2], uGcursorplayer6[2], uGcursorplayer7[2], uGcursorplayer8[2]]))
-        # (Line 102) const c4Master = [uGcursorplayer[3],uGcursorplayer2[3],uGcursorplayer3[3],uGcursorplayer4[3],uGcursorplayer5[3],uGcursorplayer6[3],uGcursorplayer7[3],uGcursorplayer8[3]];
+        # (Line 104) const c4Master = [uGcursorplayer[3],uGcursorplayer2[3],uGcursorplayer3[3],uGcursorplayer4[3],uGcursorplayer5[3],uGcursorplayer6[3],uGcursorplayer7[3],uGcursorplayer8[3]];
         c4Master = _ARR(FlattenList([uGcursorplayer[3], uGcursorplayer2[3], uGcursorplayer3[3], uGcursorplayer4[3], uGcursorplayer5[3], uGcursorplayer6[3], uGcursorplayer7[3], uGcursorplayer8[3]]))
-        # (Line 103) const c5Master = [uGcursorplayer[4],uGcursorplayer2[4],uGcursorplayer3[4],uGcursorplayer4[4],uGcursorplayer5[4],uGcursorplayer6[4],uGcursorplayer7[4],uGcursorplayer8[4]];
+        # (Line 105) const c5Master = [uGcursorplayer[4],uGcursorplayer2[4],uGcursorplayer3[4],uGcursorplayer4[4],uGcursorplayer5[4],uGcursorplayer6[4],uGcursorplayer7[4],uGcursorplayer8[4]];
         c5Master = _ARR(FlattenList([uGcursorplayer[4], uGcursorplayer2[4], uGcursorplayer3[4], uGcursorplayer4[4], uGcursorplayer5[4], uGcursorplayer6[4], uGcursorplayer7[4], uGcursorplayer8[4]]))
-        # (Line 104) const c6Master = [uGcursorplayer[5],uGcursorplayer2[5],uGcursorplayer3[5],uGcursorplayer4[5],uGcursorplayer5[5],uGcursorplayer6[5],uGcursorplayer7[5],uGcursorplayer8[5]];
+        # (Line 106) const c6Master = [uGcursorplayer[5],uGcursorplayer2[5],uGcursorplayer3[5],uGcursorplayer4[5],uGcursorplayer5[5],uGcursorplayer6[5],uGcursorplayer7[5],uGcursorplayer8[5]];
         c6Master = _ARR(FlattenList([uGcursorplayer[5], uGcursorplayer2[5], uGcursorplayer3[5], uGcursorplayer4[5], uGcursorplayer5[5], uGcursorplayer6[5], uGcursorplayer7[5], uGcursorplayer8[5]]))
-        # (Line 105) const c7Master = [uGcursorplayer[6],uGcursorplayer2[6],uGcursorplayer3[6],uGcursorplayer4[6],uGcursorplayer5[6],uGcursorplayer6[6],uGcursorplayer7[6],uGcursorplayer8[6]];
+        # (Line 107) const c7Master = [uGcursorplayer[6],uGcursorplayer2[6],uGcursorplayer3[6],uGcursorplayer4[6],uGcursorplayer5[6],uGcursorplayer6[6],uGcursorplayer7[6],uGcursorplayer8[6]];
         c7Master = _ARR(FlattenList([uGcursorplayer[6], uGcursorplayer2[6], uGcursorplayer3[6], uGcursorplayer4[6], uGcursorplayer5[6], uGcursorplayer6[6], uGcursorplayer7[6], uGcursorplayer8[6]]))
-        # (Line 106) const c8Master = [uGcursorplayer[7],uGcursorplayer2[7],uGcursorplayer3[7],uGcursorplayer4[7],uGcursorplayer5[7],uGcursorplayer6[7],uGcursorplayer7[7],uGcursorplayer8[7]];
+        # (Line 108) const c8Master = [uGcursorplayer[7],uGcursorplayer2[7],uGcursorplayer3[7],uGcursorplayer4[7],uGcursorplayer5[7],uGcursorplayer6[7],uGcursorplayer7[7],uGcursorplayer8[7]];
         c8Master = _ARR(FlattenList([uGcursorplayer[7], uGcursorplayer2[7], uGcursorplayer3[7], uGcursorplayer4[7], uGcursorplayer5[7], uGcursorplayer6[7], uGcursorplayer7[7], uGcursorplayer8[7]]))
-        # (Line 107) const c9Master = [uGcursorplayer[8],uGcursorplayer2[8],uGcursorplayer3[8],uGcursorplayer4[8],uGcursorplayer5[8],uGcursorplayer6[8],uGcursorplayer7[8],uGcursorplayer8[8]];
+        # (Line 109) const c9Master = [uGcursorplayer[8],uGcursorplayer2[8],uGcursorplayer3[8],uGcursorplayer4[8],uGcursorplayer5[8],uGcursorplayer6[8],uGcursorplayer7[8],uGcursorplayer8[8]];
         c9Master = _ARR(FlattenList([uGcursorplayer[8], uGcursorplayer2[8], uGcursorplayer3[8], uGcursorplayer4[8], uGcursorplayer5[8], uGcursorplayer6[8], uGcursorplayer7[8], uGcursorplayer8[8]]))
-        # (Line 108) const c10Master = [uGcursorplayer[9],uGcursorplayer2[9],uGcursorplayer3[9],uGcursorplayer4[9],uGcursorplayer5[9],uGcursorplayer6[9],uGcursorplayer7[9],uGcursorplayer8[9]];
+        # (Line 110) const c10Master = [uGcursorplayer[9],uGcursorplayer2[9],uGcursorplayer3[9],uGcursorplayer4[9],uGcursorplayer5[9],uGcursorplayer6[9],uGcursorplayer7[9],uGcursorplayer8[9]];
         c10Master = _ARR(FlattenList([uGcursorplayer[9], uGcursorplayer2[9], uGcursorplayer3[9], uGcursorplayer4[9], uGcursorplayer5[9], uGcursorplayer6[9], uGcursorplayer7[9], uGcursorplayer8[9]]))
-        # (Line 109) const c11Master = [uGcursorplayer[10],uGcursorplayer2[10],uGcursorplayer3[10],uGcursorplayer4[10],uGcursorplayer5[10],uGcursorplayer6[10],uGcursorplayer7[10],uGcursorplayer8[10]];
+        # (Line 111) const c11Master = [uGcursorplayer[10],uGcursorplayer2[10],uGcursorplayer3[10],uGcursorplayer4[10],uGcursorplayer5[10],uGcursorplayer6[10],uGcursorplayer7[10],uGcursorplayer8[10]];
         c11Master = _ARR(FlattenList([uGcursorplayer[10], uGcursorplayer2[10], uGcursorplayer3[10], uGcursorplayer4[10], uGcursorplayer5[10], uGcursorplayer6[10], uGcursorplayer7[10], uGcursorplayer8[10]]))
-        # (Line 110) const c12Master = [uGcursorplayer[11],uGcursorplayer2[11],uGcursorplayer3[11],uGcursorplayer4[11],uGcursorplayer5[11],uGcursorplayer6[11],uGcursorplayer7[11],uGcursorplayer8[11]];
+        # (Line 112) const c12Master = [uGcursorplayer[11],uGcursorplayer2[11],uGcursorplayer3[11],uGcursorplayer4[11],uGcursorplayer5[11],uGcursorplayer6[11],uGcursorplayer7[11],uGcursorplayer8[11]];
         c12Master = _ARR(FlattenList([uGcursorplayer[11], uGcursorplayer2[11], uGcursorplayer3[11], uGcursorplayer4[11], uGcursorplayer5[11], uGcursorplayer6[11], uGcursorplayer7[11], uGcursorplayer8[11]]))
-        # (Line 111) const c13Master = [uGcursorplayer[12],uGcursorplayer2[12],uGcursorplayer3[12],uGcursorplayer4[12],uGcursorplayer5[12],uGcursorplayer6[12],uGcursorplayer7[12],uGcursorplayer8[12]];
+        # (Line 113) const c13Master = [uGcursorplayer[12],uGcursorplayer2[12],uGcursorplayer3[12],uGcursorplayer4[12],uGcursorplayer5[12],uGcursorplayer6[12],uGcursorplayer7[12],uGcursorplayer8[12]];
         c13Master = _ARR(FlattenList([uGcursorplayer[12], uGcursorplayer2[12], uGcursorplayer3[12], uGcursorplayer4[12], uGcursorplayer5[12], uGcursorplayer6[12], uGcursorplayer7[12], uGcursorplayer8[12]]))
-        # (Line 113) const playercursor2EpdMaster = CUnit.from_read(c2Master[player])  ;
+        # (Line 115) const playercursor2EpdMaster = CUnit.from_read(c2Master[player])  ;
         playercursor2EpdMaster = CUnit.from_read(c2Master[player])
-        # (Line 114) const playercursor3EpdMaster = CUnit.from_read(c3Master[player])  ;
+        # (Line 116) const playercursor3EpdMaster = CUnit.from_read(c3Master[player])  ;
         playercursor3EpdMaster = CUnit.from_read(c3Master[player])
-        # (Line 115) const playercursor4EpdMaster = CUnit.from_read(c4Master[player])  ;
+        # (Line 117) const playercursor4EpdMaster = CUnit.from_read(c4Master[player])  ;
         playercursor4EpdMaster = CUnit.from_read(c4Master[player])
-        # (Line 116) const playercursor5EpdMaster = CUnit.from_read(c5Master[player])  ;
+        # (Line 118) const playercursor5EpdMaster = CUnit.from_read(c5Master[player])  ;
         playercursor5EpdMaster = CUnit.from_read(c5Master[player])
-        # (Line 117) const playercursor6EpdMaster = CUnit.from_read(c6Master[player])  ;
+        # (Line 119) const playercursor6EpdMaster = CUnit.from_read(c6Master[player])  ;
         playercursor6EpdMaster = CUnit.from_read(c6Master[player])
-        # (Line 118) const playercursor7EpdMaster = CUnit.from_read(c7Master[player])  ;
+        # (Line 120) const playercursor7EpdMaster = CUnit.from_read(c7Master[player])  ;
         playercursor7EpdMaster = CUnit.from_read(c7Master[player])
-        # (Line 119) const playercursor8EpdMaster = CUnit.from_read(c8Master[player])  ;
+        # (Line 121) const playercursor8EpdMaster = CUnit.from_read(c8Master[player])  ;
         playercursor8EpdMaster = CUnit.from_read(c8Master[player])
-        # (Line 120) const playercursor9EpdMaster = CUnit.from_read(c9Master[player])  ;
+        # (Line 122) const playercursor9EpdMaster = CUnit.from_read(c9Master[player])  ;
         playercursor9EpdMaster = CUnit.from_read(c9Master[player])
-        # (Line 121) const playercursor10EpdMaster = CUnit.from_read(c10Master[player])  ;
+        # (Line 123) const playercursor10EpdMaster = CUnit.from_read(c10Master[player])  ;
         playercursor10EpdMaster = CUnit.from_read(c10Master[player])
-        # (Line 122) const playercursor11EpdMaster = CUnit.from_read(c11Master[player])  ;
+        # (Line 124) const playercursor11EpdMaster = CUnit.from_read(c11Master[player])  ;
         playercursor11EpdMaster = CUnit.from_read(c11Master[player])
-        # (Line 123) const playercursor12EpdMaster = CUnit.from_read(c12Master[player])  ;
+        # (Line 125) const playercursor12EpdMaster = CUnit.from_read(c12Master[player])  ;
         playercursor12EpdMaster = CUnit.from_read(c12Master[player])
-        # (Line 124) const playercursor13EpdMaster = CUnit.from_read(c13Master[player])  ;
+        # (Line 126) const playercursor13EpdMaster = CUnit.from_read(c13Master[player])  ;
         playercursor13EpdMaster = CUnit.from_read(c13Master[player])
-        # (Line 130) const selectMaster =   [ (0x6284E8+SPoffset[0]) , (0x6284E8+SPoffset[1]) , (0x6284E8+SPoffset[2]) , (0x6284E8+SPoffset[3]) , (0x6284E8+SPoffset[4]) , (0x6284E8+SPoffset[5]) , (0x6284E8+SPoffset[6]) , (0x6284E8+SPoffset[7]) ];
+        # (Line 132) const selectMaster =   [ (0x6284E8+SPoffset[0]) , (0x6284E8+SPoffset[1]) , (0x6284E8+SPoffset[2]) , (0x6284E8+SPoffset[3]) , (0x6284E8+SPoffset[4]) , (0x6284E8+SPoffset[5]) , (0x6284E8+SPoffset[6]) , (0x6284E8+SPoffset[7]) ];
         selectMaster = _ARR(FlattenList([(0x6284E8 + SPoffset[0]), (0x6284E8 + SPoffset[1]), (0x6284E8 + SPoffset[2]), (0x6284E8 + SPoffset[3]), (0x6284E8 + SPoffset[4]), (0x6284E8 + SPoffset[5]), (0x6284E8 + SPoffset[6]), (0x6284E8 + SPoffset[7])]))
-        # (Line 131) const select1Master = [ (0x6284E8+4+SPoffset[0]) , (0x6284E8+4+SPoffset[1]) , (0x6284E8+4+SPoffset[2]) , (0x6284E8+4+SPoffset[3]) , (0x6284E8+4+SPoffset[4]) , (0x6284E8+4+SPoffset[5]) , (0x6284E8+4+SPoffset[6]) , (0x6284E8+4+SPoffset[7]) ];
+        # (Line 133) const select1Master = [ (0x6284E8+4+SPoffset[0]) , (0x6284E8+4+SPoffset[1]) , (0x6284E8+4+SPoffset[2]) , (0x6284E8+4+SPoffset[3]) , (0x6284E8+4+SPoffset[4]) , (0x6284E8+4+SPoffset[5]) , (0x6284E8+4+SPoffset[6]) , (0x6284E8+4+SPoffset[7]) ];
         select1Master = _ARR(FlattenList([(0x6284E8 + 4 + SPoffset[0]), (0x6284E8 + 4 + SPoffset[1]), (0x6284E8 + 4 + SPoffset[2]), (0x6284E8 + 4 + SPoffset[3]), (0x6284E8 + 4 + SPoffset[4]), (0x6284E8 + 4 + SPoffset[5]), (0x6284E8 + 4 + SPoffset[6]), (0x6284E8 + 4 + SPoffset[7])]))
-        # (Line 132) const select2Master = [(0x6284E8+8+SPoffset[0]), (0x6284E8+8+SPoffset[1]) ,(0x6284E8+8+SPoffset[2]) , (0x6284E8+8+SPoffset[3]) , (0x6284E8+8+SPoffset[4]),(0x6284E8+8+SPoffset[5]),(0x6284E8+8+SPoffset[6]),(0x6284E8+8+SPoffset[7]) ];
+        # (Line 134) const select2Master = [(0x6284E8+8+SPoffset[0]), (0x6284E8+8+SPoffset[1]) ,(0x6284E8+8+SPoffset[2]) , (0x6284E8+8+SPoffset[3]) , (0x6284E8+8+SPoffset[4]),(0x6284E8+8+SPoffset[5]),(0x6284E8+8+SPoffset[6]),(0x6284E8+8+SPoffset[7]) ];
         select2Master = _ARR(FlattenList([(0x6284E8 + 8 + SPoffset[0]), (0x6284E8 + 8 + SPoffset[1]), (0x6284E8 + 8 + SPoffset[2]), (0x6284E8 + 8 + SPoffset[3]), (0x6284E8 + 8 + SPoffset[4]), (0x6284E8 + 8 + SPoffset[5]), (0x6284E8 + 8 + SPoffset[6]), (0x6284E8 + 8 + SPoffset[7])]))
-        # (Line 133) const select3Master = [(0x6284E8+12+SPoffset[0]),(0x6284E8+12+SPoffset[1]),(0x6284E8+12+SPoffset[2]),(0x6284E8+12+SPoffset[3]),(0x6284E8+12+SPoffset[4]),(0x6284E8+12+SPoffset[5]),(0x6284E8+12+SPoffset[6]),(0x6284E8+12+SPoffset[7]) ];
+        # (Line 135) const select3Master = [(0x6284E8+12+SPoffset[0]),(0x6284E8+12+SPoffset[1]),(0x6284E8+12+SPoffset[2]),(0x6284E8+12+SPoffset[3]),(0x6284E8+12+SPoffset[4]),(0x6284E8+12+SPoffset[5]),(0x6284E8+12+SPoffset[6]),(0x6284E8+12+SPoffset[7]) ];
         select3Master = _ARR(FlattenList([(0x6284E8 + 12 + SPoffset[0]), (0x6284E8 + 12 + SPoffset[1]), (0x6284E8 + 12 + SPoffset[2]), (0x6284E8 + 12 + SPoffset[3]), (0x6284E8 + 12 + SPoffset[4]), (0x6284E8 + 12 + SPoffset[5]), (0x6284E8 + 12 + SPoffset[6]), (0x6284E8 + 12 + SPoffset[7])]))
-        # (Line 134) const select4Master = [(0x6284E8+16+SPoffset[0]),(0x6284E8+16+SPoffset[1]),(0x6284E8+16+SPoffset[2]),(0x6284E8+16+SPoffset[3]),(0x6284E8+16+SPoffset[4]),(0x6284E8+16+SPoffset[5]),(0x6284E8+16+SPoffset[6]),(0x6284E8+16+SPoffset[7]) ];
+        # (Line 136) const select4Master = [(0x6284E8+16+SPoffset[0]),(0x6284E8+16+SPoffset[1]),(0x6284E8+16+SPoffset[2]),(0x6284E8+16+SPoffset[3]),(0x6284E8+16+SPoffset[4]),(0x6284E8+16+SPoffset[5]),(0x6284E8+16+SPoffset[6]),(0x6284E8+16+SPoffset[7]) ];
         select4Master = _ARR(FlattenList([(0x6284E8 + 16 + SPoffset[0]), (0x6284E8 + 16 + SPoffset[1]), (0x6284E8 + 16 + SPoffset[2]), (0x6284E8 + 16 + SPoffset[3]), (0x6284E8 + 16 + SPoffset[4]), (0x6284E8 + 16 + SPoffset[5]), (0x6284E8 + 16 + SPoffset[6]), (0x6284E8 + 16 + SPoffset[7])]))
-        # (Line 135) const select5Master = [(0x6284E8+20+SPoffset[0]),(0x6284E8+20+SPoffset[1]),(0x6284E8+20+SPoffset[2]),(0x6284E8+20+SPoffset[3]),(0x6284E8+20+SPoffset[4]),(0x6284E8+20+SPoffset[5]),(0x6284E8+20+SPoffset[6]),(0x6284E8+20+SPoffset[7]) ];
+        # (Line 137) const select5Master = [(0x6284E8+20+SPoffset[0]),(0x6284E8+20+SPoffset[1]),(0x6284E8+20+SPoffset[2]),(0x6284E8+20+SPoffset[3]),(0x6284E8+20+SPoffset[4]),(0x6284E8+20+SPoffset[5]),(0x6284E8+20+SPoffset[6]),(0x6284E8+20+SPoffset[7]) ];
         select5Master = _ARR(FlattenList([(0x6284E8 + 20 + SPoffset[0]), (0x6284E8 + 20 + SPoffset[1]), (0x6284E8 + 20 + SPoffset[2]), (0x6284E8 + 20 + SPoffset[3]), (0x6284E8 + 20 + SPoffset[4]), (0x6284E8 + 20 + SPoffset[5]), (0x6284E8 + 20 + SPoffset[6]), (0x6284E8 + 20 + SPoffset[7])]))
-        # (Line 136) const select6Master = [(0x6284E8+24+SPoffset[0]),(0x6284E8+24+SPoffset[1]),(0x6284E8+24+SPoffset[2]),(0x6284E8+24+SPoffset[3]),(0x6284E8+24+SPoffset[4]),(0x6284E8+24+SPoffset[5]),(0x6284E8+24+SPoffset[6]),(0x6284E8+24+SPoffset[7]) ];
+        # (Line 138) const select6Master = [(0x6284E8+24+SPoffset[0]),(0x6284E8+24+SPoffset[1]),(0x6284E8+24+SPoffset[2]),(0x6284E8+24+SPoffset[3]),(0x6284E8+24+SPoffset[4]),(0x6284E8+24+SPoffset[5]),(0x6284E8+24+SPoffset[6]),(0x6284E8+24+SPoffset[7]) ];
         select6Master = _ARR(FlattenList([(0x6284E8 + 24 + SPoffset[0]), (0x6284E8 + 24 + SPoffset[1]), (0x6284E8 + 24 + SPoffset[2]), (0x6284E8 + 24 + SPoffset[3]), (0x6284E8 + 24 + SPoffset[4]), (0x6284E8 + 24 + SPoffset[5]), (0x6284E8 + 24 + SPoffset[6]), (0x6284E8 + 24 + SPoffset[7])]))
-        # (Line 137) const select7Master = [(0x6284E8+28+SPoffset[0]),(0x6284E8+28+SPoffset[1]),(0x6284E8+28+SPoffset[2]),(0x6284E8+28+SPoffset[3]),(0x6284E8+28+SPoffset[4]),(0x6284E8+28+SPoffset[5]),(0x6284E8+28+SPoffset[6]),(0x6284E8+28+SPoffset[7]) ];
+        # (Line 139) const select7Master = [(0x6284E8+28+SPoffset[0]),(0x6284E8+28+SPoffset[1]),(0x6284E8+28+SPoffset[2]),(0x6284E8+28+SPoffset[3]),(0x6284E8+28+SPoffset[4]),(0x6284E8+28+SPoffset[5]),(0x6284E8+28+SPoffset[6]),(0x6284E8+28+SPoffset[7]) ];
         select7Master = _ARR(FlattenList([(0x6284E8 + 28 + SPoffset[0]), (0x6284E8 + 28 + SPoffset[1]), (0x6284E8 + 28 + SPoffset[2]), (0x6284E8 + 28 + SPoffset[3]), (0x6284E8 + 28 + SPoffset[4]), (0x6284E8 + 28 + SPoffset[5]), (0x6284E8 + 28 + SPoffset[6]), (0x6284E8 + 28 + SPoffset[7])]))
-        # (Line 138) const select8Master = [(0x6284E8+32+SPoffset[0]),(0x6284E8+32+SPoffset[1]),(0x6284E8+32+SPoffset[2]),(0x6284E8+32+SPoffset[3]),(0x6284E8+32+SPoffset[4]),(0x6284E8+32+SPoffset[5]),(0x6284E8+32+SPoffset[6]),(0x6284E8+32+SPoffset[7]) ];
+        # (Line 140) const select8Master = [(0x6284E8+32+SPoffset[0]),(0x6284E8+32+SPoffset[1]),(0x6284E8+32+SPoffset[2]),(0x6284E8+32+SPoffset[3]),(0x6284E8+32+SPoffset[4]),(0x6284E8+32+SPoffset[5]),(0x6284E8+32+SPoffset[6]),(0x6284E8+32+SPoffset[7]) ];
         select8Master = _ARR(FlattenList([(0x6284E8 + 32 + SPoffset[0]), (0x6284E8 + 32 + SPoffset[1]), (0x6284E8 + 32 + SPoffset[2]), (0x6284E8 + 32 + SPoffset[3]), (0x6284E8 + 32 + SPoffset[4]), (0x6284E8 + 32 + SPoffset[5]), (0x6284E8 + 32 + SPoffset[6]), (0x6284E8 + 32 + SPoffset[7])]))
-        # (Line 139) const select9Master = [(0x6284E8+36+SPoffset[0]),(0x6284E8+36+SPoffset[1]),(0x6284E8+36+SPoffset[2]),(0x6284E8+36+SPoffset[3]),(0x6284E8+36+SPoffset[4]),(0x6284E8+36+SPoffset[5]),(0x6284E8+36+SPoffset[6]),(0x6284E8+36+SPoffset[7]) ];
+        # (Line 141) const select9Master = [(0x6284E8+36+SPoffset[0]),(0x6284E8+36+SPoffset[1]),(0x6284E8+36+SPoffset[2]),(0x6284E8+36+SPoffset[3]),(0x6284E8+36+SPoffset[4]),(0x6284E8+36+SPoffset[5]),(0x6284E8+36+SPoffset[6]),(0x6284E8+36+SPoffset[7]) ];
         select9Master = _ARR(FlattenList([(0x6284E8 + 36 + SPoffset[0]), (0x6284E8 + 36 + SPoffset[1]), (0x6284E8 + 36 + SPoffset[2]), (0x6284E8 + 36 + SPoffset[3]), (0x6284E8 + 36 + SPoffset[4]), (0x6284E8 + 36 + SPoffset[5]), (0x6284E8 + 36 + SPoffset[6]), (0x6284E8 + 36 + SPoffset[7])]))
-        # (Line 140) const select10Master =[(0x6284E8+40+SPoffset[0]),(0x6284E8+40+SPoffset[1]),(0x6284E8+40+SPoffset[2]),(0x6284E8+40+SPoffset[3]),(0x6284E8+40+SPoffset[4]),(0x6284E8+40+SPoffset[5]),(0x6284E8+40+SPoffset[6]),(0x6284E8+40+SPoffset[7]) ];
+        # (Line 142) const select10Master =[(0x6284E8+40+SPoffset[0]),(0x6284E8+40+SPoffset[1]),(0x6284E8+40+SPoffset[2]),(0x6284E8+40+SPoffset[3]),(0x6284E8+40+SPoffset[4]),(0x6284E8+40+SPoffset[5]),(0x6284E8+40+SPoffset[6]),(0x6284E8+40+SPoffset[7]) ];
         select10Master = _ARR(FlattenList([(0x6284E8 + 40 + SPoffset[0]), (0x6284E8 + 40 + SPoffset[1]), (0x6284E8 + 40 + SPoffset[2]), (0x6284E8 + 40 + SPoffset[3]), (0x6284E8 + 40 + SPoffset[4]), (0x6284E8 + 40 + SPoffset[5]), (0x6284E8 + 40 + SPoffset[6]), (0x6284E8 + 40 + SPoffset[7])]))
-        # (Line 141) const select11Master =[(0x6284E8+44+SPoffset[0]),(0x6284E8+44+SPoffset[1]),(0x6284E8+44+SPoffset[2]),(0x6284E8+44+SPoffset[3]),(0x6284E8+44+SPoffset[4]),(0x6284E8+44+SPoffset[5]),(0x6284E8+44+SPoffset[6]),(0x6284E8+44+SPoffset[7]) ];
+        # (Line 143) const select11Master =[(0x6284E8+44+SPoffset[0]),(0x6284E8+44+SPoffset[1]),(0x6284E8+44+SPoffset[2]),(0x6284E8+44+SPoffset[3]),(0x6284E8+44+SPoffset[4]),(0x6284E8+44+SPoffset[5]),(0x6284E8+44+SPoffset[6]),(0x6284E8+44+SPoffset[7]) ];
         select11Master = _ARR(FlattenList([(0x6284E8 + 44 + SPoffset[0]), (0x6284E8 + 44 + SPoffset[1]), (0x6284E8 + 44 + SPoffset[2]), (0x6284E8 + 44 + SPoffset[3]), (0x6284E8 + 44 + SPoffset[4]), (0x6284E8 + 44 + SPoffset[5]), (0x6284E8 + 44 + SPoffset[6]), (0x6284E8 + 44 + SPoffset[7])]))
-        # (Line 142) const select12Master =[(0x6284E8+48+SPoffset[0]),(0x6284E8+48+SPoffset[1]),(0x6284E8+48+SPoffset[2]),(0x6284E8+48+SPoffset[3]),(0x6284E8+48+SPoffset[4]),(0x6284E8+48+SPoffset[5]),(0x6284E8+48+SPoffset[6]),(0x6284E8+48+SPoffset[7]) ];
+        # (Line 144) const select12Master =[(0x6284E8+48+SPoffset[0]),(0x6284E8+48+SPoffset[1]),(0x6284E8+48+SPoffset[2]),(0x6284E8+48+SPoffset[3]),(0x6284E8+48+SPoffset[4]),(0x6284E8+48+SPoffset[5]),(0x6284E8+48+SPoffset[6]),(0x6284E8+48+SPoffset[7]) ];
         select12Master = _ARR(FlattenList([(0x6284E8 + 48 + SPoffset[0]), (0x6284E8 + 48 + SPoffset[1]), (0x6284E8 + 48 + SPoffset[2]), (0x6284E8 + 48 + SPoffset[3]), (0x6284E8 + 48 + SPoffset[4]), (0x6284E8 + 48 + SPoffset[5]), (0x6284E8 + 48 + SPoffset[6]), (0x6284E8 + 48 + SPoffset[7])]))
-        # (Line 144) const selectEpd = EPD(selectMaster[player]);
+        # (Line 146) const selectEpd = EPD(selectMaster[player]);
         selectEpd = EPD(selectMaster[player])
-        # (Line 145) const playerselectEpd = CUnit.from_read(selectEpd)  ;
+        # (Line 147) const playerselectEpd = CUnit.from_read(selectEpd)  ;
         playerselectEpd = CUnit.from_read(selectEpd)
-        # (Line 146) const select1Epd = EPD(select1Master[player]);
+        # (Line 148) const select1Epd = EPD(select1Master[player]);
         select1Epd = EPD(select1Master[player])
-        # (Line 147) const playerselect1Epd = CUnit.from_read(select1Epd)  ;
+        # (Line 149) const playerselect1Epd = CUnit.from_read(select1Epd)  ;
         playerselect1Epd = CUnit.from_read(select1Epd)
-        # (Line 148) const select2Epd = EPD(select2Master[player]);
+        # (Line 150) const select2Epd = EPD(select2Master[player]);
         select2Epd = EPD(select2Master[player])
-        # (Line 149) const playerselect2Epd = CUnit.from_read(select2Epd)  ;
+        # (Line 151) const playerselect2Epd = CUnit.from_read(select2Epd)  ;
         playerselect2Epd = CUnit.from_read(select2Epd)
-        # (Line 150) const select3Epd = EPD(select3Master[player]);
+        # (Line 152) const select3Epd = EPD(select3Master[player]);
         select3Epd = EPD(select3Master[player])
-        # (Line 151) const playerselect3Epd = CUnit.from_read(select3Epd)  ;
+        # (Line 153) const playerselect3Epd = CUnit.from_read(select3Epd)  ;
         playerselect3Epd = CUnit.from_read(select3Epd)
-        # (Line 152) const select4Epd = EPD(select4Master[player]);
+        # (Line 154) const select4Epd = EPD(select4Master[player]);
         select4Epd = EPD(select4Master[player])
-        # (Line 153) const playerselect4Epd = CUnit.from_read(select4Epd)  ;
+        # (Line 155) const playerselect4Epd = CUnit.from_read(select4Epd)  ;
         playerselect4Epd = CUnit.from_read(select4Epd)
-        # (Line 154) const select5Epd = EPD(select5Master[player]);
+        # (Line 156) const select5Epd = EPD(select5Master[player]);
         select5Epd = EPD(select5Master[player])
-        # (Line 155) const playerselect5Epd = CUnit.from_read(select5Epd)  ;
+        # (Line 157) const playerselect5Epd = CUnit.from_read(select5Epd)  ;
         playerselect5Epd = CUnit.from_read(select5Epd)
-        # (Line 156) const select6Epd = EPD(select6Master[player]);
+        # (Line 158) const select6Epd = EPD(select6Master[player]);
         select6Epd = EPD(select6Master[player])
-        # (Line 157) const playerselect6Epd = CUnit.from_read(select6Epd)  ;
+        # (Line 159) const playerselect6Epd = CUnit.from_read(select6Epd)  ;
         playerselect6Epd = CUnit.from_read(select6Epd)
-        # (Line 158) const select7Epd = EPD(select7Master[player]);
+        # (Line 160) const select7Epd = EPD(select7Master[player]);
         select7Epd = EPD(select7Master[player])
-        # (Line 159) const playerselect7Epd = CUnit.from_read(select7Epd)  ;
+        # (Line 161) const playerselect7Epd = CUnit.from_read(select7Epd)  ;
         playerselect7Epd = CUnit.from_read(select7Epd)
-        # (Line 160) const select8Epd = EPD(select8Master[player]);
+        # (Line 162) const select8Epd = EPD(select8Master[player]);
         select8Epd = EPD(select8Master[player])
-        # (Line 161) const playerselect8Epd = CUnit.from_read(select8Epd)  ;
+        # (Line 163) const playerselect8Epd = CUnit.from_read(select8Epd)  ;
         playerselect8Epd = CUnit.from_read(select8Epd)
-        # (Line 162) const select9Epd = EPD(select9Master[player]);
+        # (Line 164) const select9Epd = EPD(select9Master[player]);
         select9Epd = EPD(select9Master[player])
-        # (Line 163) const playerselect9Epd = CUnit.from_read(select9Epd)  ;
+        # (Line 165) const playerselect9Epd = CUnit.from_read(select9Epd)  ;
         playerselect9Epd = CUnit.from_read(select9Epd)
-        # (Line 164) const select10Epd = EPD(select10Master[player]);
+        # (Line 166) const select10Epd = EPD(select10Master[player]);
         select10Epd = EPD(select10Master[player])
-        # (Line 165) const playerselect10Epd = CUnit.from_read(select10Epd)  ;
+        # (Line 167) const playerselect10Epd = CUnit.from_read(select10Epd)  ;
         playerselect10Epd = CUnit.from_read(select10Epd)
-        # (Line 166) const select11Epd = EPD(select11Master[player]);
+        # (Line 168) const select11Epd = EPD(select11Master[player]);
         select11Epd = EPD(select11Master[player])
-        # (Line 167) const playerselect11Epd = CUnit.from_read(select11Epd)  ;
+        # (Line 169) const playerselect11Epd = CUnit.from_read(select11Epd)  ;
         playerselect11Epd = CUnit.from_read(select11Epd)
-        # (Line 168) const select12Epd = EPD(select12Master[player]);
+        # (Line 170) const select12Epd = EPD(select12Master[player]);
         select12Epd = EPD(select12Master[player])
-        # (Line 169) const playerselect12Epd = CUnit.from_read(select12Epd)  ;
+        # (Line 171) const playerselect12Epd = CUnit.from_read(select12Epd)  ;
         playerselect12Epd = CUnit.from_read(select12Epd)
-        # (Line 171) const t3epd = EPD(0x628438)  ;
+        # (Line 173) const t3epd = EPD(0x628438)  ;
         t3epd = EPD(0x628438)
-        # (Line 172) const t2epd = CUnit.from_read(t3epd)  ;
+        # (Line 174) const t2epd = CUnit.from_read(t3epd)  ;
         t2epd = CUnit.from_read(t3epd)
-        # (Line 174) if(playerselectEpd !=0){
+        # (Line 177) if(t2epd.unitType== worker[player] && t2epd.spiderMineCount  == 0 ){
+        if EUDIf()(EUDSCAnd()(_ATTC(t2epd, 'unitType') == worker[player])(_ATTC(t2epd, 'spiderMineCount') == 0)()):
+            # (Line 178) for (var i = 0 ; i <= 90; i-- ) {
+            i = _LVAR([0])
+            if EUDWhile()(i <= 90):
+                def _t31():
+                    i.__isub__(1)
+                # (Line 179) if(workerC[i]==0){workerC[i]=t2epd._epd;}
+                if EUDIf()(_ARRC(workerC, i) == 0):
+                    _ARRW(workerC, i) << (t2epd._epd)
+                    # (Line 180) t2epd.spiderMineCount  = 1;
+                EUDEndIf()
+                _ATTW(t2epd, 'spiderMineCount') << (1)
+                # (Line 181) }
+                # (Line 183) }
+                EUDSetContinuePoint()
+                _t31()
+            EUDEndWhile()
+            # (Line 184) if(race[player] == 0){race[player]  =bread(0x0057F1C0 + player) +1;}
+        EUDEndIf()
+        if EUDIf()(_ARRC(race, player) == 0):
+            _ARRW(race, player) << (f_bread(0x0057F1C0 + player) + 1)
+            # (Line 185) if(worker[player] == 0){
+        EUDEndIf()
+        if EUDIf()(_ARRC(worker, player) == 0):
+            # (Line 186) if(race[player] == 1){worker[player] =41;}
+            if EUDIf()(_ARRC(race, player) == 1):
+                _ARRW(worker, player) << (41)
+                # (Line 187) if(race[player] == 2){worker[player] =  7;}
+            EUDEndIf()
+            if EUDIf()(_ARRC(race, player) == 2):
+                _ARRW(worker, player) << (7)
+                # (Line 188) if(race[player] == 3){worker[player] =64;}
+            EUDEndIf()
+            if EUDIf()(_ARRC(race, player) == 3):
+                _ARRW(worker, player) << (64)
+                # (Line 189) }
+            EUDEndIf()
+            # (Line 190) if(t2epd.unitType == worker[player] && t2epd.owner == player ){
+        EUDEndIf()
+        if EUDIf()(EUDSCAnd()(_ATTC(t2epd, 'unitType') == worker[player])(_ATTC(t2epd, 'owner') == player)()):
+            # (Line 194) }
+            # (Line 196) if(playerselectEpd !=0){
+            pass
+        EUDEndIf()
         if EUDIf()(playerselectEpd == 0, neg=True):
-            # (Line 176) if( playerselectEpd.unitType ==157&& playerselectEpd.repulseUnknown ==1 ){playerselectEpd.unitType  =226; }
+            # (Line 198) if( playerselectEpd.unitType ==157&& playerselectEpd.repulseUnknown ==1 ){playerselectEpd.unitType  =226; }
             if EUDIf()(EUDSCAnd()(_ATTC(playerselectEpd, 'unitType') == 157)(_ATTC(playerselectEpd, 'repulseUnknown') == 1)()):
                 _ATTW(playerselectEpd, 'unitType') << (226)
-                # (Line 179) displaytext.printfAt(1, "{}     {} ",playerselectEpd.repulseUnknown   ,  playerselectEpd.orderTimer   ) ;
+                # (Line 201) displaytext.printfAt(1, "{}     {}    {} ",playerselectEpd.repulseUnknown   ,  playerselectEpd.orderTimer          , workerC[0]  ) ;
             EUDEndIf()
-            displaytext.printfAt(1, "{}     {} ", playerselectEpd.repulseUnknown, playerselectEpd.orderTimer)
-            # (Line 180) displaytext.printfAt(2, "{}     {} ", playerselectEpd.resourceType  ,  playerselectEpd.secondaryOrderState   ) ;
-            displaytext.printfAt(2, "{}     {} ", playerselectEpd.resourceType, playerselectEpd.secondaryOrderState)
-            # (Line 181) displaytext.printfAt(3, "{}     {} ",playerselectEpd.order  ,  playerselectEpd.secondaryOrderTimer    )  ;
-            displaytext.printfAt(3, "{}     {} ", playerselectEpd.order, playerselectEpd.secondaryOrderTimer)
-            # (Line 182) displaytext.printfAt(4, "{}     {} ",playerselectEpd.resourceCarryAmount  ,  playerselectEpd.resourceAmount ) ;
-            displaytext.printfAt(4, "{}     {} ", playerselectEpd.resourceCarryAmount, playerselectEpd.resourceAmount)
-            # (Line 183) displaytext.printfAt(5, "{}     {} ",playerselectEpd.orderState   ,   playerselectEpd.orderID   ) ;
-            displaytext.printfAt(5, "{}     {} ", playerselectEpd.orderState, playerselectEpd.orderID)
-            # (Line 184) displaytext.printfAt(6, "{}     {} ",0,  Gbuffer[player]  ) ;     }
-            displaytext.printfAt(6, "{}     {} ", 0, Gbuffer[player])
-            # (Line 186) if(playerselectEpd.unitType ==7){
+            displaytext.printfAt(1, "{}     {}    {} ", playerselectEpd.repulseUnknown, playerselectEpd.orderTimer, workerC[0])
+            # (Line 202) displaytext.printfAt(2, "{}     {}     {}", playerselectEpd.resourceType  ,  playerselectEpd.secondaryOrderState , workerC[1]  ) ;
+            displaytext.printfAt(2, "{}     {}     {}", playerselectEpd.resourceType, playerselectEpd.secondaryOrderState, workerC[1])
+            # (Line 203) displaytext.printfAt(3, "{}     {}     {}",playerselectEpd.order  ,  playerselectEpd.secondaryOrderTimer           , workerC[2]   )  ;
+            displaytext.printfAt(3, "{}     {}     {}", playerselectEpd.order, playerselectEpd.secondaryOrderTimer, workerC[2])
+            # (Line 204) displaytext.printfAt(4, "{}     {}     {}",playerselectEpd.resourceCarryAmount  ,  playerselectEpd.spiderMineCount ,workerC[3] ) ;
+            displaytext.printfAt(4, "{}     {}     {}", playerselectEpd.resourceCarryAmount, playerselectEpd.spiderMineCount, workerC[3])
+            # (Line 205) displaytext.printfAt(5, "{}     {}    {} ",playerselectEpd.orderState   ,   playerselectEpd.orderID                      , workerC[4]  ) ;
+            displaytext.printfAt(5, "{}     {}    {} ", playerselectEpd.orderState, playerselectEpd.orderID, workerC[4])
+            # (Line 206) displaytext.printfAt(6, "{}     {} ",race[player],  Gbuffer[player]  ) ;                                       }
+            displaytext.printfAt(6, "{}     {} ", race[player], Gbuffer[player])
+            # (Line 208) if(playerselectEpd.unitType ==worker[player]){
         EUDEndIf()
-        if EUDIf()(_ATTC(playerselectEpd, 'unitType') == 7):
-            # (Line 187) if( playerselectEpd.orderTargetUnit.unitType ==226&& playerselectEpd.orderTargetUnit.repulseUnknown ==1 && playerselectEpd.orderID != 10  ){ playerselectEpd.orderTargetUnit .unitType  =157;    }
+        if EUDIf()(_ATTC(playerselectEpd, 'unitType') == worker[player]):
+            # (Line 209) if( playerselectEpd.orderTargetUnit.unitType ==226&& playerselectEpd.orderTargetUnit.repulseUnknown ==1 && playerselectEpd.orderID != 10  ){ playerselectEpd.orderTargetUnit .unitType  =157;    }
             if EUDIf()(EUDSCAnd()(_ATTC(playerselectEpd.orderTargetUnit, 'unitType') == 226)(_ATTC(playerselectEpd.orderTargetUnit, 'repulseUnknown') == 1)(_ATTC(playerselectEpd, 'orderID') == 10, neg=True)()):
                 _ATTW(playerselectEpd.orderTargetUnit, 'unitType') << (157)
-                # (Line 188) displaytext.printfAt(1, "{}     {} ",playerselectEpd.repulseUnknown   ,  playerselectEpd.targetResourceUnit.hp    ) ;
+                # (Line 210) displaytext.printfAt(1, "{}     {} ",playerselectEpd.repulseUnknown   ,  playerselectEpd.targetResourceUnit.hp    ) ;
             EUDEndIf()
             displaytext.printfAt(1, "{}     {} ", playerselectEpd.repulseUnknown, playerselectEpd.targetResourceUnit.hp)
-            # (Line 189) if ( tt.BuildCheckEPD(playerselectEpd,76) && playerselectEpd.resourceCarryAmount  !=  0   ) {
+            # (Line 211) if ( tt.BuildCheckEPD(playerselectEpd,76) && playerselectEpd.resourceCarryAmount  !=  0   ) {
             if EUDIf()(EUDSCAnd()(tt.BuildCheckEPD(playerselectEpd, 76))(_ATTC(playerselectEpd, 'resourceCarryAmount') == 0, neg=True)()):
-                # (Line 191) if(playerselectEpd.repulseUnknown==0){
+                # (Line 213) if(playerselectEpd.repulseUnknown==0){
                 if EUDIf()(_ATTC(playerselectEpd, 'repulseUnknown') == 0):
-                    # (Line 192) setloc(PLoc1[player],playerselectEpd.posX,playerselectEpd.posY+16);
+                    # (Line 214) setloc(PLoc1[player],playerselectEpd.posX,playerselectEpd.posY+16);
                     f_setloc(PLoc1[player], playerselectEpd.posX, playerselectEpd.posY + 16)
-                    # (Line 194) wwrite((0x6CA318 + 118 * 2), 292);
+                    # (Line 216) wwrite((0x6CA318 + 118 * 2), 292);
                     f_wwrite((0x6CA318 + 118 * 2), 292)
-                    # (Line 196) CreateUnitWithProperties(1,176,PLoc1[player],player,UnitProperty(resource=150));
-                    # (Line 198) t2epd.resourceAmount = playerselectEpd.resourceCarryAmount+0  ;
+                    # (Line 218) CreateUnitWithProperties(1,176,PLoc1[player],player,UnitProperty(resource=150));
+                    # (Line 220) t2epd.resourceAmount = playerselectEpd.resourceCarryAmount+0  ;
                     DoActions(CreateUnitWithProperties(1, 176, PLoc1[player], player, UnitProperty(resource=150)))
                     _ATTW(t2epd, 'resourceAmount') << (playerselectEpd.resourceCarryAmount + 0)
-                    # (Line 200) setloc(PLoc1[player],playerselectEpd.posX,playerselectEpd.posY);
+                    # (Line 222) setloc(PLoc1[player],playerselectEpd.posX,playerselectEpd.posY);
                     f_setloc(PLoc1[player], playerselectEpd.posX, playerselectEpd.posY)
-                    # (Line 201) RemoveUnitAt(All,7,PLoc1[player],player);
-                    # (Line 202) DirReset[player]= playerselectEpd.currentDirection1;
+                    # (Line 223) RemoveUnitAt(All,7,PLoc1[player],player);
+                    # (Line 224) DirReset[player]= playerselectEpd.currentDirection1;
                     DoActions(RemoveUnitAt(All, 7, PLoc1[player], player))
                     _ARRW(DirReset, player) << (playerselectEpd.currentDirection1)
-                    # (Line 203) Gbuffer[player] = 301;
+                    # (Line 225) Gbuffer[player] = 301;
                     _ARRW(Gbuffer, player) << (301)
-                    # (Line 208) tt.BuildResetEPD(playerselectEpd);
+                    # (Line 230) tt.BuildResetEPD(playerselectEpd);
                     tt.BuildResetEPD(playerselectEpd)
-                    # (Line 209) }
-                    # (Line 210) if(playerselectEpd.repulseUnknown==1){
+                    # (Line 231) }
+                    # (Line 232) if(playerselectEpd.repulseUnknown==1){
                 EUDEndIf()
                 if EUDIf()(_ATTC(playerselectEpd, 'repulseUnknown') == 1):
-                    # (Line 211) setloc(PLoc1[player],playerselectEpd.posX,playerselectEpd.posY+20);
+                    # (Line 233) setloc(PLoc1[player],playerselectEpd.posX,playerselectEpd.posY+20);
                     f_setloc(PLoc1[player], playerselectEpd.posX, playerselectEpd.posY + 20)
-                    # (Line 213) wwrite((0x6CA318 + 52 * 2), 298);
+                    # (Line 235) wwrite((0x6CA318 + 52 * 2), 298);
                     f_wwrite((0x6CA318 + 52 * 2), 298)
-                    # (Line 216) wwrite((0x6617C8 + 157 * 8),  10);
+                    # (Line 238) wwrite((0x6617C8 + 157 * 8),  10);
                     f_wwrite((0x6617C8 + 157 * 8), 10)
-                    # (Line 217) wwrite((0x6617CA + 157 * 8),  8);
+                    # (Line 239) wwrite((0x6617CA + 157 * 8),  8);
                     f_wwrite((0x6617CA + 157 * 8), 8)
-                    # (Line 218) wwrite((0x6617CC + 157 * 8),  10);
+                    # (Line 240) wwrite((0x6617CC + 157 * 8),  10);
                     f_wwrite((0x6617CC + 157 * 8), 10)
-                    # (Line 219) wwrite((0x6617CE + 157 * 8),  8);
+                    # (Line 241) wwrite((0x6617CE + 157 * 8),  8);
                     f_wwrite((0x6617CE + 157 * 8), 8)
-                    # (Line 220) wwrite((0x662860 + 157 * 4),  8);
+                    # (Line 242) wwrite((0x662860 + 157 * 4),  8);
                     f_wwrite((0x662860 + 157 * 4), 8)
-                    # (Line 221) wwrite((0x662862 + 157 * 4),  8);
+                    # (Line 243) wwrite((0x662862 + 157 * 4),  8);
                     f_wwrite((0x662862 + 157 * 4), 8)
-                    # (Line 222) CreateUnitWithProperties(1,157,PLoc1[player],player,UnitProperty(resource=150));
-                    # (Line 223) wwrite((0x6617C8 + 157 * 8),  48);
+                    # (Line 244) CreateUnitWithProperties(1,157,PLoc1[player],player,UnitProperty(resource=150));
+                    # (Line 245) wwrite((0x6617C8 + 157 * 8),  48);
                     DoActions(CreateUnitWithProperties(1, 157, PLoc1[player], player, UnitProperty(resource=150)))
                     f_wwrite((0x6617C8 + 157 * 8), 48)
-                    # (Line 224) wwrite((0x6617CA + 157 * 8),  32);
+                    # (Line 246) wwrite((0x6617CA + 157 * 8),  32);
                     f_wwrite((0x6617CA + 157 * 8), 32)
-                    # (Line 225) wwrite((0x6617CC + 157 * 8),  48);
+                    # (Line 247) wwrite((0x6617CC + 157 * 8),  48);
                     f_wwrite((0x6617CC + 157 * 8), 48)
-                    # (Line 226) wwrite((0x6617CE + 157 * 8),  24);
+                    # (Line 248) wwrite((0x6617CE + 157 * 8),  24);
                     f_wwrite((0x6617CE + 157 * 8), 24)
-                    # (Line 227) wwrite((0x662860 + 157 * 4),  128);
+                    # (Line 249) wwrite((0x662860 + 157 * 4),  128);
                     f_wwrite((0x662860 + 157 * 4), 128)
-                    # (Line 228) wwrite((0x662862 + 157 * 4),  64);
+                    # (Line 250) wwrite((0x662862 + 157 * 4),  64);
                     f_wwrite((0x662862 + 157 * 4), 64)
-                    # (Line 229) wwrite((0x6CA318 + 52 * 2), 204);
+                    # (Line 251) wwrite((0x6CA318 + 52 * 2), 204);
                     f_wwrite((0x6CA318 + 52 * 2), 204)
-                    # (Line 230) t2epd.unitType =226;
+                    # (Line 252) t2epd.unitType =226;
                     _ATTW(t2epd, 'unitType') << (226)
-                    # (Line 231) t2epd.hp =1*256;
+                    # (Line 253) t2epd.hp =1*256;
                     _ATTW(t2epd, 'hp') << (1 * 256)
-                    # (Line 232) t2epd.repulseUnknown=1;
+                    # (Line 254) t2epd.repulseUnknown=1;
                     _ATTW(t2epd, 'repulseUnknown') << (1)
-                    # (Line 233) t2epd.resourceAmount = playerselectEpd.resourceCarryAmount+16  ;
+                    # (Line 255) t2epd.resourceAmount = playerselectEpd.resourceCarryAmount+16  ;
                     _ATTW(t2epd, 'resourceAmount') << (playerselectEpd.resourceCarryAmount + 16)
-                    # (Line 234) t2epd._epd = Dres;
-                    _ATTW(t2epd, '_epd') << (Dres)
-                    # (Line 236) setloc(PLoc1[player],playerselectEpd.posX,playerselectEpd.posY);
+                    # (Line 256) Dres = t2epd._epd ;
+                    Dres << (t2epd._epd)
+                    # (Line 258) setloc(PLoc1[player],playerselectEpd.posX,playerselectEpd.posY);
                     f_setloc(PLoc1[player], playerselectEpd.posX, playerselectEpd.posY)
-                    # (Line 238) DirReset[player]= playerselectEpd.currentDirection1;
+                    # (Line 260) DirReset[player]= playerselectEpd.currentDirection1;
                     _ARRW(DirReset, player) << (playerselectEpd.currentDirection1)
-                    # (Line 239) RemoveUnitAt(All,7,PLoc1[player],player);
-                    # (Line 241) Gbuffer[player] = 301;
-                    DoActions(RemoveUnitAt(All, 7, PLoc1[player], player))
+                    # (Line 261) RemoveUnitAt(All,worker[player],PLoc1[player],player);
+                    # (Line 263) Gbuffer[player] = 301;
+                    DoActions(RemoveUnitAt(All, worker[player], PLoc1[player], player))
                     _ARRW(Gbuffer, player) << (301)
-                    # (Line 247) }
-                    # (Line 248) }
+                    # (Line 269) }
+                    # (Line 270) }
                 EUDEndIf()
-                # (Line 252) if(Gbuffer[player] == 301){
+                # (Line 274) if(Gbuffer[player] == 301){
             EUDEndIf()
             if EUDIf()(_ARRC(Gbuffer, player) == 301):
-                # (Line 253) CreateUnit(1,7,PLoc1[player],player);
-                # (Line 254) MoveLocation( PLoc2[player],7,player,PLoc1[player]);
-                DoActions(CreateUnit(1, 7, PLoc1[player], player))
-                # (Line 255) t2epd.currentDirection1=DirReset[player];
+                # (Line 275) CreateUnit(1,worker[player],PLoc1[player],player);
+                # (Line 276) MoveLocation( PLoc2[player],7,player,PLoc1[player]);
+                DoActions(CreateUnit(1, worker[player], PLoc1[player], player))
+                # (Line 277) t2epd.currentDirection1=DirReset[player];
                 DoActions(MoveLocation(PLoc2[player], 7, player, PLoc1[player]))
                 _ATTW(t2epd, 'currentDirection1') << (DirReset[player])
-                # (Line 258) Gbuffer[player] = 0;
+                # (Line 280) Gbuffer[player] = 0;
                 _ARRW(Gbuffer, player) << (0)
-                # (Line 259) }
-                # (Line 261) if( playerselectEpd.orderID ==86 ){playerselectEpd.repulseUnknown  =0; }
+                # (Line 281) }
+                # (Line 283) if( playerselectEpd.orderID ==86 ){playerselectEpd.repulseUnknown  =0; }
             EUDEndIf()
             if EUDIf()(_ATTC(playerselectEpd, 'orderID') == 86):
                 _ATTW(playerselectEpd, 'repulseUnknown') << (0)
-                # (Line 263) if( playerselectEpd.orderID ==83 ){
+                # (Line 284) if( playerselectEpd.orderID ==81 && playerselectEpd.orderState  == 0 ){
+            EUDEndIf()
+            if EUDIf()(EUDSCAnd()(_ATTC(playerselectEpd, 'orderID') == 81)(_ATTC(playerselectEpd, 'orderState') == 0)()):
+                # (Line 285) playerselectEpd.targetResourceUnit.hp =10*256;
+                _ATTW(playerselectEpd.targetResourceUnit, 'hp') << (10 * 256)
+                # (Line 286) playerselectEpd.targetResourceUnit.unitType = 110;
+                _ATTW(playerselectEpd.targetResourceUnit, 'unitType') << (110)
+                # (Line 287) }
+                # (Line 288) if( playerselectEpd.orderID ==83 ){
             EUDEndIf()
             if EUDIf()(_ATTC(playerselectEpd, 'orderID') == 83):
-                # (Line 264) playerselectEpd.repulseUnknown  =1;
+                # (Line 290) playerselectEpd.repulseUnknown  =1;
                 _ATTW(playerselectEpd, 'repulseUnknown') << (1)
-                # (Line 265) if(playerselectEpd.targetResourceUnit.hp ==1*256){     playerselectEpd.orderTimer =0; playerselectEpd.targetResourceUnit.hp =10*256;  playerselectEpd.targetResourceUnit.unitType = 110;  }  }
-                if EUDIf()(_ATTC(playerselectEpd.targetResourceUnit, 'hp') == 1 * 256):
+                # (Line 291) if(playerselectEpd.targetResourceUnit.repulseUnknown ==1){     playerselectEpd.orderTimer =0; playerselectEpd.targetResourceUnit.hp =10*256;  playerselectEpd.targetResourceUnit.unitType = 110;  }  }
+                if EUDIf()(_ATTC(playerselectEpd.targetResourceUnit, 'repulseUnknown') == 1):
                     _ATTW(playerselectEpd, 'orderTimer') << (0)
                     _ATTW(playerselectEpd.targetResourceUnit, 'hp') << (10 * 256)
                     _ATTW(playerselectEpd.targetResourceUnit, 'unitType') << (110)
                 EUDEndIf()
-                # (Line 266) if( playerselectEpd.orderID ==84 &&playerselectEpd.targetResourceUnit.repulseUnknown  ==1){
+                # (Line 293) if( playerselectEpd.orderID ==84 &&playerselectEpd.targetResourceUnit.repulseUnknown  ==1){
             EUDEndIf()
             if EUDIf()(EUDSCAnd()(_ATTC(playerselectEpd, 'orderID') == 84)(_ATTC(playerselectEpd.targetResourceUnit, 'repulseUnknown') == 1)()):
-                # (Line 267) playerselectEpd.repulseUnknown  =1;
+                # (Line 294) playerselectEpd.repulseUnknown  =1;  playerselectEpd.orderTimer =1;
                 _ATTW(playerselectEpd, 'repulseUnknown') << (1)
-                # (Line 268) setloc(PLoc1[player],playerselectEpd.targetResourceUnit.posX,playerselectEpd.targetResourceUnit.posY);
+                _ATTW(playerselectEpd, 'orderTimer') << (1)
+                # (Line 295) setloc(PLoc1[player],playerselectEpd.targetResourceUnit.posX,playerselectEpd.targetResourceUnit.posY);
                 f_setloc(PLoc1[player], playerselectEpd.targetResourceUnit.posX, playerselectEpd.targetResourceUnit.posY)
-                # (Line 269) RemoveUnitAt(All,110,PLoc1[player],player);
-                # (Line 270) }
-                DoActions(RemoveUnitAt(All, 110, PLoc1[player], player))
-                # (Line 271) if(playerselectEpd.targetResourceUnit.unitType ==176 && playerselectEpd.orderTimer >=5 ){playerselectEpd.orderTimer =4;
+                # (Line 297) RemoveUnitAt(All,229,PLoc1[player],player);
+                # (Line 299) }
+                DoActions(RemoveUnitAt(All, 229, PLoc1[player], player))
+                # (Line 300) if(playerselectEpd.targetResourceUnit.unitType ==176 && playerselectEpd.orderTimer >=5 ){playerselectEpd.orderTimer =4;
             EUDEndIf()
             if EUDIf()(EUDSCAnd()(_ATTC(playerselectEpd.targetResourceUnit, 'unitType') == 176)(_ATTC(playerselectEpd, 'orderTimer') >= 5)()):
                 _ATTW(playerselectEpd, 'orderTimer') << (4)
-                # (Line 272) wwrite((0x66EC48 + 332 * 4),  250);
+                # (Line 301) wwrite((0x66EC48 + 332 * 4),  250);
                 f_wwrite((0x66EC48 + 332 * 4), 250)
-                # (Line 273) wwrite((0x669E28 + 332 * 1), 8);}
+                # (Line 302) wwrite((0x669E28 + 332 * 1), 8);}
                 f_wwrite((0x669E28 + 332 * 1), 8)
-                # (Line 274) if(playerselectEpd.targetResourceUnit.unitType ==176 && playerselectEpd.resourceCarryAmount >=1 ){    playerselectEpd.resourceCarryAmount = playerselectEpd.targetResourceUnit.resourceAmount-8;
+                # (Line 303) if(playerselectEpd.targetResourceUnit.unitType ==176 && playerselectEpd.resourceCarryAmount >=1 ){    playerselectEpd.resourceCarryAmount = playerselectEpd.targetResourceUnit.resourceAmount-8;
             EUDEndIf()
             if EUDIf()(EUDSCAnd()(_ATTC(playerselectEpd.targetResourceUnit, 'unitType') == 176)(_ATTC(playerselectEpd, 'resourceCarryAmount') >= 1)()):
                 _ATTW(playerselectEpd, 'resourceCarryAmount') << (playerselectEpd.targetResourceUnit.resourceAmount - 8)
-                # (Line 275) setloc(PLoc1[player],playerselectEpd.targetResourceUnit.posX,playerselectEpd.targetResourceUnit.posY);
+                # (Line 304) setloc(PLoc1[player],playerselectEpd.targetResourceUnit.posX,playerselectEpd.targetResourceUnit.posY);
                 f_setloc(PLoc1[player], playerselectEpd.targetResourceUnit.posX, playerselectEpd.targetResourceUnit.posY)
-                # (Line 277) RemoveUnitAt(All,176,PLoc1[player],player);
-                # (Line 279) }
+                # (Line 306) RemoveUnitAt(All,176,PLoc1[player],player);
+                # (Line 308) }
                 DoActions(RemoveUnitAt(All, 176, PLoc1[player], player))
-                # (Line 281) if(playerselectEpd.resourceCarryAmount  !=  0&& playerselectEpd.currentButtonSet!=176){   playerselectEpd.currentButtonSet=176;
+                # (Line 310) if(playerselectEpd.resourceCarryAmount  !=  0&& playerselectEpd.currentButtonSet!=176){   playerselectEpd.currentButtonSet=176;
             EUDEndIf()
             if EUDIf()(EUDSCAnd()(_ATTC(playerselectEpd, 'resourceCarryAmount') == 0, neg=True)(_ATTC(playerselectEpd, 'currentButtonSet') == 176, neg=True)()):
                 _ATTW(playerselectEpd, 'currentButtonSet') << (176)
-                # (Line 282) wwrite((0x66EC48 + 332 * 4), 142);
+                # (Line 311) wwrite((0x66EC48 + 332 * 4), 142);
                 f_wwrite((0x66EC48 + 332 * 4), 142)
-                # (Line 283) wwrite((0x669E28 + 332 * 1), 9); }
+                # (Line 312) wwrite((0x669E28 + 332 * 1), 9); }
                 f_wwrite((0x669E28 + 332 * 1), 9)
-                # (Line 284) if(playerselectEpd.resourceCarryAmount  ==  0&& playerselectEpd.currentButtonSet!=7){   playerselectEpd.currentButtonSet=7; }
+                # (Line 313) if(playerselectEpd.resourceCarryAmount  ==  0&& playerselectEpd.currentButtonSet!=7){   playerselectEpd.currentButtonSet=7; }
             EUDEndIf()
             if EUDIf()(EUDSCAnd()(_ATTC(playerselectEpd, 'resourceCarryAmount') == 0)(_ATTC(playerselectEpd, 'currentButtonSet') == 7, neg=True)()):
                 _ATTW(playerselectEpd, 'currentButtonSet') << (7)
-                # (Line 285) }
+                # (Line 314) }
             EUDEndIf()
-            # (Line 289) if(playergtimer[player]!=0){playergtimer[player]-=1;}
+            # (Line 318) if(playergtimer[player]!=0){playergtimer[player]-=1;}
         EUDEndIf()
         if EUDIf()(_ARRC(playergtimer, player) == 0, neg=True):
             _ARRW(playergtimer, player).__isub__(1)
-            # (Line 290) if(pressG[player]==0 && playergswitch[player]!=0 && pressShift[player]==0){
+            # (Line 319) if(pressG[player]==0 && playergswitch[player]!=0 && pressShift[player]==0){
         EUDEndIf()
         if EUDIf()(EUDSCAnd()(_ARRC(pressG, player) == 0)(_ARRC(playergswitch, player) == 0, neg=True)(_ARRC(pressShift, player) == 0)()):
-            # (Line 291) addloc(Pspawner[player],0,-32);
+            # (Line 320) addloc(Pspawner[player],0,-32);
             f_addloc(Pspawner[player], 0, -32)
-            # (Line 292) setloc(PLoc1[player], playercursor2EpdMaster.posX, playercursor2EpdMaster.posY);
+            # (Line 321) setloc(PLoc1[player], playercursor2EpdMaster.posX, playercursor2EpdMaster.posY);
             f_setloc(PLoc1[player], playercursor2EpdMaster.posX, playercursor2EpdMaster.posY)
-            # (Line 293) MoveUnit(All,219,player,PLoc1[player],Pspawner[player]);
-            # (Line 294) addloc(Pspawner[player],3,0);
+            # (Line 322) MoveUnit(All,219,player,PLoc1[player],Pspawner[player]);
+            # (Line 323) addloc(Pspawner[player],3,0);
             DoActions(MoveUnit(All, 219, player, PLoc1[player], Pspawner[player]))
             f_addloc(Pspawner[player], 3, 0)
-            # (Line 295) setloc(PLoc1[player], playercursor3EpdMaster.posX, playercursor3EpdMaster.posY);
+            # (Line 324) setloc(PLoc1[player], playercursor3EpdMaster.posX, playercursor3EpdMaster.posY);
             f_setloc(PLoc1[player], playercursor3EpdMaster.posX, playercursor3EpdMaster.posY)
-            # (Line 296) MoveUnit(All,219,player,PLoc1[player],Pspawner[player]);
-            # (Line 297) addloc(Pspawner[player],3,0);
+            # (Line 325) MoveUnit(All,219,player,PLoc1[player],Pspawner[player]);
+            # (Line 326) addloc(Pspawner[player],3,0);
             DoActions(MoveUnit(All, 219, player, PLoc1[player], Pspawner[player]))
             f_addloc(Pspawner[player], 3, 0)
-            # (Line 298) setloc(PLoc1[player], playercursor4EpdMaster.posX, playercursor4EpdMaster.posY);
+            # (Line 327) setloc(PLoc1[player], playercursor4EpdMaster.posX, playercursor4EpdMaster.posY);
             f_setloc(PLoc1[player], playercursor4EpdMaster.posX, playercursor4EpdMaster.posY)
-            # (Line 299) MoveUnit(All,219,player,PLoc1[player],Pspawner[player]);
-            # (Line 300) addloc(Pspawner[player],3,0);
+            # (Line 328) MoveUnit(All,219,player,PLoc1[player],Pspawner[player]);
+            # (Line 329) addloc(Pspawner[player],3,0);
             DoActions(MoveUnit(All, 219, player, PLoc1[player], Pspawner[player]))
             f_addloc(Pspawner[player], 3, 0)
-            # (Line 301) setloc(PLoc1[player],  playercursor5EpdMaster.posX, playercursor5EpdMaster.posY);
+            # (Line 330) setloc(PLoc1[player],  playercursor5EpdMaster.posX, playercursor5EpdMaster.posY);
             f_setloc(PLoc1[player], playercursor5EpdMaster.posX, playercursor5EpdMaster.posY)
-            # (Line 302) MoveUnit(All,219,player,PLoc1[player],Pspawner[player]);
-            # (Line 303) addloc(Pspawner[player],3,0);
+            # (Line 331) MoveUnit(All,219,player,PLoc1[player],Pspawner[player]);
+            # (Line 332) addloc(Pspawner[player],3,0);
             DoActions(MoveUnit(All, 219, player, PLoc1[player], Pspawner[player]))
             f_addloc(Pspawner[player], 3, 0)
-            # (Line 304) setloc(PLoc1[player], playercursor6EpdMaster.posX, playercursor6EpdMaster.posY);
+            # (Line 333) setloc(PLoc1[player], playercursor6EpdMaster.posX, playercursor6EpdMaster.posY);
             f_setloc(PLoc1[player], playercursor6EpdMaster.posX, playercursor6EpdMaster.posY)
-            # (Line 305) MoveUnit(All,219,player,PLoc1[player],Pspawner[player]);
-            # (Line 306) addloc(Pspawner[player],3,0);
+            # (Line 334) MoveUnit(All,219,player,PLoc1[player],Pspawner[player]);
+            # (Line 335) addloc(Pspawner[player],3,0);
             DoActions(MoveUnit(All, 219, player, PLoc1[player], Pspawner[player]))
             f_addloc(Pspawner[player], 3, 0)
-            # (Line 307) setloc(PLoc1[player], playercursor7EpdMaster.posX, playercursor7EpdMaster.posY);
+            # (Line 336) setloc(PLoc1[player], playercursor7EpdMaster.posX, playercursor7EpdMaster.posY);
             f_setloc(PLoc1[player], playercursor7EpdMaster.posX, playercursor7EpdMaster.posY)
-            # (Line 308) MoveUnit(All,219,player,PLoc1[player],Pspawner[player]);
-            # (Line 309) addloc(Pspawner[player],3,0);
+            # (Line 337) MoveUnit(All,219,player,PLoc1[player],Pspawner[player]);
+            # (Line 338) addloc(Pspawner[player],3,0);
             DoActions(MoveUnit(All, 219, player, PLoc1[player], Pspawner[player]))
             f_addloc(Pspawner[player], 3, 0)
-            # (Line 310) setloc(PLoc1[player], playercursor8EpdMaster.posX, playercursor8EpdMaster.posY);
+            # (Line 339) setloc(PLoc1[player], playercursor8EpdMaster.posX, playercursor8EpdMaster.posY);
             f_setloc(PLoc1[player], playercursor8EpdMaster.posX, playercursor8EpdMaster.posY)
-            # (Line 311) MoveUnit(All,219,player,PLoc1[player],Pspawner[player]);
-            # (Line 312) addloc(Pspawner[player],3,0);
+            # (Line 340) MoveUnit(All,219,player,PLoc1[player],Pspawner[player]);
+            # (Line 341) addloc(Pspawner[player],3,0);
             DoActions(MoveUnit(All, 219, player, PLoc1[player], Pspawner[player]))
             f_addloc(Pspawner[player], 3, 0)
-            # (Line 313) setloc(PLoc1[player], playercursor9EpdMaster.posX, playercursor9EpdMaster.posY);
+            # (Line 342) setloc(PLoc1[player], playercursor9EpdMaster.posX, playercursor9EpdMaster.posY);
             f_setloc(PLoc1[player], playercursor9EpdMaster.posX, playercursor9EpdMaster.posY)
-            # (Line 314) MoveUnit(All,219,player,PLoc1[player],Pspawner[player]);
-            # (Line 315) addloc(Pspawner[player],3,0);
+            # (Line 343) MoveUnit(All,219,player,PLoc1[player],Pspawner[player]);
+            # (Line 344) addloc(Pspawner[player],3,0);
             DoActions(MoveUnit(All, 219, player, PLoc1[player], Pspawner[player]))
             f_addloc(Pspawner[player], 3, 0)
-            # (Line 316) setloc(PLoc1[player],  playercursor10EpdMaster.posX, playercursor10EpdMaster.posY);
+            # (Line 345) setloc(PLoc1[player],  playercursor10EpdMaster.posX, playercursor10EpdMaster.posY);
             f_setloc(PLoc1[player], playercursor10EpdMaster.posX, playercursor10EpdMaster.posY)
-            # (Line 317) MoveUnit(All,219,player,PLoc1[player],Pspawner[player]);
-            # (Line 318) addloc(Pspawner[player],3,0);
+            # (Line 346) MoveUnit(All,219,player,PLoc1[player],Pspawner[player]);
+            # (Line 347) addloc(Pspawner[player],3,0);
             DoActions(MoveUnit(All, 219, player, PLoc1[player], Pspawner[player]))
             f_addloc(Pspawner[player], 3, 0)
-            # (Line 319) setloc(PLoc1[player], playercursor11EpdMaster.posX, playercursor11EpdMaster.posY);
+            # (Line 348) setloc(PLoc1[player], playercursor11EpdMaster.posX, playercursor11EpdMaster.posY);
             f_setloc(PLoc1[player], playercursor11EpdMaster.posX, playercursor11EpdMaster.posY)
-            # (Line 320) MoveUnit(All,219,player,PLoc1[player],Pspawner[player]);
-            # (Line 321) addloc(Pspawner[player],0,3);
+            # (Line 349) MoveUnit(All,219,player,PLoc1[player],Pspawner[player]);
+            # (Line 350) addloc(Pspawner[player],0,3);
             DoActions(MoveUnit(All, 219, player, PLoc1[player], Pspawner[player]))
             f_addloc(Pspawner[player], 0, 3)
-            # (Line 322) setloc(PLoc1[player], playercursor12EpdMaster.posX, playercursor12EpdMaster.posY);
+            # (Line 351) setloc(PLoc1[player], playercursor12EpdMaster.posX, playercursor12EpdMaster.posY);
             f_setloc(PLoc1[player], playercursor12EpdMaster.posX, playercursor12EpdMaster.posY)
-            # (Line 323) MoveUnit(All,219,player,PLoc1[player],Pspawner[player]);
-            # (Line 324) addloc(Pspawner[player],0,3);
+            # (Line 352) MoveUnit(All,219,player,PLoc1[player],Pspawner[player]);
+            # (Line 353) addloc(Pspawner[player],0,3);
             DoActions(MoveUnit(All, 219, player, PLoc1[player], Pspawner[player]))
             f_addloc(Pspawner[player], 0, 3)
-            # (Line 325) setloc(PLoc1[player], playercursor13EpdMaster.posX, playercursor13EpdMaster.posY);
+            # (Line 354) setloc(PLoc1[player], playercursor13EpdMaster.posX, playercursor13EpdMaster.posY);
             f_setloc(PLoc1[player], playercursor13EpdMaster.posX, playercursor13EpdMaster.posY)
-            # (Line 326) MoveUnit(All,219,player,PLoc1[player],Pspawner[player]);
-            # (Line 328) addloc(Pspawner[player],-27,26);
+            # (Line 355) MoveUnit(All,219,player,PLoc1[player],Pspawner[player]);
+            # (Line 357) addloc(Pspawner[player],-27,26);
             DoActions(MoveUnit(All, 219, player, PLoc1[player], Pspawner[player]))
             f_addloc(Pspawner[player], -27, 26)
-            # (Line 329) playergswitch[player]=0;
+            # (Line 358) playergswitch[player]=0;
             _ARRW(playergswitch, player) << (0)
-            # (Line 331) }
-            # (Line 333) var y;
+            # (Line 360) }
+            # (Line 362) var y;
         EUDEndIf()
         y = EUDVariable()
-        # (Line 335) if(!msqcvar.VKeyPress_LSHIFT[0]
-        _t47 = EUDIf()
-        # (Line 336) && Shiftbuffer[player]==0){pressShift[player] =0;}
-        if _t47(EUDSCAnd()(msqcvar.VKeyPress_LSHIFT[0], neg=True)(_ARRC(Shiftbuffer, player) == 0)()):
+        # (Line 364) if(!msqcvar.VKeyPress_LSHIFT[0]
+        _t58 = EUDIf()
+        # (Line 365) && Shiftbuffer[player]==0){pressShift[player] =0;}
+        if _t58(EUDSCAnd()(msqcvar.VKeyPress_LSHIFT[0], neg=True)(_ARRC(Shiftbuffer, player) == 0)()):
             _ARRW(pressShift, player) << (0)
-            # (Line 337) if(msqcvar.VKeyPress_LSHIFT[0]){
+            # (Line 366) if(msqcvar.VKeyPress_LSHIFT[0]){
         EUDEndIf()
         if EUDIf()(msqcvar.VKeyPress_LSHIFT[0]):
-            # (Line 338) Shiftbuffer[player] +=3;
+            # (Line 367) Shiftbuffer[player] +=3;
             _ARRW(Shiftbuffer, player).__iadd__(3)
-            # (Line 339) pressShift[player] =1;
+            # (Line 368) pressShift[player] =1;
             _ARRW(pressShift, player) << (1)
-            # (Line 340) }
-            # (Line 341) if( Shiftbuffer[player]>=12){ Shiftbuffer[player]=10;  }
+            # (Line 369) }
+            # (Line 370) if( Shiftbuffer[player]>=12){ Shiftbuffer[player]=10;  }
         EUDEndIf()
         if EUDIf()(_ARRC(Shiftbuffer, player) >= 12):
             _ARRW(Shiftbuffer, player) << (10)
-            # (Line 342) if( Shiftbuffer[player]>=1){ Shiftbuffer[player]-=1; pressShift[player]=1; }
+            # (Line 371) if( Shiftbuffer[player]>=1){ Shiftbuffer[player]-=1; pressShift[player]=1; }
         EUDEndIf()
         if EUDIf()(_ARRC(Shiftbuffer, player) >= 1):
             _ARRW(Shiftbuffer, player).__isub__(1)
             _ARRW(pressShift, player) << (1)
-            # (Line 343) if(pressShift[player]==1){
+            # (Line 372) if(pressShift[player]==1){
         EUDEndIf()
         if EUDIf()(_ARRC(pressShift, player) == 1):
-            # (Line 345) if(MCkey[player] ==1
-            _t52 = EUDIf()
-            # (Line 346) && y ==0
-            # (Line 347) && Bring(0,Exactly,0,219,PML[player])
-            # (Line 348) ){ y=1;playergswitch[player]+=1;}
-            if _t52(EUDSCAnd()(_ARRC(MCkey, player) == 1)(y == 0)(Bring(0, Exactly, 0, 219, PML[player]))()):
+            # (Line 374) if(MCkey[player] ==1
+            _t63 = EUDIf()
+            # (Line 375) && y ==0
+            # (Line 376) && Bring(0,Exactly,0,219,PML[player])
+            # (Line 377) ){ y=1;playergswitch[player]+=1;}
+            if _t63(EUDSCAnd()(_ARRC(MCkey, player) == 1)(y == 0)(Bring(0, Exactly, 0, 219, PML[player]))()):
                 y << (1)
                 _ARRW(playergswitch, player).__iadd__(1)
-                # (Line 349) if(MCkey[player] ==0
+                # (Line 378) if(MCkey[player] ==0
             EUDEndIf()
-            _t53 = EUDIf()
-            # (Line 350) && y ==1
-            # (Line 351) ){
-            if _t53(EUDSCAnd()(_ARRC(MCkey, player) == 0)(y == 1)()):
-                # (Line 353) y=0;}
+            _t64 = EUDIf()
+            # (Line 379) && y ==1
+            # (Line 380) ){
+            if _t64(EUDSCAnd()(_ARRC(MCkey, player) == 0)(y == 1)()):
+                # (Line 382) y=0;}
                 y << (0)
-                # (Line 355) }
+                # (Line 384) }
             EUDEndIf()
-            # (Line 357) if(
+            # (Line 386) if(
         EUDEndIf()
-        _t54 = EUDIf()
-        # (Line 358) MCkey[player] ==0
-        # (Line 359) &&!msqcvar.VKeyPress_LSHIFT[player]
-        # (Line 360) &&playergtimer[player]==0
-        # (Line 361) &&  pressG[player]==1
-        # (Line 362) && Gbuffer[player]<=5
-        # (Line 363) ){
-        if _t54(EUDSCAnd()(_ARRC(MCkey, player) == 0)(msqcvar.VKeyPress_LSHIFT[player], neg=True)(_ARRC(playergtimer, player) == 0)(_ARRC(pressG, player) == 1)(_ARRC(Gbuffer, player) <= 5)()):
-            # (Line 364) pressG[player]=0;
+        _t65 = EUDIf()
+        # (Line 387) MCkey[player] ==0
+        # (Line 388) &&!msqcvar.VKeyPress_LSHIFT[player]
+        # (Line 389) &&playergtimer[player]==0
+        # (Line 390) &&  pressG[player]==1
+        # (Line 391) && Gbuffer[player]<=5
+        # (Line 392) ){
+        if _t65(EUDSCAnd()(_ARRC(MCkey, player) == 0)(msqcvar.VKeyPress_LSHIFT[player], neg=True)(_ARRC(playergtimer, player) == 0)(_ARRC(pressG, player) == 1)(_ARRC(Gbuffer, player) <= 5)()):
+            # (Line 393) pressG[player]=0;
             _ARRW(pressG, player) << (0)
-            # (Line 365) }
-            # (Line 366) if( Gbuffer[player]>=1){ Gbuffer[player]-=1;
+            # (Line 394) }
+            # (Line 395) if( Gbuffer[player]>=1){ Gbuffer[player]-=1;
         EUDEndIf()
         if EUDIf()(_ARRC(Gbuffer, player) >= 1):
             _ARRW(Gbuffer, player).__isub__(1)
-            # (Line 368) }
-            # (Line 369) if( Gbuffer[player]>=7&&Gbuffer[player]<=10){ Gbuffer[player]=6;  }
+            # (Line 397) }
+            # (Line 398) if( Gbuffer[player]>=7&&Gbuffer[player]<=10){ Gbuffer[player]=6;  }
         EUDEndIf()
         if EUDIf()(EUDSCAnd()(_ARRC(Gbuffer, player) >= 7)(_ARRC(Gbuffer, player) <= 10)()):
             _ARRW(Gbuffer, player) << (6)
-            # (Line 370) if(Gbuffer[player]>=6){   pressG[player]=1;   }
+            # (Line 399) if(Gbuffer[player]>=6){   pressG[player]=1;   }
         EUDEndIf()
         if EUDIf()(_ARRC(Gbuffer, player) >= 6):
             _ARRW(pressG, player) << (1)
-            # (Line 371) if(MCckeyPress[player] == Gsync[player] && MCkey[player] == 1){
+            # (Line 400) if(MCckeyPress[player] == Gsync[player] && MCkey[player] == 1){
         EUDEndIf()
         if EUDIf()(EUDSCAnd()(_ARRC(MCckeyPress, player) == Gsync[player])(_ARRC(MCkey, player) == 1)()):
-            # (Line 373) pressG[player]=1;
+            # (Line 402) pressG[player]=1;
             _ARRW(pressG, player) << (1)
-            # (Line 374) Gbuffer[player]+=2;
+            # (Line 403) Gbuffer[player]+=2;
             _ARRW(Gbuffer, player).__iadd__(2)
-            # (Line 375) }
-            # (Line 377) if(pressG[player]==1){
+            # (Line 404) }
+            # (Line 406) if(pressG[player]==1){
         EUDEndIf()
         if EUDIf()(_ARRC(pressG, player) == 1):
-            # (Line 378) var o;
+            # (Line 407) var o;
             o = EUDVariable()
-            # (Line 379) var l;
+            # (Line 408) var l;
             l = EUDVariable()
-            # (Line 380) var t;
+            # (Line 409) var t;
             t = EUDVariable()
-            # (Line 381) var r;
+            # (Line 410) var r;
             r = EUDVariable()
-            # (Line 382) var b;
+            # (Line 411) var b;
             b = EUDVariable()
-            # (Line 385) if(playerselectEpd !=0 && playergswitch[player]<=1){
+            # (Line 414) if(playerselectEpd !=0 && playergswitch[player]<=1){
             if EUDIf()(EUDSCAnd()(playerselectEpd == 0, neg=True)(_ARRC(playergswitch, player) <= 1)()):
-                # (Line 387) var ii;
+                # (Line 416) var ii;
                 ii = EUDVariable()
-                # (Line 389) ii++;
+                # (Line 418) ii++;
                 ii.__iadd__(1)
-                # (Line 390) if(ii==1||ii==2){
+                # (Line 419) if(ii==1||ii==2){
                 if EUDIf()(EUDSCOr()(ii == 1)(ii == 2)()):
-                    # (Line 391) playerselectEpd.orderState=0;
+                    # (Line 420) playerselectEpd.orderState=0;
                     _ATTW(playerselectEpd, 'orderState') << (0)
-                    # (Line 392) playerselectEpd.orderID=6;
+                    # (Line 421) playerselectEpd.orderID=6;
                     _ATTW(playerselectEpd, 'orderID') << (6)
-                    # (Line 393) playerselectEpd.orderTargetX=wread(PmX[player]);
+                    # (Line 422) playerselectEpd.orderTargetX=wread(PmX[player]);
                     _ATTW(playerselectEpd, 'orderTargetX') << (f_wread(PmX[player]))
-                    # (Line 394) playerselectEpd.orderTargetY=wread(PmY[player]);
+                    # (Line 423) playerselectEpd.orderTargetY=wread(PmY[player]);
                     _ATTW(playerselectEpd, 'orderTargetY') << (f_wread(PmY[player]))
-                    # (Line 395) ii=0;
+                    # (Line 424) ii=0;
                     ii << (0)
-                    # (Line 396) }
-                    # (Line 398) o= playerselectEpd.unitType;
+                    # (Line 425) }
+                    # (Line 427) o= playerselectEpd.unitType;
                 EUDEndIf()
                 o << (playerselectEpd.unitType)
-                # (Line 399) l=        wread(0x6617C8 + o * 8);
+                # (Line 428) l=        wread(0x6617C8 + o * 8);
                 l << (f_wread(0x6617C8 + o * 8))
-                # (Line 400) t=         wread(0x6617CA + o * 8);
+                # (Line 429) t=         wread(0x6617CA + o * 8);
                 t << (f_wread(0x6617CA + o * 8))
-                # (Line 401) r=       wread(0x6617CC + o * 8);
+                # (Line 430) r=       wread(0x6617CC + o * 8);
                 r << (f_wread(0x6617CC + o * 8))
-                # (Line 402) b=      wread(0x6617CE + o * 8);
+                # (Line 431) b=      wread(0x6617CE + o * 8);
                 b << (f_wread(0x6617CE + o * 8))
-                # (Line 405) playergtimer[player]=3;
+                # (Line 434) playergtimer[player]=3;
                 _ARRW(playergtimer, player) << (3)
-                # (Line 406) if(msqcvar.VKeyPress_LSHIFT[player]){playergswitch[player]+=2;}
+                # (Line 435) if(msqcvar.VKeyPress_LSHIFT[player]){playergswitch[player]+=2;}
                 if EUDIf()(msqcvar.VKeyPress_LSHIFT[player]):
                     _ARRW(playergswitch, player).__iadd__(2)
-                    # (Line 407) else{playergswitch[player]=4;}
+                    # (Line 436) else{playergswitch[player]=4;}
                 if EUDElse()():
                     _ARRW(playergswitch, player) << (4)
-                    # (Line 408) setloc(PLoc2[player], playercursor2EpdMaster.posX , playercursor2EpdMaster.posY);
+                    # (Line 437) setloc(PLoc2[player], playercursor2EpdMaster.posX , playercursor2EpdMaster.posY);
                 EUDEndIf()
                 f_setloc(PLoc2[player], playercursor2EpdMaster.posX, playercursor2EpdMaster.posY)
-                # (Line 409) SetResources(player,Add,1,Ore);
-                # (Line 410) MoveUnit(All,219,player,PLoc2[player],PML[player]);
+                # (Line 438) SetResources(player,Add,1,Ore);
+                # (Line 439) MoveUnit(All,219,player,PLoc2[player],PML[player]);
                 DoActions(SetResources(player, Add, 1, Ore))
-                # (Line 411) setloc(PLoc1[player],wread(PmX[player]) ,wread(PmY[player]));
+                # (Line 440) setloc(PLoc1[player],wread(PmX[player]) ,wread(PmY[player]));
                 DoActions(MoveUnit(All, 219, player, PLoc2[player], PML[player]))
                 f_setloc(PLoc1[player], f_wread(PmX[player]), f_wread(PmY[player]))
-                # (Line 412) addloc(PLoc1[player],-(l*2)-2,-(t*2)-2,(r*2)+2,(b*2)+2);
+                # (Line 441) addloc(PLoc1[player],-(l*2)-2,-(t*2)-2,(r*2)+2,(b*2)+2);
                 f_addloc(PLoc1[player], -(l * 2) - 2, -(t * 2) - 2, (r * 2) + 2, (b * 2) + 2)
-                # (Line 413) }
-                # (Line 415) if(
+                # (Line 442) }
+                # (Line 444) if(
             EUDEndIf()
-            _t63 = EUDIf()
-            # (Line 418) wread(PmX[player]) <=  wread(PaLoc1X1[player]) ||
-            # (Line 419) wread(PmY[player]) <= wread(PaLoc1Y1[player]) ||
-            # (Line 420) wread(PmX[player]) >= wread(PaLoc1X2[player])  ||
-            # (Line 421) wread(PmY[player]) >= wread(PaLoc1Y2[player])
-            # (Line 422) ){
-            if _t63(EUDSCOr()(f_wread(PmX[player]) <= f_wread(PaLoc1X1[player]))(f_wread(PmY[player]) <= f_wread(PaLoc1Y1[player]))(f_wread(PmX[player]) >= f_wread(PaLoc1X2[player]))(f_wread(PmY[player]) >= f_wread(PaLoc1Y2[player]))()):
-                # (Line 428) if(playerselect1Epd !=0 && playergtimer[player]==0 && playergswitch[player] ==4 ){
+            _t74 = EUDIf()
+            # (Line 447) wread(PmX[player]) <=  wread(PaLoc1X1[player]) ||
+            # (Line 448) wread(PmY[player]) <= wread(PaLoc1Y1[player]) ||
+            # (Line 449) wread(PmX[player]) >= wread(PaLoc1X2[player])  ||
+            # (Line 450) wread(PmY[player]) >= wread(PaLoc1Y2[player])
+            # (Line 451) ){
+            if _t74(EUDSCOr()(f_wread(PmX[player]) <= f_wread(PaLoc1X1[player]))(f_wread(PmY[player]) <= f_wread(PaLoc1Y1[player]))(f_wread(PmX[player]) >= f_wread(PaLoc1X2[player]))(f_wread(PmY[player]) >= f_wread(PaLoc1Y2[player]))()):
+                # (Line 457) if(playerselect1Epd !=0 && playergtimer[player]==0 && playergswitch[player] ==4 ){
                 if EUDIf()(EUDSCAnd()(playerselect1Epd == 0, neg=True)(_ARRC(playergtimer, player) == 0)(_ARRC(playergswitch, player) == 4)()):
-                    # (Line 429) var ii;
+                    # (Line 458) var ii;
                     ii = EUDVariable()
-                    # (Line 431) ii++;
+                    # (Line 460) ii++;
                     ii.__iadd__(1)
-                    # (Line 432) if(ii==1||ii==2){
+                    # (Line 461) if(ii==1||ii==2){
                     if EUDIf()(EUDSCOr()(ii == 1)(ii == 2)()):
-                        # (Line 433) playerselect1Epd.orderState=0;
+                        # (Line 462) playerselect1Epd.orderState=0;
                         _ATTW(playerselect1Epd, 'orderState') << (0)
-                        # (Line 434) playerselect1Epd.orderID=6;
+                        # (Line 463) playerselect1Epd.orderID=6;
                         _ATTW(playerselect1Epd, 'orderID') << (6)
-                        # (Line 435) playerselect1Epd.orderTargetX=wread(PmX[player]);
+                        # (Line 464) playerselect1Epd.orderTargetX=wread(PmX[player]);
                         _ATTW(playerselect1Epd, 'orderTargetX') << (f_wread(PmX[player]))
-                        # (Line 436) playerselect1Epd.orderTargetY=wread(PmY[player]);
+                        # (Line 465) playerselect1Epd.orderTargetY=wread(PmY[player]);
                         _ATTW(playerselect1Epd, 'orderTargetY') << (f_wread(PmY[player]))
-                        # (Line 437) ii=0;
+                        # (Line 466) ii=0;
                         ii << (0)
-                        # (Line 438) }
-                        # (Line 440) setloc(PLoc2[player], playercursor3EpdMaster.posX , playercursor3EpdMaster.posY);
+                        # (Line 467) }
+                        # (Line 469) setloc(PLoc2[player], playercursor3EpdMaster.posX , playercursor3EpdMaster.posY);
                     EUDEndIf()
                     f_setloc(PLoc2[player], playercursor3EpdMaster.posX, playercursor3EpdMaster.posY)
-                    # (Line 441) MoveUnit(All,219,player,PLoc2[player],PML[player]);
-                    # (Line 442) setloc(PLoc1[player],wread(PmX[player]) ,wread(PmY[player]) );
+                    # (Line 470) MoveUnit(All,219,player,PLoc2[player],PML[player]);
+                    # (Line 471) setloc(PLoc1[player],wread(PmX[player]) ,wread(PmY[player]) );
                     DoActions(MoveUnit(All, 219, player, PLoc2[player], PML[player]))
                     f_setloc(PLoc1[player], f_wread(PmX[player]), f_wread(PmY[player]))
-                    # (Line 443) addloc(PLoc1[player],-(l*2)-2,-(t*2)-2,(r*2)+2,(b*2)+2);
+                    # (Line 472) addloc(PLoc1[player],-(l*2)-2,-(t*2)-2,(r*2)+2,(b*2)+2);
                     f_addloc(PLoc1[player], -(l * 2) - 2, -(t * 2) - 2, (r * 2) + 2, (b * 2) + 2)
-                    # (Line 444) playergtimer[player]=3;
+                    # (Line 473) playergtimer[player]=3;
                     _ARRW(playergtimer, player) << (3)
-                    # (Line 445) if(msqcvar.VKeyPress_LSHIFT[0]){playergswitch[player]+=2;}
+                    # (Line 474) if(msqcvar.VKeyPress_LSHIFT[0]){playergswitch[player]+=2;}
                     if EUDIf()(msqcvar.VKeyPress_LSHIFT[0]):
                         _ARRW(playergswitch, player).__iadd__(2)
-                        # (Line 446) else{playergswitch[player]=7;}
+                        # (Line 475) else{playergswitch[player]=7;}
                     if EUDElse()():
                         _ARRW(playergswitch, player) << (7)
-                        # (Line 447) }
+                        # (Line 476) }
                     EUDEndIf()
-                    # (Line 452) if(playerselect2Epd !=0 && playergtimer[player]==0  && playergswitch[player] ==7 ){
+                    # (Line 481) if(playerselect2Epd !=0 && playergtimer[player]==0  && playergswitch[player] ==7 ){
                 EUDEndIf()
                 if EUDIf()(EUDSCAnd()(playerselect2Epd == 0, neg=True)(_ARRC(playergtimer, player) == 0)(_ARRC(playergswitch, player) == 7)()):
-                    # (Line 453) var ii;
+                    # (Line 482) var ii;
                     ii = EUDVariable()
-                    # (Line 455) ii++;
+                    # (Line 484) ii++;
                     ii.__iadd__(1)
-                    # (Line 456) if(ii==1||ii==2){
+                    # (Line 485) if(ii==1||ii==2){
                     if EUDIf()(EUDSCOr()(ii == 1)(ii == 2)()):
-                        # (Line 457) playerselect2Epd.orderState=0;
+                        # (Line 486) playerselect2Epd.orderState=0;
                         _ATTW(playerselect2Epd, 'orderState') << (0)
-                        # (Line 458) playerselect2Epd.orderID=6;
+                        # (Line 487) playerselect2Epd.orderID=6;
                         _ATTW(playerselect2Epd, 'orderID') << (6)
-                        # (Line 459) playerselect2Epd.orderTargetX=wread(PmX[player]);
+                        # (Line 488) playerselect2Epd.orderTargetX=wread(PmX[player]);
                         _ATTW(playerselect2Epd, 'orderTargetX') << (f_wread(PmX[player]))
-                        # (Line 460) playerselect2Epd.orderTargetY=wread(PmY[player]);
+                        # (Line 489) playerselect2Epd.orderTargetY=wread(PmY[player]);
                         _ATTW(playerselect2Epd, 'orderTargetY') << (f_wread(PmY[player]))
-                        # (Line 461) ii=0;
+                        # (Line 490) ii=0;
                         ii << (0)
-                        # (Line 462) }
-                        # (Line 463) playergtimer[player]=3;
+                        # (Line 491) }
+                        # (Line 492) playergtimer[player]=3;
                     EUDEndIf()
                     _ARRW(playergtimer, player) << (3)
-                    # (Line 464) if(msqcvar.VKeyPress_LSHIFT[0]){playergswitch[player]+=2;}
+                    # (Line 493) if(msqcvar.VKeyPress_LSHIFT[0]){playergswitch[player]+=2;}
                     if EUDIf()(msqcvar.VKeyPress_LSHIFT[0]):
                         _ARRW(playergswitch, player).__iadd__(2)
-                        # (Line 465) else{playergswitch[player]=10;}
+                        # (Line 494) else{playergswitch[player]=10;}
                     if EUDElse()():
                         _ARRW(playergswitch, player) << (10)
-                        # (Line 466) setloc(PLoc2[player], playercursor4EpdMaster.posX , playercursor4EpdMaster.posY);
+                        # (Line 495) setloc(PLoc2[player], playercursor4EpdMaster.posX , playercursor4EpdMaster.posY);
                     EUDEndIf()
                     f_setloc(PLoc2[player], playercursor4EpdMaster.posX, playercursor4EpdMaster.posY)
-                    # (Line 467) MoveUnit(All,219,player,PLoc2[player],PML[player]);
-                    # (Line 468) setloc(PLoc1[player],wread(PmX[player]) ,wread(PmY[player]) );
+                    # (Line 496) MoveUnit(All,219,player,PLoc2[player],PML[player]);
+                    # (Line 497) setloc(PLoc1[player],wread(PmX[player]) ,wread(PmY[player]) );
                     DoActions(MoveUnit(All, 219, player, PLoc2[player], PML[player]))
                     f_setloc(PLoc1[player], f_wread(PmX[player]), f_wread(PmY[player]))
-                    # (Line 469) addloc(PLoc1[player],-(l*2)-2,-(t*2)-2,(r*2)+2,(b*2)+2);
+                    # (Line 498) addloc(PLoc1[player],-(l*2)-2,-(t*2)-2,(r*2)+2,(b*2)+2);
                     f_addloc(PLoc1[player], -(l * 2) - 2, -(t * 2) - 2, (r * 2) + 2, (b * 2) + 2)
-                    # (Line 470) }
-                    # (Line 475) if(playerselect3Epd !=0 && playergtimer[player]==0  && playergswitch[player] ==10 ){
+                    # (Line 499) }
+                    # (Line 504) if(playerselect3Epd !=0 && playergtimer[player]==0  && playergswitch[player] ==10 ){
                 EUDEndIf()
                 if EUDIf()(EUDSCAnd()(playerselect3Epd == 0, neg=True)(_ARRC(playergtimer, player) == 0)(_ARRC(playergswitch, player) == 10)()):
-                    # (Line 476) var ii;
+                    # (Line 505) var ii;
                     ii = EUDVariable()
-                    # (Line 478) ii++;
+                    # (Line 507) ii++;
                     ii.__iadd__(1)
-                    # (Line 479) if(ii==1||ii==2){
+                    # (Line 508) if(ii==1||ii==2){
                     if EUDIf()(EUDSCOr()(ii == 1)(ii == 2)()):
-                        # (Line 480) playerselect3Epd.orderState=0;
+                        # (Line 509) playerselect3Epd.orderState=0;
                         _ATTW(playerselect3Epd, 'orderState') << (0)
-                        # (Line 481) playerselect3Epd.orderID=6;
+                        # (Line 510) playerselect3Epd.orderID=6;
                         _ATTW(playerselect3Epd, 'orderID') << (6)
-                        # (Line 482) playerselect3Epd.orderTargetX=wread(PmX[player]);
+                        # (Line 511) playerselect3Epd.orderTargetX=wread(PmX[player]);
                         _ATTW(playerselect3Epd, 'orderTargetX') << (f_wread(PmX[player]))
-                        # (Line 483) playerselect3Epd.orderTargetY=wread(PmY[player]);
+                        # (Line 512) playerselect3Epd.orderTargetY=wread(PmY[player]);
                         _ATTW(playerselect3Epd, 'orderTargetY') << (f_wread(PmY[player]))
-                        # (Line 484) ii=0;
+                        # (Line 513) ii=0;
                         ii << (0)
-                        # (Line 485) }
-                        # (Line 486) playergtimer[player]=3;
+                        # (Line 514) }
+                        # (Line 515) playergtimer[player]=3;
                     EUDEndIf()
                     _ARRW(playergtimer, player) << (3)
-                    # (Line 487) if(msqcvar.VKeyPress_LSHIFT[0]){playergswitch[player]+=2;}
+                    # (Line 516) if(msqcvar.VKeyPress_LSHIFT[0]){playergswitch[player]+=2;}
                     if EUDIf()(msqcvar.VKeyPress_LSHIFT[0]):
                         _ARRW(playergswitch, player).__iadd__(2)
-                        # (Line 488) else{playergswitch[player]=13;}
+                        # (Line 517) else{playergswitch[player]=13;}
                     if EUDElse()():
                         _ARRW(playergswitch, player) << (13)
-                        # (Line 489) setloc(PLoc2[player], playercursor5EpdMaster.posX , playercursor5EpdMaster.posY);
+                        # (Line 518) setloc(PLoc2[player], playercursor5EpdMaster.posX , playercursor5EpdMaster.posY);
                     EUDEndIf()
                     f_setloc(PLoc2[player], playercursor5EpdMaster.posX, playercursor5EpdMaster.posY)
-                    # (Line 490) MoveUnit(All,219,player,PLoc2[player],PML[player]);
-                    # (Line 491) setloc(PLoc1[player],wread(PmX[player]) ,wread(PmY[player]) );
+                    # (Line 519) MoveUnit(All,219,player,PLoc2[player],PML[player]);
+                    # (Line 520) setloc(PLoc1[player],wread(PmX[player]) ,wread(PmY[player]) );
                     DoActions(MoveUnit(All, 219, player, PLoc2[player], PML[player]))
                     f_setloc(PLoc1[player], f_wread(PmX[player]), f_wread(PmY[player]))
-                    # (Line 492) addloc(PLoc1[player],-(l*2)-2,-(t*2)-2,(r*2)+2,(b*2)+2);
+                    # (Line 521) addloc(PLoc1[player],-(l*2)-2,-(t*2)-2,(r*2)+2,(b*2)+2);
                     f_addloc(PLoc1[player], -(l * 2) - 2, -(t * 2) - 2, (r * 2) + 2, (b * 2) + 2)
-                    # (Line 493) }
-                    # (Line 497) if(playerselect4Epd !=0 && playergtimer[player]==0  && playergswitch[player] ==13 ){
+                    # (Line 522) }
+                    # (Line 526) if(playerselect4Epd !=0 && playergtimer[player]==0  && playergswitch[player] ==13 ){
                 EUDEndIf()
                 if EUDIf()(EUDSCAnd()(playerselect4Epd == 0, neg=True)(_ARRC(playergtimer, player) == 0)(_ARRC(playergswitch, player) == 13)()):
-                    # (Line 498) var ii;
+                    # (Line 527) var ii;
                     ii = EUDVariable()
-                    # (Line 500) ii++;
+                    # (Line 529) ii++;
                     ii.__iadd__(1)
-                    # (Line 501) if(ii==1||ii==2){
+                    # (Line 530) if(ii==1||ii==2){
                     if EUDIf()(EUDSCOr()(ii == 1)(ii == 2)()):
-                        # (Line 502) playerselect4Epd.orderState=0;
+                        # (Line 531) playerselect4Epd.orderState=0;
                         _ATTW(playerselect4Epd, 'orderState') << (0)
-                        # (Line 503) playerselect4Epd.orderID=6;
+                        # (Line 532) playerselect4Epd.orderID=6;
                         _ATTW(playerselect4Epd, 'orderID') << (6)
-                        # (Line 504) playerselect4Epd.orderTargetX=wread(PmX[player]);
+                        # (Line 533) playerselect4Epd.orderTargetX=wread(PmX[player]);
                         _ATTW(playerselect4Epd, 'orderTargetX') << (f_wread(PmX[player]))
-                        # (Line 505) playerselect4Epd.orderTargetY=wread(PmY[player]);
+                        # (Line 534) playerselect4Epd.orderTargetY=wread(PmY[player]);
                         _ATTW(playerselect4Epd, 'orderTargetY') << (f_wread(PmY[player]))
-                        # (Line 506) ii=0;
+                        # (Line 535) ii=0;
                         ii << (0)
-                        # (Line 507) }
-                        # (Line 508) playergtimer[player]=3;
+                        # (Line 536) }
+                        # (Line 537) playergtimer[player]=3;
                     EUDEndIf()
                     _ARRW(playergtimer, player) << (3)
-                    # (Line 509) if(msqcvar.VKeyPress_LSHIFT[0]){playergswitch[player]+=2;}
+                    # (Line 538) if(msqcvar.VKeyPress_LSHIFT[0]){playergswitch[player]+=2;}
                     if EUDIf()(msqcvar.VKeyPress_LSHIFT[0]):
                         _ARRW(playergswitch, player).__iadd__(2)
-                        # (Line 510) else{playergswitch[player]=16;}
+                        # (Line 539) else{playergswitch[player]=16;}
                     if EUDElse()():
                         _ARRW(playergswitch, player) << (16)
-                        # (Line 511) setloc(PLoc2[player], playercursor6EpdMaster.posX , playercursor6EpdMaster.posY);
+                        # (Line 540) setloc(PLoc2[player], playercursor6EpdMaster.posX , playercursor6EpdMaster.posY);
                     EUDEndIf()
                     f_setloc(PLoc2[player], playercursor6EpdMaster.posX, playercursor6EpdMaster.posY)
-                    # (Line 512) MoveUnit(All,219,player,PLoc2[player],PML[player]);
-                    # (Line 513) setloc(PLoc1[player],wread(PmX[player]) ,wread(PmY[player]) );
+                    # (Line 541) MoveUnit(All,219,player,PLoc2[player],PML[player]);
+                    # (Line 542) setloc(PLoc1[player],wread(PmX[player]) ,wread(PmY[player]) );
                     DoActions(MoveUnit(All, 219, player, PLoc2[player], PML[player]))
                     f_setloc(PLoc1[player], f_wread(PmX[player]), f_wread(PmY[player]))
-                    # (Line 514) addloc(PLoc1[player],-(l*2)-2,-(t*2)-2,(r*2)+2,(b*2)+2);
+                    # (Line 543) addloc(PLoc1[player],-(l*2)-2,-(t*2)-2,(r*2)+2,(b*2)+2);
                     f_addloc(PLoc1[player], -(l * 2) - 2, -(t * 2) - 2, (r * 2) + 2, (b * 2) + 2)
-                    # (Line 515) }
-                    # (Line 520) if(playerselect5Epd !=0 && playergtimer[player]==0  && playergswitch[player] ==16 ){
+                    # (Line 544) }
+                    # (Line 549) if(playerselect5Epd !=0 && playergtimer[player]==0  && playergswitch[player] ==16 ){
                 EUDEndIf()
                 if EUDIf()(EUDSCAnd()(playerselect5Epd == 0, neg=True)(_ARRC(playergtimer, player) == 0)(_ARRC(playergswitch, player) == 16)()):
-                    # (Line 521) var ii;
+                    # (Line 550) var ii;
                     ii = EUDVariable()
-                    # (Line 523) ii++;
+                    # (Line 552) ii++;
                     ii.__iadd__(1)
-                    # (Line 524) if(ii==1||ii==2){
+                    # (Line 553) if(ii==1||ii==2){
                     if EUDIf()(EUDSCOr()(ii == 1)(ii == 2)()):
-                        # (Line 525) playerselect5Epd.orderState=0;
+                        # (Line 554) playerselect5Epd.orderState=0;
                         _ATTW(playerselect5Epd, 'orderState') << (0)
-                        # (Line 526) playerselect5Epd.orderID=6;
+                        # (Line 555) playerselect5Epd.orderID=6;
                         _ATTW(playerselect5Epd, 'orderID') << (6)
-                        # (Line 527) playerselect5Epd.orderTargetX=wread(PmX[player]);
+                        # (Line 556) playerselect5Epd.orderTargetX=wread(PmX[player]);
                         _ATTW(playerselect5Epd, 'orderTargetX') << (f_wread(PmX[player]))
-                        # (Line 528) playerselect5Epd.orderTargetY=wread(PmY[player]);
+                        # (Line 557) playerselect5Epd.orderTargetY=wread(PmY[player]);
                         _ATTW(playerselect5Epd, 'orderTargetY') << (f_wread(PmY[player]))
-                        # (Line 529) ii=0;
+                        # (Line 558) ii=0;
                         ii << (0)
-                        # (Line 530) }
-                        # (Line 531) playergtimer[player]=3;
+                        # (Line 559) }
+                        # (Line 560) playergtimer[player]=3;
                     EUDEndIf()
                     _ARRW(playergtimer, player) << (3)
-                    # (Line 532) if(msqcvar.VKeyPress_LSHIFT[0]){playergswitch[player]+=2;}
+                    # (Line 561) if(msqcvar.VKeyPress_LSHIFT[0]){playergswitch[player]+=2;}
                     if EUDIf()(msqcvar.VKeyPress_LSHIFT[0]):
                         _ARRW(playergswitch, player).__iadd__(2)
-                        # (Line 533) else{playergswitch[player]=19;}
+                        # (Line 562) else{playergswitch[player]=19;}
                     if EUDElse()():
                         _ARRW(playergswitch, player) << (19)
-                        # (Line 534) setloc(PLoc2[player], playercursor7EpdMaster.posX , playercursor7EpdMaster.posY);
+                        # (Line 563) setloc(PLoc2[player], playercursor7EpdMaster.posX , playercursor7EpdMaster.posY);
                     EUDEndIf()
                     f_setloc(PLoc2[player], playercursor7EpdMaster.posX, playercursor7EpdMaster.posY)
-                    # (Line 535) MoveUnit(All,219,player,PLoc2[player],PML[player]);
-                    # (Line 536) setloc(PLoc1[player],wread(PmX[player]) ,wread(PmY[player]) );
+                    # (Line 564) MoveUnit(All,219,player,PLoc2[player],PML[player]);
+                    # (Line 565) setloc(PLoc1[player],wread(PmX[player]) ,wread(PmY[player]) );
                     DoActions(MoveUnit(All, 219, player, PLoc2[player], PML[player]))
                     f_setloc(PLoc1[player], f_wread(PmX[player]), f_wread(PmY[player]))
-                    # (Line 537) addloc(PLoc1[player],-(l*2)-2,-(t*2)-2,(r*2)+2,(b*2)+2);
+                    # (Line 566) addloc(PLoc1[player],-(l*2)-2,-(t*2)-2,(r*2)+2,(b*2)+2);
                     f_addloc(PLoc1[player], -(l * 2) - 2, -(t * 2) - 2, (r * 2) + 2, (b * 2) + 2)
-                    # (Line 538) }
-                    # (Line 542) if(playerselect6Epd !=0 && playergtimer[player]==0  && playergswitch[player] ==19 ){
+                    # (Line 567) }
+                    # (Line 571) if(playerselect6Epd !=0 && playergtimer[player]==0  && playergswitch[player] ==19 ){
                 EUDEndIf()
                 if EUDIf()(EUDSCAnd()(playerselect6Epd == 0, neg=True)(_ARRC(playergtimer, player) == 0)(_ARRC(playergswitch, player) == 19)()):
-                    # (Line 543) var ii;
+                    # (Line 572) var ii;
                     ii = EUDVariable()
-                    # (Line 545) ii++;
+                    # (Line 574) ii++;
                     ii.__iadd__(1)
-                    # (Line 546) if(ii==1||ii==2){
+                    # (Line 575) if(ii==1||ii==2){
                     if EUDIf()(EUDSCOr()(ii == 1)(ii == 2)()):
-                        # (Line 547) playerselect6Epd.orderState=0;
+                        # (Line 576) playerselect6Epd.orderState=0;
                         _ATTW(playerselect6Epd, 'orderState') << (0)
-                        # (Line 548) playerselect6Epd.orderID=6;
+                        # (Line 577) playerselect6Epd.orderID=6;
                         _ATTW(playerselect6Epd, 'orderID') << (6)
-                        # (Line 549) playerselect6Epd.orderTargetX=wread(PmX[player]);
+                        # (Line 578) playerselect6Epd.orderTargetX=wread(PmX[player]);
                         _ATTW(playerselect6Epd, 'orderTargetX') << (f_wread(PmX[player]))
-                        # (Line 550) playerselect6Epd.orderTargetY=wread(PmY[player]);
+                        # (Line 579) playerselect6Epd.orderTargetY=wread(PmY[player]);
                         _ATTW(playerselect6Epd, 'orderTargetY') << (f_wread(PmY[player]))
-                        # (Line 551) ii=0;
+                        # (Line 580) ii=0;
                         ii << (0)
-                        # (Line 552) }
-                        # (Line 553) playergtimer[player]=3;
+                        # (Line 581) }
+                        # (Line 582) playergtimer[player]=3;
                     EUDEndIf()
                     _ARRW(playergtimer, player) << (3)
-                    # (Line 554) if(msqcvar.VKeyPress_LSHIFT[0]){playergswitch[player]+=2;}
+                    # (Line 583) if(msqcvar.VKeyPress_LSHIFT[0]){playergswitch[player]+=2;}
                     if EUDIf()(msqcvar.VKeyPress_LSHIFT[0]):
                         _ARRW(playergswitch, player).__iadd__(2)
-                        # (Line 555) else{playergswitch[player]=22;}
+                        # (Line 584) else{playergswitch[player]=22;}
                     if EUDElse()():
                         _ARRW(playergswitch, player) << (22)
-                        # (Line 556) setloc(PLoc2[player], playercursor8EpdMaster.posX , playercursor8EpdMaster.posY);
+                        # (Line 585) setloc(PLoc2[player], playercursor8EpdMaster.posX , playercursor8EpdMaster.posY);
                     EUDEndIf()
                     f_setloc(PLoc2[player], playercursor8EpdMaster.posX, playercursor8EpdMaster.posY)
-                    # (Line 557) MoveUnit(All,219,player,PLoc2[player],PML[player]);
-                    # (Line 558) setloc(PLoc1[player],wread(PmX[player]) ,wread(PmY[player]) );
+                    # (Line 586) MoveUnit(All,219,player,PLoc2[player],PML[player]);
+                    # (Line 587) setloc(PLoc1[player],wread(PmX[player]) ,wread(PmY[player]) );
                     DoActions(MoveUnit(All, 219, player, PLoc2[player], PML[player]))
                     f_setloc(PLoc1[player], f_wread(PmX[player]), f_wread(PmY[player]))
-                    # (Line 559) addloc(PLoc1[player],-(l*2)-2,-(t*2)-2,(r*2)+2,(b*2)+2);
+                    # (Line 588) addloc(PLoc1[player],-(l*2)-2,-(t*2)-2,(r*2)+2,(b*2)+2);
                     f_addloc(PLoc1[player], -(l * 2) - 2, -(t * 2) - 2, (r * 2) + 2, (b * 2) + 2)
-                    # (Line 560) }
-                    # (Line 564) if(playerselect7Epd !=0 && playergtimer[player]==0  && playergswitch[player] ==22 ){
+                    # (Line 589) }
+                    # (Line 593) if(playerselect7Epd !=0 && playergtimer[player]==0  && playergswitch[player] ==22 ){
                 EUDEndIf()
                 if EUDIf()(EUDSCAnd()(playerselect7Epd == 0, neg=True)(_ARRC(playergtimer, player) == 0)(_ARRC(playergswitch, player) == 22)()):
-                    # (Line 565) var ii;
+                    # (Line 594) var ii;
                     ii = EUDVariable()
-                    # (Line 567) ii++;
+                    # (Line 596) ii++;
                     ii.__iadd__(1)
-                    # (Line 568) if(ii==1||ii==2){
+                    # (Line 597) if(ii==1||ii==2){
                     if EUDIf()(EUDSCOr()(ii == 1)(ii == 2)()):
-                        # (Line 569) playerselect7Epd.orderState=0;
+                        # (Line 598) playerselect7Epd.orderState=0;
                         _ATTW(playerselect7Epd, 'orderState') << (0)
-                        # (Line 570) playerselect7Epd.orderID=6;
+                        # (Line 599) playerselect7Epd.orderID=6;
                         _ATTW(playerselect7Epd, 'orderID') << (6)
-                        # (Line 571) playerselect7Epd.orderTargetX=wread(PmX[player]);
+                        # (Line 600) playerselect7Epd.orderTargetX=wread(PmX[player]);
                         _ATTW(playerselect7Epd, 'orderTargetX') << (f_wread(PmX[player]))
-                        # (Line 572) playerselect7Epd.orderTargetY=wread(PmY[player]);
+                        # (Line 601) playerselect7Epd.orderTargetY=wread(PmY[player]);
                         _ATTW(playerselect7Epd, 'orderTargetY') << (f_wread(PmY[player]))
-                        # (Line 573) ii=0;
+                        # (Line 602) ii=0;
                         ii << (0)
-                        # (Line 574) }
-                        # (Line 575) playergtimer[player]=3;
+                        # (Line 603) }
+                        # (Line 604) playergtimer[player]=3;
                     EUDEndIf()
                     _ARRW(playergtimer, player) << (3)
-                    # (Line 576) if(msqcvar.VKeyPress_LSHIFT[0]){playergswitch[player]+=2;}
+                    # (Line 605) if(msqcvar.VKeyPress_LSHIFT[0]){playergswitch[player]+=2;}
                     if EUDIf()(msqcvar.VKeyPress_LSHIFT[0]):
                         _ARRW(playergswitch, player).__iadd__(2)
-                        # (Line 577) else{playergswitch[player]=25;}
+                        # (Line 606) else{playergswitch[player]=25;}
                     if EUDElse()():
                         _ARRW(playergswitch, player) << (25)
-                        # (Line 578) setloc(PLoc2[player], playercursor9EpdMaster.posX , playercursor9EpdMaster.posY);
+                        # (Line 607) setloc(PLoc2[player], playercursor9EpdMaster.posX , playercursor9EpdMaster.posY);
                     EUDEndIf()
                     f_setloc(PLoc2[player], playercursor9EpdMaster.posX, playercursor9EpdMaster.posY)
-                    # (Line 579) MoveUnit(All,219,player,PLoc2[player],PML[player]);
-                    # (Line 580) setloc(PLoc1[player],wread(PmX[player]) ,wread(PmY[player]) );
+                    # (Line 608) MoveUnit(All,219,player,PLoc2[player],PML[player]);
+                    # (Line 609) setloc(PLoc1[player],wread(PmX[player]) ,wread(PmY[player]) );
                     DoActions(MoveUnit(All, 219, player, PLoc2[player], PML[player]))
                     f_setloc(PLoc1[player], f_wread(PmX[player]), f_wread(PmY[player]))
-                    # (Line 581) addloc(PLoc1[player],-(l*2)-2,-(t*2)-2,(r*2)+2,(b*2)+2);
+                    # (Line 610) addloc(PLoc1[player],-(l*2)-2,-(t*2)-2,(r*2)+2,(b*2)+2);
                     f_addloc(PLoc1[player], -(l * 2) - 2, -(t * 2) - 2, (r * 2) + 2, (b * 2) + 2)
-                    # (Line 582) }
-                    # (Line 588) if(playerselect8Epd !=0 && playergtimer[player]==0  && playergswitch[player] ==25 ){
+                    # (Line 611) }
+                    # (Line 617) if(playerselect8Epd !=0 && playergtimer[player]==0  && playergswitch[player] ==25 ){
                 EUDEndIf()
                 if EUDIf()(EUDSCAnd()(playerselect8Epd == 0, neg=True)(_ARRC(playergtimer, player) == 0)(_ARRC(playergswitch, player) == 25)()):
-                    # (Line 589) var ii;
+                    # (Line 618) var ii;
                     ii = EUDVariable()
-                    # (Line 591) ii++;
+                    # (Line 620) ii++;
                     ii.__iadd__(1)
-                    # (Line 592) if(ii==1||ii==2){
+                    # (Line 621) if(ii==1||ii==2){
                     if EUDIf()(EUDSCOr()(ii == 1)(ii == 2)()):
-                        # (Line 593) playerselect8Epd.orderState=0;
+                        # (Line 622) playerselect8Epd.orderState=0;
                         _ATTW(playerselect8Epd, 'orderState') << (0)
-                        # (Line 594) playerselect8Epd.orderID=6;
+                        # (Line 623) playerselect8Epd.orderID=6;
                         _ATTW(playerselect8Epd, 'orderID') << (6)
-                        # (Line 595) playerselect8Epd.orderTargetX=wread(PmX[player]);
+                        # (Line 624) playerselect8Epd.orderTargetX=wread(PmX[player]);
                         _ATTW(playerselect8Epd, 'orderTargetX') << (f_wread(PmX[player]))
-                        # (Line 596) playerselect8Epd.orderTargetY=wread(PmY[player]);
+                        # (Line 625) playerselect8Epd.orderTargetY=wread(PmY[player]);
                         _ATTW(playerselect8Epd, 'orderTargetY') << (f_wread(PmY[player]))
-                        # (Line 597) ii=0;
+                        # (Line 626) ii=0;
                         ii << (0)
-                        # (Line 598) }
-                        # (Line 599) playergtimer[player]=3;
+                        # (Line 627) }
+                        # (Line 628) playergtimer[player]=3;
                     EUDEndIf()
                     _ARRW(playergtimer, player) << (3)
-                    # (Line 600) if(msqcvar.VKeyPress_LSHIFT[0]){playergswitch[player]+=2;}
+                    # (Line 629) if(msqcvar.VKeyPress_LSHIFT[0]){playergswitch[player]+=2;}
                     if EUDIf()(msqcvar.VKeyPress_LSHIFT[0]):
                         _ARRW(playergswitch, player).__iadd__(2)
-                        # (Line 601) else{playergswitch[player]=28;}
+                        # (Line 630) else{playergswitch[player]=28;}
                     if EUDElse()():
                         _ARRW(playergswitch, player) << (28)
-                        # (Line 602) setloc(PLoc2[player], playercursor10EpdMaster.posX , playercursor10EpdMaster.posY);
+                        # (Line 631) setloc(PLoc2[player], playercursor10EpdMaster.posX , playercursor10EpdMaster.posY);
                     EUDEndIf()
                     f_setloc(PLoc2[player], playercursor10EpdMaster.posX, playercursor10EpdMaster.posY)
-                    # (Line 603) MoveUnit(All,219,player,PLoc2[player],PML[player]);
-                    # (Line 604) setloc(PLoc1[player],wread(PmX[player]) ,wread(PmY[player]) );
+                    # (Line 632) MoveUnit(All,219,player,PLoc2[player],PML[player]);
+                    # (Line 633) setloc(PLoc1[player],wread(PmX[player]) ,wread(PmY[player]) );
                     DoActions(MoveUnit(All, 219, player, PLoc2[player], PML[player]))
                     f_setloc(PLoc1[player], f_wread(PmX[player]), f_wread(PmY[player]))
-                    # (Line 605) addloc(PLoc1[player],-(l*2)-2,-(t*2)-2,(r*2)+2,(b*2)+2);
+                    # (Line 634) addloc(PLoc1[player],-(l*2)-2,-(t*2)-2,(r*2)+2,(b*2)+2);
                     f_addloc(PLoc1[player], -(l * 2) - 2, -(t * 2) - 2, (r * 2) + 2, (b * 2) + 2)
-                    # (Line 606) }
-                    # (Line 611) if(playerselect9Epd !=0 && playergtimer[player]==0  && playergswitch[player] ==28 ){
+                    # (Line 635) }
+                    # (Line 640) if(playerselect9Epd !=0 && playergtimer[player]==0  && playergswitch[player] ==28 ){
                 EUDEndIf()
                 if EUDIf()(EUDSCAnd()(playerselect9Epd == 0, neg=True)(_ARRC(playergtimer, player) == 0)(_ARRC(playergswitch, player) == 28)()):
-                    # (Line 612) var ii;
+                    # (Line 641) var ii;
                     ii = EUDVariable()
-                    # (Line 614) ii++;
+                    # (Line 643) ii++;
                     ii.__iadd__(1)
-                    # (Line 615) if(ii==1||ii==2){
+                    # (Line 644) if(ii==1||ii==2){
                     if EUDIf()(EUDSCOr()(ii == 1)(ii == 2)()):
-                        # (Line 616) playerselect9Epd.orderState=0;
+                        # (Line 645) playerselect9Epd.orderState=0;
                         _ATTW(playerselect9Epd, 'orderState') << (0)
-                        # (Line 617) playerselect9Epd.orderID=6;
+                        # (Line 646) playerselect9Epd.orderID=6;
                         _ATTW(playerselect9Epd, 'orderID') << (6)
-                        # (Line 618) playerselect9Epd.orderTargetX=wread(PmX[player]);
+                        # (Line 647) playerselect9Epd.orderTargetX=wread(PmX[player]);
                         _ATTW(playerselect9Epd, 'orderTargetX') << (f_wread(PmX[player]))
-                        # (Line 619) playerselect9Epd.orderTargetY=wread(PmY[player]);
+                        # (Line 648) playerselect9Epd.orderTargetY=wread(PmY[player]);
                         _ATTW(playerselect9Epd, 'orderTargetY') << (f_wread(PmY[player]))
-                        # (Line 620) ii=0;
+                        # (Line 649) ii=0;
                         ii << (0)
-                        # (Line 621) }
-                        # (Line 622) playergtimer[player]=3;
+                        # (Line 650) }
+                        # (Line 651) playergtimer[player]=3;
                     EUDEndIf()
                     _ARRW(playergtimer, player) << (3)
-                    # (Line 623) if(msqcvar.VKeyPress_LSHIFT[0]){playergswitch[player]+=2;}
+                    # (Line 652) if(msqcvar.VKeyPress_LSHIFT[0]){playergswitch[player]+=2;}
                     if EUDIf()(msqcvar.VKeyPress_LSHIFT[0]):
                         _ARRW(playergswitch, player).__iadd__(2)
-                        # (Line 624) else{playergswitch[player]=31;}
+                        # (Line 653) else{playergswitch[player]=31;}
                     if EUDElse()():
                         _ARRW(playergswitch, player) << (31)
-                        # (Line 625) setloc(PLoc2[player], playercursor11EpdMaster.posX , playercursor11EpdMaster.posY);
+                        # (Line 654) setloc(PLoc2[player], playercursor11EpdMaster.posX , playercursor11EpdMaster.posY);
                     EUDEndIf()
                     f_setloc(PLoc2[player], playercursor11EpdMaster.posX, playercursor11EpdMaster.posY)
-                    # (Line 626) MoveUnit(All,219,player,PLoc2[player],PML[player]);
-                    # (Line 627) setloc(PLoc1[player],wread(PmX[player]) ,wread(PmY[player]) );
+                    # (Line 655) MoveUnit(All,219,player,PLoc2[player],PML[player]);
+                    # (Line 656) setloc(PLoc1[player],wread(PmX[player]) ,wread(PmY[player]) );
                     DoActions(MoveUnit(All, 219, player, PLoc2[player], PML[player]))
                     f_setloc(PLoc1[player], f_wread(PmX[player]), f_wread(PmY[player]))
-                    # (Line 628) addloc(PLoc1[player],-(l*2)-2,-(t*2)-2,(r*2)+2,(b*2)+2);
+                    # (Line 657) addloc(PLoc1[player],-(l*2)-2,-(t*2)-2,(r*2)+2,(b*2)+2);
                     f_addloc(PLoc1[player], -(l * 2) - 2, -(t * 2) - 2, (r * 2) + 2, (b * 2) + 2)
-                    # (Line 629) }
-                    # (Line 635) if(playerselect10Epd !=0 && playergtimer[player]==0  && playergswitch[player] ==31 ){
+                    # (Line 658) }
+                    # (Line 664) if(playerselect10Epd !=0 && playergtimer[player]==0  && playergswitch[player] ==31 ){
                 EUDEndIf()
                 if EUDIf()(EUDSCAnd()(playerselect10Epd == 0, neg=True)(_ARRC(playergtimer, player) == 0)(_ARRC(playergswitch, player) == 31)()):
-                    # (Line 636) var ii;
+                    # (Line 665) var ii;
                     ii = EUDVariable()
-                    # (Line 638) ii++;
+                    # (Line 667) ii++;
                     ii.__iadd__(1)
-                    # (Line 639) if(ii==1||ii==2){
+                    # (Line 668) if(ii==1||ii==2){
                     if EUDIf()(EUDSCOr()(ii == 1)(ii == 2)()):
-                        # (Line 640) playerselect10Epd.orderState=0;
+                        # (Line 669) playerselect10Epd.orderState=0;
                         _ATTW(playerselect10Epd, 'orderState') << (0)
-                        # (Line 641) playerselect10Epd.orderID=6;
+                        # (Line 670) playerselect10Epd.orderID=6;
                         _ATTW(playerselect10Epd, 'orderID') << (6)
-                        # (Line 642) playerselect10Epd.orderTargetX=wread(PmX[player]);
+                        # (Line 671) playerselect10Epd.orderTargetX=wread(PmX[player]);
                         _ATTW(playerselect10Epd, 'orderTargetX') << (f_wread(PmX[player]))
-                        # (Line 643) playerselect10Epd.orderTargetY=wread(PmY[player]);
+                        # (Line 672) playerselect10Epd.orderTargetY=wread(PmY[player]);
                         _ATTW(playerselect10Epd, 'orderTargetY') << (f_wread(PmY[player]))
-                        # (Line 644) ii=0;
+                        # (Line 673) ii=0;
                         ii << (0)
-                        # (Line 645) }
-                        # (Line 646) playergtimer[player]=3;
+                        # (Line 674) }
+                        # (Line 675) playergtimer[player]=3;
                     EUDEndIf()
                     _ARRW(playergtimer, player) << (3)
-                    # (Line 647) if(msqcvar.VKeyPress_LSHIFT[0]){playergswitch[player]+=2;}
+                    # (Line 676) if(msqcvar.VKeyPress_LSHIFT[0]){playergswitch[player]+=2;}
                     if EUDIf()(msqcvar.VKeyPress_LSHIFT[0]):
                         _ARRW(playergswitch, player).__iadd__(2)
-                        # (Line 648) else{playergswitch[player]=34;}
+                        # (Line 677) else{playergswitch[player]=34;}
                     if EUDElse()():
                         _ARRW(playergswitch, player) << (34)
-                        # (Line 649) setloc(PLoc2[player], playercursor12EpdMaster.posX , playercursor12EpdMaster.posY);
+                        # (Line 678) setloc(PLoc2[player], playercursor12EpdMaster.posX , playercursor12EpdMaster.posY);
                     EUDEndIf()
                     f_setloc(PLoc2[player], playercursor12EpdMaster.posX, playercursor12EpdMaster.posY)
-                    # (Line 650) MoveUnit(All,219,player,PLoc2[player],PML[player]);
-                    # (Line 651) setloc(PLoc1[player],wread(PmX[player]) ,wread(PmY[player]) );
+                    # (Line 679) MoveUnit(All,219,player,PLoc2[player],PML[player]);
+                    # (Line 680) setloc(PLoc1[player],wread(PmX[player]) ,wread(PmY[player]) );
                     DoActions(MoveUnit(All, 219, player, PLoc2[player], PML[player]))
                     f_setloc(PLoc1[player], f_wread(PmX[player]), f_wread(PmY[player]))
-                    # (Line 652) addloc(PLoc1[player],-(l*2)-2,-(t*2)-2,(r*2)+2,(b*2)+2);
+                    # (Line 681) addloc(PLoc1[player],-(l*2)-2,-(t*2)-2,(r*2)+2,(b*2)+2);
                     f_addloc(PLoc1[player], -(l * 2) - 2, -(t * 2) - 2, (r * 2) + 2, (b * 2) + 2)
-                    # (Line 653) }
-                    # (Line 658) if(playerselect11Epd !=0 && playergtimer[player]==0  && playergswitch[player] ==34 ){
+                    # (Line 682) }
+                    # (Line 687) if(playerselect11Epd !=0 && playergtimer[player]==0  && playergswitch[player] ==34 ){
                 EUDEndIf()
                 if EUDIf()(EUDSCAnd()(playerselect11Epd == 0, neg=True)(_ARRC(playergtimer, player) == 0)(_ARRC(playergswitch, player) == 34)()):
-                    # (Line 659) var ii;
+                    # (Line 688) var ii;
                     ii = EUDVariable()
-                    # (Line 661) ii++;
+                    # (Line 690) ii++;
                     ii.__iadd__(1)
-                    # (Line 662) if(ii==1||ii==2){
+                    # (Line 691) if(ii==1||ii==2){
                     if EUDIf()(EUDSCOr()(ii == 1)(ii == 2)()):
-                        # (Line 663) playerselect11Epd.orderState=0;
+                        # (Line 692) playerselect11Epd.orderState=0;
                         _ATTW(playerselect11Epd, 'orderState') << (0)
-                        # (Line 664) playerselect11Epd.orderID=6;
+                        # (Line 693) playerselect11Epd.orderID=6;
                         _ATTW(playerselect11Epd, 'orderID') << (6)
-                        # (Line 665) playerselect11Epd.orderTargetX=wread(PmX[player]);
+                        # (Line 694) playerselect11Epd.orderTargetX=wread(PmX[player]);
                         _ATTW(playerselect11Epd, 'orderTargetX') << (f_wread(PmX[player]))
-                        # (Line 666) playerselect11Epd.orderTargetY=wread(PmY[player]);
+                        # (Line 695) playerselect11Epd.orderTargetY=wread(PmY[player]);
                         _ATTW(playerselect11Epd, 'orderTargetY') << (f_wread(PmY[player]))
-                        # (Line 667) ii=0;
+                        # (Line 696) ii=0;
                         ii << (0)
-                        # (Line 668) }
-                        # (Line 669) playergtimer[player]=3;
+                        # (Line 697) }
+                        # (Line 698) playergtimer[player]=3;
                     EUDEndIf()
                     _ARRW(playergtimer, player) << (3)
-                    # (Line 670) if(msqcvar.VKeyPress_LSHIFT[0]){playergswitch[player]+=2;}
+                    # (Line 699) if(msqcvar.VKeyPress_LSHIFT[0]){playergswitch[player]+=2;}
                     if EUDIf()(msqcvar.VKeyPress_LSHIFT[0]):
                         _ARRW(playergswitch, player).__iadd__(2)
-                        # (Line 671) else{playergswitch[player]=37;}
+                        # (Line 700) else{playergswitch[player]=37;}
                     if EUDElse()():
                         _ARRW(playergswitch, player) << (37)
-                        # (Line 672) setloc(PLoc2[player], playercursor13EpdMaster.posX , playercursor13EpdMaster.posY);
+                        # (Line 701) setloc(PLoc2[player], playercursor13EpdMaster.posX , playercursor13EpdMaster.posY);
                     EUDEndIf()
                     f_setloc(PLoc2[player], playercursor13EpdMaster.posX, playercursor13EpdMaster.posY)
-                    # (Line 673) MoveUnit(All,219,player,PLoc2[player],PML[player]);
-                    # (Line 674) setloc(PLoc1[player],wread(PmX[player]) ,wread(PmY[player]) );
+                    # (Line 702) MoveUnit(All,219,player,PLoc2[player],PML[player]);
+                    # (Line 703) setloc(PLoc1[player],wread(PmX[player]) ,wread(PmY[player]) );
                     DoActions(MoveUnit(All, 219, player, PLoc2[player], PML[player]))
                     f_setloc(PLoc1[player], f_wread(PmX[player]), f_wread(PmY[player]))
-                    # (Line 675) addloc(PLoc1[player],-(l*2)-2,-(t*2)-2,(r*2)+2,(b*2)+2);
+                    # (Line 704) addloc(PLoc1[player],-(l*2)-2,-(t*2)-2,(r*2)+2,(b*2)+2);
                     f_addloc(PLoc1[player], -(l * 2) - 2, -(t * 2) - 2, (r * 2) + 2, (b * 2) + 2)
-                    # (Line 676) }
-                    # (Line 683) }
+                    # (Line 705) }
+                    # (Line 712) }
                 EUDEndIf()
-                # (Line 684) }
+                # (Line 713) }
             EUDEndIf()
-            # (Line 686) if (playerselectEpd.unitType==106){
+            # (Line 715) if (playerselectEpd.unitType==106){
         EUDEndIf()
         if EUDIf()(_ATTC(playerselectEpd, 'unitType') == 106):
-            # (Line 687) if ( tt.BuildCheckEPD(playerselectEpd,75)  && Gbuffer[player]==0  && playerselectEpd.currentButtonSet==106){
+            # (Line 716) if ( tt.BuildCheckEPD(playerselectEpd,75)  && Gbuffer[player]==0  && playerselectEpd.currentButtonSet==106){
             if EUDIf()(EUDSCAnd()(tt.BuildCheckEPD(playerselectEpd, 75))(_ARRC(Gbuffer, player) == 0)(_ATTC(playerselectEpd, 'currentButtonSet') == 106)()):
-                # (Line 688) playerselectEpd.currentButtonSet=(player+194); tt.BuildResetEPD(playerselectEpd);  Gbuffer[player]=3;    }
+                # (Line 717) playerselectEpd.currentButtonSet=(player+194); tt.BuildResetEPD(playerselectEpd);  Gbuffer[player]=3;    }
                 _ATTW(playerselectEpd, 'currentButtonSet') << ((player + 194))
                 tt.BuildResetEPD(playerselectEpd)
                 _ARRW(Gbuffer, player) << (3)
-                # (Line 689) if ( tt.BuildCheckEPD(playerselectEpd,75) && Gbuffer[player]==0 && playerselectEpd.currentButtonSet!=106   ){
+                # (Line 718) if ( tt.BuildCheckEPD(playerselectEpd,75) && Gbuffer[player]==0 && playerselectEpd.currentButtonSet!=106   ){
             EUDEndIf()
             if EUDIf()(EUDSCAnd()(tt.BuildCheckEPD(playerselectEpd, 75))(_ARRC(Gbuffer, player) == 0)(_ATTC(playerselectEpd, 'currentButtonSet') == 106, neg=True)()):
-                # (Line 690) playerselectEpd.currentButtonSet=106; tt.BuildResetEPD(playerselectEpd);  Gbuffer[player]=3;     }
+                # (Line 719) playerselectEpd.currentButtonSet=106; tt.BuildResetEPD(playerselectEpd);  Gbuffer[player]=3;     }
                 _ATTW(playerselectEpd, 'currentButtonSet') << (106)
                 tt.BuildResetEPD(playerselectEpd)
                 _ARRW(Gbuffer, player) << (3)
-                # (Line 691) if ( tt.BuildCheckEPD(playerselectEpd,76) && ampmenu[player]==0    ) {tt.BuildResetEPD(playerselectEpd);  ampmenu[player] =10;    }
+                # (Line 720) if ( tt.BuildCheckEPD(playerselectEpd,76) && ampmenu[player]==0    ) {tt.BuildResetEPD(playerselectEpd);  ampmenu[player] =10;    }
             EUDEndIf()
             if EUDIf()(EUDSCAnd()(tt.BuildCheckEPD(playerselectEpd, 76))(_ARRC(ampmenu, player) == 0)()):
                 tt.BuildResetEPD(playerselectEpd)
                 _ARRW(ampmenu, player) << (10)
-                # (Line 692) }
+                # (Line 721) }
             EUDEndIf()
-            # (Line 694) if (ampmenu[player]==10) {
+            # (Line 723) if (ampmenu[player]==10) {
         EUDEndIf()
         if EUDIf()(_ARRC(ampmenu, player) == 10):
-            # (Line 696) if(MCkey[player] ==1){ampmenu[player]=9; Gsync[player] = MCckeyPress[player];
+            # (Line 725) if(MCkey[player] ==1){ampmenu[player]=9; Gsync[player] = MCckeyPress[player];
             if EUDIf()(_ARRC(MCkey, player) == 1):
                 _ARRW(ampmenu, player) << (9)
                 _ARRW(Gsync, player) << (MCckeyPress[player])
-                # (Line 698) }
-                # (Line 699) displaytext.printfAt(5, "\x13 Press ANY key to ");
+                # (Line 727) }
+                # (Line 728) displaytext.printfAt(5, "\x13 Press ANY key to ");
             EUDEndIf()
             displaytext.printfAt(5, "\x13 Press ANY key to ")
-            # (Line 700) displaytext.printfAt(6, "\x13 Set your Multi-Group move command");
+            # (Line 729) displaytext.printfAt(6, "\x13 Set your Multi-Group move command");
             displaytext.printfAt(6, "\x13 Set your Multi-Group move command")
-            # (Line 703) }
-            # (Line 704) if (ampmenu[player] ==9  ){  ampmenu[player]=0;  settblf((1160 + player), 0, "/x Currently:{:s} \n      Assign  \n Multi-Cast Move Command \n  \x1f   A\x04mped\x01 Extra Key   ",MCcKey[Gsync[player]] );
+            # (Line 732) }
+            # (Line 733) if (ampmenu[player] ==9  ){  ampmenu[player]=0;  settblf((1160 + player), 0, "/x Currently:{:s} \n      Assign  \n Multi-Cast Move Command \n  \x1f   A\x04mped\x01 Extra Key   ",MCcKey[Gsync[player]] );
         EUDEndIf()
         if EUDIf()(_ARRC(ampmenu, player) == 9):
             _ARRW(ampmenu, player) << (0)
             f_settblf((1160 + player), 0, "/x Currently:{:s} \n      Assign  \n Multi-Cast Move Command \n  \x1f   A\x04mped\x01 Extra Key   ", MCcKey[Gsync[player]])
-            # (Line 705) displaytext.printfAt(5, " "); displaytext.printfAt(6, " ");}
+            # (Line 734) displaytext.printfAt(5, " "); displaytext.printfAt(6, " ");}
             displaytext.printfAt(5, " ")
             displaytext.printfAt(6, " ")
-            # (Line 741) }
+            # (Line 770) }
         EUDEndIf()
-        # (Line 743) }
+        # (Line 772) }
